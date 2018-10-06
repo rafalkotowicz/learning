@@ -38,6 +38,7 @@ cmake-build-debug/
 # IntelliJ
 out/
 build/
+/target/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -115,6 +116,15 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/java,windows,intellij
 
+# Created by https://www.gitignore.io/api/scala
+
+### Scala ###
+*.class
+*.log
+
+# End of https://www.gitignore.io/api/scala
+
 #Rafal's addition. I know that I duplicate some of other ignores, but maybe some day I will know why keep some parts of .idea or .gradle directories in repo
 .idea/
 .gradle/
+**/target/*
