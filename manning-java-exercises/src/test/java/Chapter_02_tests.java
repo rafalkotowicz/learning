@@ -1,4 +1,5 @@
 import Chapter_02.Apple;
+import Chapter_02.AppleRedAndHeavyPredicate;
 import Chapter_02.Filters;
 import org.junit.Test;
 
@@ -10,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class Chapter_02_tests {
     LinkedList<Apple> inventory = new LinkedList<>();
 
-    public void initializeTestData() {
+    private void initializeTestData() {
         inventory.add(new Apple(100, "green"));
         inventory.add(new Apple(100, "green"));
         inventory.add(new Apple(100, "green"));
@@ -31,5 +32,13 @@ public class Chapter_02_tests {
         assertEquals("Unexpected amount of filtered apples", 1, Filters.applesByColor(inventory, "brown").size());
         assertEquals("Unexpected amount of filtered apples", 1, Filters.applesByColor(inventory, "red").size());
         assertEquals("Unexpected amount of filtered apples", 3, Filters.applesByColor(inventory, "green").size());
+    }
+
+    @Test
+    public void testFilteringHeavyAndRed() {
+        initializeTestData();
+        inventory.add(new Apple(200, "blue"));
+        inventory.add(new Apple(200, "red"));
+        assertEquals("Unexpected amount of filtered apples", 1, Filters.applesByPredicate(inventory, new AppleRedAndHeavyPredicate()).size());
     }
 }

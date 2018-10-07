@@ -19,4 +19,12 @@ public class Filters {
         }
         return result;
     }
+
+    public static List<Apple> applesByPredicate(List<Apple> appleInventory, ApplePredicate ap) {
+        LinkedList<Apple> result = new LinkedList<Apple>();
+        for (Apple apple : appleInventory) {
+            if(ap.test(apple)) result.add(apple);
+        }
+        return result;
+    }
 }
