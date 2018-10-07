@@ -1,6 +1,5 @@
-import Chapter_02.Apple;
-import Chapter_02.AppleRedAndHeavyPredicate;
-import Chapter_02.Filters;
+package Chapter_02;
+
 import org.junit.Test;
 
 import java.util.LinkedList;
@@ -8,7 +7,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class Chapter_02_tests {
+public class Filter_tests {
     LinkedList<Apple> inventory = new LinkedList<>();
 
     private void initializeTestData() {
