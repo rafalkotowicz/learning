@@ -1,5 +1,6 @@
 package Chapter_02;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.LinkedList;
@@ -13,7 +14,8 @@ import static org.junit.Assert.assertEquals;
 public class FilterTest {
     LinkedList<Apple> inventory = new LinkedList<>();
 
-    private void initializeTestData() {
+    @Before
+    public void initializeTestData() {
         inventory.add(new Apple(100, "green"));
         inventory.add(new Apple(100, "green"));
         inventory.add(new Apple(100, "green"));
@@ -27,14 +29,11 @@ public class FilterTest {
 
     @Test
     public void testFilterGreenApples() {
-        initializeTestData();
-        List<Apple> fiteredApples = greenApples(inventory);
-        assertEquals("Unexpected amount of filtered apples", 3, fiteredApples.size());
+        assertEquals("Unexpected amount of filtered apples", 3, greenApples(inventory).size());
     }
 
     @Test
     public void testFilteringByColor() {
-        initializeTestData();
         assertEquals("Unexpected amount of filtered apples", 1, applesByColor(inventory, "brown").size());
         assertEquals("Unexpected amount of filtered apples", 4, applesByColor(inventory, "red").size());
         assertEquals("Unexpected amount of filtered apples", 3, applesByColor(inventory, "green").size());
@@ -42,7 +41,17 @@ public class FilterTest {
 
     @Test
     public void testFilteringHeavyAndRed() {
-        initializeTestData();
         assertEquals("Unexpected amount of filtered apples", 2, applesByPredicate(inventory, new AppleRedAndHeavyPredicate()).size());
     }
+
+    @Test
+    public void testAnonymousClassPredicate() {
+        assertEquals("Unexpected amount of filtered apples", 2, applesByPredicate(inventory, new ApplePredicate() {
+            public boolean test(Apple apple) {
+                return "red".equalsIgnoreCase(apple.color) && apple.weight > 150;
+            }
+        }).size());
+    }
+
+    
 }
