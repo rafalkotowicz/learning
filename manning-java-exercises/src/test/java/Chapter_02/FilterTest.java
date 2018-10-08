@@ -6,9 +6,7 @@ import org.junit.Test;
 import java.util.LinkedList;
 import java.util.List;
 
-import static Chapter_02.Filters.applesByColor;
-import static Chapter_02.Filters.applesByPredicate;
-import static Chapter_02.Filters.greenApples;
+import static Chapter_02.Filters.*;
 import static org.junit.Assert.assertEquals;
 
 public class FilterTest {
@@ -48,10 +46,22 @@ public class FilterTest {
     public void testAnonymousClassPredicate() {
         assertEquals("Unexpected amount of filtered apples", 2, applesByPredicate(inventory, new ApplePredicate() {
             public boolean test(Apple apple) {
-                return "red".equalsIgnoreCase(apple.color) && apple.weight > 150;
+                return "red".equals(apple.color) && apple.weight > 150;
             }
         }).size());
     }
 
-    
+    @Test
+    public void testFirstLambdaApproach() {
+        assertEquals("Unexpected amount of filtered apples", 1, applesByPredicate(inventory, (Apple a) -> "brown".equals(a.color)).size());
+        assertEquals("Unexpected amount of filtered apples", 4, applesByPredicate(inventory, (Apple a) -> "red".equals(a.color)).size());
+        assertEquals("Unexpected amount of filtered apples", 3, applesByPredicate(inventory, (Apple a) -> "green".equals(a.color)).size());
+    }
+
+    @Test
+    public void testAbstractingListTypeAndPredicate() {
+        assertEquals("Unexpected amount of filtered apples", 1, genericFilter(inventory, (Apple a) -> "brown".equals(a.color)).size());
+        assertEquals("Unexpected amount of filtered apples", 4, genericFilter(inventory, (Apple a) -> "red".equals(a.color)).size());
+        assertEquals("Unexpected amount of filtered apples", 3, genericFilter(inventory, (Apple a) -> "green".equals(a.color)).size());
+    }
 }

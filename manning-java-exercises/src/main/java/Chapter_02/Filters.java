@@ -7,7 +7,7 @@ public class Filters {
     public static List<Apple> greenApples(List<Apple> appleInventory) {
         LinkedList<Apple> result = new LinkedList<Apple>();
         for (Apple apple : appleInventory) {
-            if("green".equalsIgnoreCase(apple.color)) result.add(apple);
+            if("green".equals(apple.color)) result.add(apple);
         }
         return result;
     }
@@ -15,7 +15,7 @@ public class Filters {
     public static List<Apple> applesByColor(List<Apple> appleInventory, String color) {
         LinkedList<Apple> result = new LinkedList<Apple>();
         for (Apple apple : appleInventory) {
-            if(color.equalsIgnoreCase(apple.color)) result.add(apple);
+            if(color.equals(apple.color)) result.add(apple);
         }
         return result;
     }
@@ -24,6 +24,14 @@ public class Filters {
         LinkedList<Apple> result = new LinkedList<Apple>();
         for (Apple apple : appleInventory) {
             if(ap.test(apple)) result.add(apple);
+        }
+        return result;
+    }
+
+    public static <T> List<T> genericFilter(List<T> list, Predicate<T> p) {
+        List<T> result = new LinkedList<>();
+        for(T e: list) {
+            if(p.test(e)) result.add(e);
         }
         return result;
     }
