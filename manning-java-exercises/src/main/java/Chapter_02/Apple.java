@@ -8,4 +8,6 @@ public class Apple {
         this.weight = weight;
         this.color = color;
     }
+
+    public Integer getWeight() { return weight; }
 }
