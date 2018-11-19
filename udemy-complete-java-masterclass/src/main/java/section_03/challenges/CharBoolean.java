@@ -1,4 +1,4 @@
-package section_03;
+package section_03.challenges;
 
 public class CharBoolean {
     public static int findUnicodePosition(char lookingFor) {

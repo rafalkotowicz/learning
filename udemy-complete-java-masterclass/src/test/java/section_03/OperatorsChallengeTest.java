@@ -2,6 +2,7 @@ package section_03;
 
 import org.junit.Assert;
 import org.junit.Test;
+import section_03.challenges.OperatorsChallenge;
 
 public class OperatorsChallengeTest {
 

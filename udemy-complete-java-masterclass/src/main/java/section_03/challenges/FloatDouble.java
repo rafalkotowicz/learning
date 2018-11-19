@@ -1,4 +1,4 @@
-package section_03;
+package section_03.challenges;
 
 public class FloatDouble {
     private static double POUND_IN_KILOS = 0.453_592_37d;
