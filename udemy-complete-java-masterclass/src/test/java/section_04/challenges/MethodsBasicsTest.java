@@ -8,15 +8,15 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static section_04.challenges.Methods.calculateHighScorePosition;
+import static section_04.challenges.MethodsBasics.calculateHighScorePosition;
 
-public class MethodsTest {
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+public class MethodsBasicsTest {
+    private final ByteArrayOutputStream caughtOutput = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
     @Before
     public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
+        System.setOut(new PrintStream(caughtOutput));
     }
 
     @After
@@ -27,9 +27,9 @@ public class MethodsTest {
 
     @Test
     public void displayHighScorePositionTest() {
-        Methods.displayHighScorePosition("Tim", 2);
-        Assert.assertEquals("Tim managed to get into position 2 on the high score table", outContent.toString());
-        outContent.reset();
+        MethodsBasics.displayHighScorePosition("Tim", 2);
+        Assert.assertEquals("Tim managed to get into position 2 on the high score table", caughtOutput.toString());
+        caughtOutput.reset();
     }
 
     @Test

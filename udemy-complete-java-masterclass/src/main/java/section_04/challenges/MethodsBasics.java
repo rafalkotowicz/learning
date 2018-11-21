@@ -1,6 +1,6 @@
 package section_04.challenges;
 
-public class Methods {
+public class MethodsBasics {
 
     public static void displayHighScorePosition(String name, int position) {
         System.out.print(name + " managed to get into position " + position + " on the high score table");
