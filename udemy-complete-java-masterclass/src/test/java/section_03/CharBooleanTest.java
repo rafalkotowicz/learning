@@ -8,9 +8,9 @@ public class CharBooleanTest {
 
     @Test
     public void findUnicodePositionTest() {
-        Assert.assertEquals("Invalid Unicode position", 174, CharBoolean.findUnicodePosition('®'));
-        Assert.assertEquals("Invalid Unicode position", 321, CharBoolean.findUnicodePosition('Ł'));
-        Assert.assertEquals("Invalid Unicode position", 243, CharBoolean.findUnicodePosition('ó'));
+        Assert.assertEquals("Invalid Unicode position", 97, CharBoolean.findUnicodePosition('a'));
+        Assert.assertEquals("Invalid Unicode position", 66, CharBoolean.findUnicodePosition('B'));
+        Assert.assertEquals("Invalid Unicode position", 49, CharBoolean.findUnicodePosition('1'));
     }
 }
 
