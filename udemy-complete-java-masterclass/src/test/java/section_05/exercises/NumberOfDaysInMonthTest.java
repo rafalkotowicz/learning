@@ -1,8 +1,7 @@
-package section_05;
+package section_05.exercises;
 
 import org.junit.Assert;
 import org.junit.Test;
-import section_05.exercises.NumberOfDaysInMonth;
 
 public class NumberOfDaysInMonthTest {
     @Test
