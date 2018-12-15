@@ -1,47 +1,50 @@
 package section_05.exercises;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
+import static section_05.exercises.NumberOfDaysInMonth.getDaysInMonth;
+import static section_05.exercises.NumberOfDaysInMonth.isLeapYear;
 
 public class NumberOfDaysInMonthTest {
     @Test
     public void isLeapYearTest() {
-        Assert.assertTrue(NumberOfDaysInMonth.isLeapYear(2000));
-        Assert.assertTrue(NumberOfDaysInMonth.isLeapYear(2004));
-        Assert.assertTrue(NumberOfDaysInMonth.isLeapYear(2008));
-        Assert.assertTrue(NumberOfDaysInMonth.isLeapYear(2012));
-        Assert.assertTrue(NumberOfDaysInMonth.isLeapYear(2016));
-        Assert.assertTrue(NumberOfDaysInMonth.isLeapYear(2020));
-        Assert.assertTrue(NumberOfDaysInMonth.isLeapYear(4));
+        assertTrue(isLeapYear(2000));
+        assertTrue(isLeapYear(2004));
+        assertTrue(isLeapYear(2008));
+        assertTrue(isLeapYear(2012));
+        assertTrue(isLeapYear(2016));
+        assertTrue(isLeapYear(2020));
+        assertTrue(isLeapYear(4));
 
-        Assert.assertFalse(NumberOfDaysInMonth.isLeapYear(100));
-        Assert.assertFalse(NumberOfDaysInMonth.isLeapYear(200));
-        Assert.assertFalse(NumberOfDaysInMonth.isLeapYear(300));
-        Assert.assertFalse(NumberOfDaysInMonth.isLeapYear(500));
-        Assert.assertFalse(NumberOfDaysInMonth.isLeapYear(600));
-        Assert.assertFalse(NumberOfDaysInMonth.isLeapYear(700));
-        Assert.assertFalse(NumberOfDaysInMonth.isLeapYear(900));
+        assertFalse(isLeapYear(100));
+        assertFalse(isLeapYear(200));
+        assertFalse(isLeapYear(300));
+        assertFalse(isLeapYear(500));
+        assertFalse(isLeapYear(600));
+        assertFalse(isLeapYear(700));
+        assertFalse(isLeapYear(900));
 
-        Assert.assertFalse(NumberOfDaysInMonth.isLeapYear(0));
-        Assert.assertFalse(NumberOfDaysInMonth.isLeapYear(10_000));
-        Assert.assertFalse(NumberOfDaysInMonth.isLeapYear(-1));
+        assertFalse(isLeapYear(0));
+        assertFalse(isLeapYear(10_000));
+        assertFalse(isLeapYear(-1));
     }
 
     @Test
     public void getDaysInMonthTest() {
         int i = 0;
-        Assert.assertEquals(31, NumberOfDaysInMonth.getDaysInMonth(1,2000));
-        Assert.assertEquals(29, NumberOfDaysInMonth.getDaysInMonth(2,2000));
-        Assert.assertEquals(28, NumberOfDaysInMonth.getDaysInMonth(2,2001));
-        Assert.assertEquals(31, NumberOfDaysInMonth.getDaysInMonth(3,2001));
-        Assert.assertEquals(30, NumberOfDaysInMonth.getDaysInMonth(4,2001));
-        Assert.assertEquals(31, NumberOfDaysInMonth.getDaysInMonth(5,2001));
-        Assert.assertEquals(30, NumberOfDaysInMonth.getDaysInMonth(6,2001));
-        Assert.assertEquals(31, NumberOfDaysInMonth.getDaysInMonth(7,2001));
-        Assert.assertEquals(31, NumberOfDaysInMonth.getDaysInMonth(8,2001));
-        Assert.assertEquals(30, NumberOfDaysInMonth.getDaysInMonth(9,2001));
-        Assert.assertEquals(31, NumberOfDaysInMonth.getDaysInMonth(10,2001));
-        Assert.assertEquals(30, NumberOfDaysInMonth.getDaysInMonth(11,2001));
-        Assert.assertEquals(31, NumberOfDaysInMonth.getDaysInMonth(12,2001));
+        assertEquals(31, getDaysInMonth(1,2000));
+        assertEquals(29, getDaysInMonth(2,2000));
+        assertEquals(28, getDaysInMonth(2,2001));
+        assertEquals(31, getDaysInMonth(3,2001));
+        assertEquals(30, getDaysInMonth(4,2001));
+        assertEquals(31, getDaysInMonth(5,2001));
+        assertEquals(30, getDaysInMonth(6,2001));
+        assertEquals(31, getDaysInMonth(7,2001));
+        assertEquals(31, getDaysInMonth(8,2001));
+        assertEquals(30, getDaysInMonth(9,2001));
+        assertEquals(31, getDaysInMonth(10,2001));
+        assertEquals(30, getDaysInMonth(11,2001));
+        assertEquals(31, getDaysInMonth(12,2001));
     }
 }

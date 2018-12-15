@@ -1,14 +1,15 @@
 package section_04.exercises;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static section_04.exercises.MegaBytesConverter.*;
+import static java.lang.System.setOut;
+import static org.junit.Assert.assertEquals;
+import static section_04.exercises.MegaBytesConverter.printMegaBytesAndKiloBytes;
 
 public class MegaBytesConverterTest {
     private final ByteArrayOutputStream caughtOutput = new ByteArrayOutputStream();
@@ -16,32 +17,32 @@ public class MegaBytesConverterTest {
 
     @Before
     public void setUpStreams() {
-        System.setOut(new PrintStream(caughtOutput));
+        setOut(new PrintStream(caughtOutput));
     }
 
     @After
     public void restoreStreams() {
-        System.setOut(originalOut);
+        setOut(originalOut);
     }
 
     @Test
     public void printMegaBytesAndKiloBytesPositiveInputTest() {
-        printMegaBytesAndKiloBytes(100);
-        Assert.assertEquals("100 KB = 0 MB and 100 KB", caughtOutput.toString());
-        caughtOutput.reset();
-        printMegaBytesAndKiloBytes(1024);
-        Assert.assertEquals("1024 KB = 1 MB and 0 KB", caughtOutput.toString());
-        caughtOutput.reset();
-        printMegaBytesAndKiloBytes(4097);
-        Assert.assertEquals("4097 KB = 4 MB and 1 KB", caughtOutput.toString());
-        caughtOutput.reset();
-        printMegaBytesAndKiloBytes(8191);
-        Assert.assertEquals("8191 KB = 7 MB and 1023 KB", caughtOutput.toString());
+        assertPrintout(100, "100 KB = 0 MB and 100 KB");
+        assertPrintout(1024, "1024 KB = 1 MB and 0 KB");
+        assertPrintout(4097, "4097 KB = 4 MB and 1 KB");
+        assertPrintout(8191, "8191 KB = 7 MB and 1023 KB");
     }
 
     @Test
     public void printMegaBytesAndKiloBytesNegativeInputTest() {
-        printMegaBytesAndKiloBytes(-100);
-        Assert.assertEquals("Invalid Value", caughtOutput.toString());
+        assertPrintout(-1, "Invalid Value");
+        assertPrintout(-10, "Invalid Value");
+        assertPrintout(-100, "Invalid Value");
+    }
+
+    private void assertPrintout(int i, String s) {
+        printMegaBytesAndKiloBytes(i);
+        assertEquals(s, caughtOutput.toString());
+        caughtOutput.reset();
     }
 }

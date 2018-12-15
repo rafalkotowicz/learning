@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static java.lang.System.setOut;
 import static org.junit.Assert.assertEquals;
 import static section_05.exercises.NumberToWords.*;
 
@@ -50,10 +51,10 @@ public class NumberToWordsTest {
         restoreStandardOutput();
     }
     private void catchStandardOutput() {
-        System.setOut(new PrintStream(caughtOutput));
+        setOut(new PrintStream(caughtOutput));
     }
     private void restoreStandardOutput() {
-        System.setOut(originalOutputStream);
+        setOut(originalOutputStream);
     }
 
 

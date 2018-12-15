@@ -1,12 +1,14 @@
 package section_10.challenges;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
+import static java.lang.System.setOut;
+import static org.junit.Assert.*;
 
 public class LeagueTest {
     private ByteArrayOutputStream caughtOutput = new ByteArrayOutputStream();
@@ -14,12 +16,12 @@ public class LeagueTest {
 
     @Before
     public void catchOutputStream() {
-        System.setOut(new PrintStream(caughtOutput));
+        setOut(new PrintStream(caughtOutput));
     }
 
     @After
     public void restoreOutputStream() {
-        System.setOut(originalOutput);
+        setOut(originalOutput);
     }
 
     @Test
@@ -27,10 +29,10 @@ public class LeagueTest {
         Team<BaseballPlayer> baseballTeam = new Team<>();
         League<Team<BaseballPlayer>> baseballLeague = new League();
 
-        Assert.assertTrue(baseballLeague.addTeam(baseballTeam));
-        Assert.assertFalse(baseballLeague.addTeam(baseballTeam));
-        Assert.assertFalse(baseballLeague.addTeam(baseballTeam));
-        Assert.assertEquals(1, baseballLeague.size());
+        assertTrue(baseballLeague.addTeam(baseballTeam));
+        assertFalse(baseballLeague.addTeam(baseballTeam));
+        assertFalse(baseballLeague.addTeam(baseballTeam));
+        assertEquals(1, baseballLeague.size());
     }
 
     @Test
@@ -47,6 +49,6 @@ public class LeagueTest {
         "Team A2 - 5\r\n" +
         "Team A1 - 1\r\n";
         baseballLeague.printStandings();
-        Assert.assertEquals(expectedPrintout, caughtOutput.toString());
+        assertEquals(expectedPrintout, caughtOutput.toString());
     }
 }

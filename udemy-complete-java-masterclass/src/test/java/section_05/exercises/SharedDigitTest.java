@@ -1,19 +1,20 @@
 package section_05.exercises;
 
-import org.junit.Assert;
 import org.junit.Test;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static section_05.exercises.SharedDigit.hasSharedDigit;
 
 public class SharedDigitTest {
     @Test
     public void hasShareDigitTest() {
-//        Assert.assertFalse(hasSharedDigit(9, 99));
-//        Assert.assertFalse(hasSharedDigit(11, 100));
-//        Assert.assertFalse(hasSharedDigit(1, 1));
-//        Assert.assertFalse(hasSharedDigit(1, 100));
-//        Assert.assertTrue(hasSharedDigit(12, 23));
-//        Assert.assertTrue(hasSharedDigit(15, 55));
-        Assert.assertTrue(hasSharedDigit(12, 13));
+        assertFalse(hasSharedDigit(9, 99));
+        assertFalse(hasSharedDigit(11, 100));
+        assertFalse(hasSharedDigit(1, 1));
+        assertFalse(hasSharedDigit(1, 100));
+        assertTrue(hasSharedDigit(12, 23));
+        assertTrue(hasSharedDigit(15, 55));
+        assertTrue(hasSharedDigit(12, 13));
     }
 }

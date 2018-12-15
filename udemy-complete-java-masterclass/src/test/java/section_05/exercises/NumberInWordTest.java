@@ -1,12 +1,14 @@
 package section_05.exercises;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
+import static org.junit.Assert.assertEquals;
+import static section_05.exercises.NumberInWord.printNumberInWord;
 
 public class NumberInWordTest {
     private ByteArrayOutputStream caughtOutput = new ByteArrayOutputStream();
@@ -24,11 +26,11 @@ public class NumberInWordTest {
 
     @Test
     public void printNumberInWordTest() {
-        NumberInWord.printNumberInWord(1);
-        Assert.assertEquals("ONE", caughtOutput.toString());
+        printNumberInWord(1);
+        assertEquals("ONE", caughtOutput.toString());
         caughtOutput.reset();
-        NumberInWord.printNumberInWord(5);
-        Assert.assertEquals("FIVE", caughtOutput.toString());
+        printNumberInWord(5);
+        assertEquals("FIVE", caughtOutput.toString());
         caughtOutput.reset();
     }
 }

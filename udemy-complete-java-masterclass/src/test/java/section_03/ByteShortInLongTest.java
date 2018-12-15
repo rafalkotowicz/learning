@@ -1,8 +1,9 @@
 package section_03;
 
-import org.junit.Assert;
 import org.junit.Test;
-import section_03.challenges.ByteShortInLong;
+
+import static org.junit.Assert.assertEquals;
+import static section_03.challenges.ByteShortInLong.doMath;
 
 public class ByteShortInLongTest {
 
@@ -14,6 +15,6 @@ public class ByteShortInLongTest {
 
         long expectedValue = 10_000_151_000L;
 
-        Assert.assertEquals(expectedValue, ByteShortInLong.doMath(myByte, myShort, myInt));
+        assertEquals(expectedValue, doMath(myByte, myShort, myInt));
     }
 }

@@ -1,17 +1,18 @@
 package section_04.exercises;
 
-import org.junit.Assert;
 import org.junit.Test;
 
-import static section_04.exercises.BarkingDog.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static section_04.exercises.BarkingDog.bark;
 
 public class BarkingDogTest {
 
     @Test
     public void barkTest() {
-        Assert.assertTrue(bark(true, 1));
-        Assert.assertFalse(bark(false, 2));
-        Assert.assertFalse(bark(true, 8));
-        Assert.assertFalse(bark(true, -1));
+        assertTrue(bark(true, 1));
+        assertFalse(bark(false, 2));
+        assertFalse(bark(true, 8));
+        assertFalse(bark(true, -1));
     }
 }

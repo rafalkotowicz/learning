@@ -1,15 +1,16 @@
 package section_04.exercises;
 
-import org.junit.Assert;
 import org.junit.Test;
 
-import static section_04.exercises.EqualSumChecker.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static section_04.exercises.EqualSumChecker.hasEqualSum;
 
 public class EqualSumCheckerTest {
     @Test
     public void hasEqualSumTest() {
-        Assert.assertFalse(hasEqualSum(1,1,1));
-        Assert.assertTrue(hasEqualSum(1,1,2));
-        Assert.assertTrue(hasEqualSum(1,-1,0));
+        assertFalse(hasEqualSum(1,1,1));
+        assertTrue(hasEqualSum(1,1,2));
+        assertTrue(hasEqualSum(1,-1,0));
     }
 }

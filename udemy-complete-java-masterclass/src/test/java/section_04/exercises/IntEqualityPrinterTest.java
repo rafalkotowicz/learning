@@ -1,12 +1,15 @@
 package section_04.exercises;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
+import static java.lang.System.setOut;
+import static org.junit.Assert.assertEquals;
+import static section_04.exercises.IntEqualityPrinter.printEqual;
 
 public class IntEqualityPrinterTest {
     private final ByteArrayOutputStream caughtOutput = new ByteArrayOutputStream();
@@ -14,33 +17,27 @@ public class IntEqualityPrinterTest {
 
     @Before
     public void setUpOutputStream() {
-        System.setOut(new PrintStream(caughtOutput));
+        setOut(new PrintStream(caughtOutput));
     }
 
     @After
     public void restoreOutputStream() {
-        System.setOut(originalOutputStream);
+        setOut(originalOutputStream);
     }
 
     @Test
     public void printEqualTest() {
-        IntEqualityPrinter.printEqual(-1, 1, 1);
-        Assert.assertEquals("Invalid Value", caughtOutput.toString().trim());
-        caughtOutput.reset();
-        IntEqualityPrinter.printEqual(1, -1, 1);
-        Assert.assertEquals("Invalid Value", caughtOutput.toString().trim());
-        caughtOutput.reset();
-        IntEqualityPrinter.printEqual(1, 1, -1);
-        Assert.assertEquals("Invalid Value", caughtOutput.toString().trim());
-        caughtOutput.reset();
-        IntEqualityPrinter.printEqual(1, 1, 1);
-        Assert.assertEquals("All numbers are equal", caughtOutput.toString().trim());
-        caughtOutput.reset();
-        IntEqualityPrinter.printEqual(1, 2, 3);
-        Assert.assertEquals("All numbers are different", caughtOutput.toString().trim());
-        caughtOutput.reset();
-        IntEqualityPrinter.printEqual(1, 1, 3);
-        Assert.assertEquals("Neither all are equal or different", caughtOutput.toString().trim());
+        assertPrintout(-1, 1, 1, "Invalid Value");
+        assertPrintout(1, -1, 1, "Invalid Value");
+        assertPrintout(1, 1, -1, "Invalid Value");
+        assertPrintout(1, 1, 1, "All numbers are equal");
+        assertPrintout(1, 2, 3, "All numbers are different");
+        assertPrintout(1, 1, 3, "Neither all are equal or different");
+    }
+
+    private void assertPrintout(int i, int i2, int i3, String s) {
+        printEqual(i, i2, i3);
+        assertEquals(s, caughtOutput.toString().trim());
         caughtOutput.reset();
     }
 }

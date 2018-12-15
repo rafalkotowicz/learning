@@ -1,16 +1,19 @@
 package section_05.exercises;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static section_05.exercises.NumberPalindrome.isPalindrome;
 
 public class NumberPalindromeTest {
     @Test
     public void isPalindromeTest() {
-        Assert.assertTrue(NumberPalindrome.isPalindrome(1001));
-        Assert.assertTrue(NumberPalindrome.isPalindrome(10001));
-        Assert.assertTrue(NumberPalindrome.isPalindrome(-10001));
+        assertTrue(isPalindrome(1001));
+        assertTrue(isPalindrome(10001));
+        assertTrue(isPalindrome(-10001));
 
-        Assert.assertFalse(NumberPalindrome.isPalindrome(102));
-        Assert.assertFalse(NumberPalindrome.isPalindrome(-102));
+        assertFalse(isPalindrome(102));
+        assertFalse(isPalindrome(-102));
     }
 }
