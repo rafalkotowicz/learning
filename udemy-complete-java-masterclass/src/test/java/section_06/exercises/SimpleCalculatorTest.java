@@ -1,8 +1,10 @@
 package section_06.exercises;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static utils.Constants.TOLERANCE;
 
 /*
 Write a class with the name SimpleCalculator. The class needs two fields (instance variables) with names firstNumber and secondNumber both of type double.
@@ -55,7 +57,6 @@ NOTE: Do not add the main method to the solution code.
  */
 public class SimpleCalculatorTest {
     private SimpleCalculator simpleCalculator;
-    private double TOLERATION = 0.00000001;
 
     @Before
     public void initializeTestData() {
@@ -66,27 +67,27 @@ public class SimpleCalculatorTest {
 
     @Test
     public void getAdditionResultPositiveTest() {
-        Assert.assertEquals(6.0, simpleCalculator.getAdditionResult(), TOLERATION);
+        assertEquals(6.0, simpleCalculator.getAdditionResult(), TOLERANCE);
     }
 
     @Test
     public void getSubtractionResultPositiveTest() {
-        Assert.assertEquals(2.0, simpleCalculator.getSubtractionResult(), TOLERATION);
+        assertEquals(2.0, simpleCalculator.getSubtractionResult(), TOLERANCE);
     }
 
     @Test
     public void getMultiplicationResultPositiveTest() {
-        Assert.assertEquals(8.0, simpleCalculator.getMultiplicationResult(), TOLERATION);
+        assertEquals(8.0, simpleCalculator.getMultiplicationResult(), TOLERANCE);
     }
 
     @Test
     public void getDivisionResultPositiveTest() {
-        Assert.assertEquals(2.0, simpleCalculator.getDivisionResult(), TOLERATION);
+        assertEquals(2.0, simpleCalculator.getDivisionResult(), TOLERANCE);
     }
 
     @Test
     public void getDivisionResultDivisionByZeroTest() {
         simpleCalculator.setSecondNumber(0);
-        Assert.assertEquals(0.0, simpleCalculator.getDivisionResult(), TOLERATION);
+        assertEquals(0.0, simpleCalculator.getDivisionResult(), TOLERANCE);
     }
 }

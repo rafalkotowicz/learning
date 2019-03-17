@@ -2,22 +2,22 @@ package section_06.challenges;
 
 import java.util.UUID;
 
-public class BankAccount {
+public class Account {
     private String number;
     private String customerName;
     private double balance;
     private String email = "";
     private String phoneNumber = "";
 
-    public BankAccount() {
+    public Account() {
         this("DEFAULT_NUMBER", "DEFAULT_NAME", 0.00, "DEFAULT_EMAIL", "DEFAULT_PHONE_NUMBER");
     }
 
-    public BankAccount(String name, String email, String phone) {
+    public Account(String name, String email, String phone) {
         this(UUID.randomUUID().toString(), name, 0.00, email, phone);
     }
 
-    public BankAccount(String number, String customerName, double balance, String email, String phoneNumber) {
+    public Account(String number, String customerName, double balance, String email, String phoneNumber) {
         this.number = number;
         this.customerName = customerName;
         this.balance = balance;
