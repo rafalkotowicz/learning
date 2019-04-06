@@ -9,10 +9,9 @@ import static org.junit.Assert.assertEquals;
 import static utils.Constants.TOLERANCE;
 
 public class AccountTest {
-    private Account account;
-
     @Rule
     public ExpectedException thrown = ExpectedException.none();
+    private Account account;
 
     @Before
     public void initialTestData() {
@@ -45,6 +44,4 @@ public class AccountTest {
         account.witdraw(100.00);
         assertEquals(100.00, account.getBalance(), TOLERANCE);
     }
-
-
 }
