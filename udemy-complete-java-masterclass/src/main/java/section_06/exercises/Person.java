@@ -44,7 +44,7 @@ public class Person {
     public String getFullName() {
         StringBuilder sb = new StringBuilder();
         if (firstName != null && !firstName.isEmpty()) sb.append(firstName + " ");
-        if (lastName  != null && !lastName.isEmpty()) sb.append(lastName);
+        if (lastName != null && !lastName.isEmpty()) sb.append(lastName);
         return sb.toString().trim();
     }
 }
