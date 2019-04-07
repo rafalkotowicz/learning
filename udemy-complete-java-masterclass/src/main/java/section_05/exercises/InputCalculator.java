@@ -16,7 +16,7 @@ public class InputCalculator {
 
         }
 
-        System.out.println("SUM = " + sum + " AVG = " + Math.round((double)sum / inputCounter));
+        System.out.println("SUM = " + sum + " AVG = " + Math.round((double) sum / inputCounter));
         scanner.close();
     }
 }

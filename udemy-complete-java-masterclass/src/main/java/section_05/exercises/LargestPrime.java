@@ -2,7 +2,7 @@ package section_05.exercises;
 
 public class LargestPrime {
     public static int getLargestPrime(final int number) {
-        if(number < 2) {
+        if (number < 2) {
             return -1;
         }
 

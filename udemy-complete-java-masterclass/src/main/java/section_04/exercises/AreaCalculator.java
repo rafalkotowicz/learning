@@ -8,6 +8,6 @@ public class AreaCalculator {
     }
 
     public static double area(double x, double y) {
-        return x >= 0  && y >= 0 ? x * y : -1.0d;
+        return x >= 0 && y >= 0 ? x * y : -1.0d;
     }
 }

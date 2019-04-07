@@ -7,7 +7,7 @@ public class League<T extends Team> {
     private List<Team> teams = new ArrayList<>();
 
     public boolean addTeam(T team) {
-        if(teams.contains(team)) {
+        if (teams.contains(team)) {
             return false;
         } else {
             teams.add(team);
@@ -23,7 +23,7 @@ public class League<T extends Team> {
         teams.sort(Team::compareTo);
 //        Collections.sort(teams);
 
-        for(Team team : teams) {
+        for (Team team : teams) {
             System.out.println(team.getName() + " - " + team.getScore());
         }
     }

@@ -13,7 +13,7 @@ public class NumberOfDaysInMonth {
 
         switch (month) {
             case 2:
-                if(isLeapYear(year)) {
+                if (isLeapYear(year)) {
                     return 29;
                 } else {
                     return 28;

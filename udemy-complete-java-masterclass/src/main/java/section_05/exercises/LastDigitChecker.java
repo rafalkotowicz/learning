@@ -11,7 +11,7 @@ public class LastDigitChecker {
         int bld = b % 10;
         int cld = c % 10;
 
-        if(ald == bld || bld == cld || ald == cld) {
+        if (ald == bld || bld == cld || ald == cld) {
             return true;
         }
         return false;

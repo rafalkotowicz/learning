@@ -18,7 +18,7 @@ public class Team<T extends Player> implements Comparable<Team<T>> {
     }
 
     public Team() {
-        new Team("RandomTeam-"+ System.nanoTime(), (int)(System.nanoTime() % 100));
+        new Team("RandomTeam-" + System.nanoTime(), (int) (System.nanoTime() % 100));
     }
 
     public String getName() {
@@ -34,7 +34,7 @@ public class Team<T extends Player> implements Comparable<Team<T>> {
     }
 
     public boolean addPlayer(T player) {
-        if(players.contains(player)) {
+        if (players.contains(player)) {
             return false;
         } else {
             players.add(player);

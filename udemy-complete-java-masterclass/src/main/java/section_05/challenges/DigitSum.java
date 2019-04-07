@@ -22,7 +22,7 @@ public class DigitSum {
 
         while (number > 0) {
             result += number % 10;
-            number = number/10;
+            number = number / 10;
         }
 
         return result;
