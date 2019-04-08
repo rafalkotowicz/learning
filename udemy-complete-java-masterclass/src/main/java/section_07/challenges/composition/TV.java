@@ -1,4 +1,4 @@
-package section_07.challenges;
+package section_07.challenges.composition;
 
 public class TV {
     private boolean isTurnedOn;
