@@ -1,0 +1,34 @@
+Bills Burgers
+
+Burger
+- constructor (name, rollType, meat, basePrice)
+- name
+- basePrice
+- List of Additions
+-- maximum size setter
+- hasDrink
+- hasFries
+- printBill (burger name, additions, prices, total price)
+- calculate total price
+
+Additions enum
+- Count
+- List
+- Price for specific addition
+
+BreadRollTypes enum
+- brown rye
+
+BasicHamburger extends Hamburger
+- Meat
+- up to 4 additions
+
+HealthyHamburger extends Hamburger
+- rollType = brown rye bread roll
+- up to 6 additions
+
+DeluxeHamburger
+- has 2 fixed additions: drink and fries
+- fixe number of additions: 2
+
+
