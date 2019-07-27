@@ -1,2 +1,2 @@
-# java_learning
-Repository for my code from learning Java
+# learning
+Repository for my code from learning programming 
