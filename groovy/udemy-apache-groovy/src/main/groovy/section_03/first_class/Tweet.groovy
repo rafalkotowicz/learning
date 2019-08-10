@@ -1,4 +1,4 @@
-package section_03
+package section_03.first_class
 
 import groovy.transform.ToString
 
