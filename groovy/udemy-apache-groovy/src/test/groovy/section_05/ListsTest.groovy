@@ -19,6 +19,16 @@ class ListsTest {
     }
 
     @Test
+    void removeAndAddLastItemTest() {
+        def week = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
+        assert week.contains(Week.MONDAY.toString())
+        week.pop()
+        assert !(week.contains(Week.SUNDAY.toString()))
+        week << "SUNDAY"
+        assert week.contains(Week.SUNDAY.toString())
+    }
+
+    @Test
     void addingToListTest() {
         def weekPart1 = ["MONDAY", "TUESDAY", "WEDNESDAY"]
         def weekPart2 = ["THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
