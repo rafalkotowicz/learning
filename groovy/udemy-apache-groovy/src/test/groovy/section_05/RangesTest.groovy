@@ -3,7 +3,7 @@ package section_05
 import org.junit.Test
 import section_05.exercise.Week
 
-class CollectionsTest {
+class RangesTest {
     @Test
     void weekHas7DaysTest() {
         assert 7 == Week.values().size()
