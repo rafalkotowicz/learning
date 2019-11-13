@@ -4,6 +4,7 @@ class MyClosure {
 
     static Closure<Integer> summingClosure = { int a = 0, int b = 0, int c = 0 -> a + b + c }
     static Closure<Boolean> isNumber = { String p -> p.matches("[0-9]*") }
+    static Closure<Boolean> isDivisibleBy3 = { 0 == it % 3 }
     static Closure printMap = { def key, def value -> return ("$key:= $value") }
 
     static Closure<BigDecimal> calculatePaintPrice = {
