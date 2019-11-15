@@ -54,7 +54,7 @@ class MyClosureTest {
         assert testData.any({ 0 == it % 3 })
         assert !testData.any({ it > 10 })
         assert testData.every({ it < 100 })
-        assert testData.every({ 0 == it % 2 })
+        assert !testData.every({ 0 == it % 2 })
     }
 
     @Test
