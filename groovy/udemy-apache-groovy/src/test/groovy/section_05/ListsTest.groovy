@@ -22,7 +22,7 @@ class ListsTest {
     void removeAndAddLastItemTest() {
         def week = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
         assert week.contains(Week.MONDAY.toString())
-        week.pop()
+        week.removeLast()
         assert !(week.contains(Week.SUNDAY.toString()))
         week << "SUNDAY"
         assert week.contains(Week.SUNDAY.toString())
