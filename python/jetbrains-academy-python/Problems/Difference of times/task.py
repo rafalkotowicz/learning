@@ -1,0 +1,7 @@
+t1_hour = int(input())
+t1_minute = int(input())
+t1_second = int(input())
+t2_hour = int(input())
+t2_minute = int(input())
+t2_second = int(input())
+print((t2_hour - t1_hour) * 3600 + (t2_minute - t1_minute) * 60 + t2_second - t1_second)
