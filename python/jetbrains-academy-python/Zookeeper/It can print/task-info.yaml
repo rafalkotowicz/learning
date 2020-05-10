@@ -1,38 +1,38 @@
 type: edu
 custom_name: It can print.
 files:
-  - name: tests.py
-    visible: false
-    text: |
-      from hstest.stage_test import StageTest
-      from hstest.test_case import TestCase
-      from hstest.check_result import CheckResult
+- name: tests.py
+  visible: false
+  text: |
+    from hstest.stage_test import StageTest
+    from hstest.test_case import TestCase
+    from hstest.check_result import CheckResult
 
-      CheckResult.correct = lambda: CheckResult(True, '')
-      CheckResult.wrong = lambda feedback: CheckResult(False, feedback)
-
-
-      class Zookeeper(StageTest):
-          def generate(self):
-              return [TestCase(attach=
-                               "I do love animals!\n"
-                               "Start looking after animals...\n"
-                               "Deer looks fine.\n"
-                               "Bat looks happy.\n"
-                               "Lion looks healthy.")]
-
-          def check(self, reply, attach):
-              if attach not in reply.strip():
-                  return CheckResult.wrong('Your output should be like in the example!')
-              return CheckResult.correct()
+    CheckResult.correct = lambda: CheckResult(True, '')
+    CheckResult.wrong = lambda feedback: CheckResult(False, feedback)
 
 
-      if __name__ == '__main__':
-          Zookeeper('zookeeper.zookeeper').run_tests()
-    learner_created: false
-  - name: animals.py
-    visible: false
-    text: "camel = \"\"\"\nSwitching on camera from habitat with camels...\n ___.-''''-.\n\
+    class Zookeeper(StageTest):
+        def generate(self):
+            return [TestCase(attach=
+                             "I do love animals!\n"
+                             "Start looking after animals...\n"
+                             "Deer looks fine.\n"
+                             "Bat looks happy.\n"
+                             "Lion looks healthy.")]
+
+        def check(self, reply, attach):
+            if attach not in reply.strip():
+                return CheckResult.wrong('Your output should be like in the example!')
+            return CheckResult.correct()
+
+
+    if __name__ == '__main__':
+        Zookeeper('zookeeper.zookeeper').run_tests()
+  learner_created: false
+- name: animals.py
+  visible: false
+  text: "camel = \"\"\"\nSwitching on camera from habitat with camels...\n ___.-''''-.\n\
     /___  @    |\n',,,,.     |         _.'''''''._\n     '     |        /        \
     \   \\\\\n     |     \\    _.-'             \\\\\n     |      '.-'           \
     \       '-.\n     |                               ',\n     |                 \
@@ -88,11 +88,11 @@ files:
     \  Y     _,  |\n /| ;-\"~ _  l\n/ l/ ,-\"~    \\\\\n\\//\\/      .- \\\\\n Y \
     \       /    Y \n l       I     !\n ]\\      _\\    /\"\\\\\n(\" ~----( ~   Y.\
     \  )\nIt seems there will be more rabbits soon!\"\"\"\n"
-    learner_created: false
-  - name: zookeeper/zookeeper.py
-    visible: true
-    text: '# Write your code here'
-    learner_created: false
+  learner_created: false
+- name: zookeeper/zookeeper.py
+  visible: true
+  text: '# Write your code here'
+  learner_created: false
 feedback_link: https://hyperskill.org/projects/98/stages/539/implement
 status: Solved
 record: 1

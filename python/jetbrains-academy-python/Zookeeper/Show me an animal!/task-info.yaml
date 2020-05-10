@@ -1,9 +1,9 @@
 type: edu
 custom_name: stage2
 files:
-  - name: zookeeper/zookeeper.py
-    visible: true
-    text: "\"\"\"\nSwitching on camera from habitat with camels...\n ___.-''''-.\n/___\
+- name: zookeeper/zookeeper.py
+  visible: true
+  text: "\"\"\"\nSwitching on camera from habitat with camels...\n ___.-''''-.\n/___\
     \  @    |\n',,,,.     |         _.'''''''._\n     '     |        /           \\\
     \\\n     |     \\    _.-'             \\\\\n     |      '.-'                 \
     \ '-.\n     |                               ',\n     |                       \
@@ -13,10 +13,10 @@ files:
     \            ; ;    ! !     ! !   ; ;     \n            ; ;    ! !    ! !    \
     \ ; ;\n           ;,,      !,!   !,!     ;,;\n           /_I      L_I   L_I  \
     \   /_I\nYey, our little camel is sunbathing!\"\"\"\n"
-    learner_created: false
-  - name: animals.py
-    visible: false
-    text: "camel = \"\"\"\nSwitching on camera from habitat with camels...\n ___.-''''-.\n\
+  learner_created: false
+- name: animals.py
+  visible: false
+  text: "camel = \"\"\"\nSwitching on camera from habitat with camels...\n ___.-''''-.\n\
     /___  @    |\n',,,,.     |         _.'''''''._\n     '     |        /        \
     \   \\\\\n     |     \\    _.-'             \\\\\n     |      '.-'           \
     \       '-.\n     |                               ',\n     |                 \
@@ -72,32 +72,32 @@ files:
     \  Y     _,  |\n /| ;-\"~ _  l\n/ l/ ,-\"~    \\\\\n\\//\\/      .- \\\\\n Y \
     \       /    Y \n l       I     !\n ]\\      _\\    /\"\\\\\n(\" ~----( ~   Y.\
     \  )\nIt seems there will be more rabbits soon!\"\"\"\n"
-    learner_created: false
-  - name: tests.py
-    visible: false
-    text: |
-      from hstest.stage_test import StageTest
-      from hstest.test_case import TestCase
-      from hstest.check_result import CheckResult
-      from animals import *
+  learner_created: false
+- name: tests.py
+  visible: false
+  text: |
+    from hstest.stage_test import StageTest
+    from hstest.test_case import TestCase
+    from hstest.check_result import CheckResult
+    from animals import *
 
-      CheckResult.correct = lambda: CheckResult(True, '')
-      CheckResult.wrong = lambda feedback: CheckResult(False, feedback)
-
-
-      class Zookeeper(StageTest):
-          def generate(self):
-              return [TestCase(attach=camel)]
-
-          def check(self, reply, attach):
-              if attach.strip() not in reply.strip():
-                  return CheckResult.wrong('You should output a camel!')
-              return CheckResult.correct()
+    CheckResult.correct = lambda: CheckResult(True, '')
+    CheckResult.wrong = lambda feedback: CheckResult(False, feedback)
 
 
-      if __name__ == '__main__':
-          Zookeeper('zookeeper.zookeeper').run_tests()
-    learner_created: false
+    class Zookeeper(StageTest):
+        def generate(self):
+            return [TestCase(attach=camel)]
+
+        def check(self, reply, attach):
+            if attach.strip() not in reply.strip():
+                return CheckResult.wrong('You should output a camel!')
+            return CheckResult.correct()
+
+
+    if __name__ == '__main__':
+        Zookeeper('zookeeper.zookeeper').run_tests()
+  learner_created: false
 feedback_link: https://hyperskill.org/projects/98/stages/540/implement
 status: Solved
 record: 2
