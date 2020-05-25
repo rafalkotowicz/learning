@@ -117,11 +117,11 @@ def validate_input(col, row):
 
 
 def write_cell(col, row, val):
-    board[3 - int(col)][int(row) - 1] = val
+    board[3 - int(row)][int(col) - 1] = val
 
 
 def read_cell(col, row):
-    return board[3 - int(col)][int(row) - 1]
+    return board[3 - int(row)][int(col) - 1]
 
 
 print_board()
