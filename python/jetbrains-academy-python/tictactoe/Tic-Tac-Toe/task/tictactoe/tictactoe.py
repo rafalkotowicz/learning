@@ -1,8 +1,9 @@
-initialize = input("Enter cells: ")
+import sys
+
+initialize = "_________"
 board = [[initialize[0], initialize[1], initialize[2]],
          [initialize[3], initialize[4], initialize[5]],
          [initialize[6], initialize[7], initialize[8]]]
-
 MAX_COLS = 3
 MAX_ROWS = 3
 
@@ -89,12 +90,15 @@ def state_check():
 
     if len(who_won) == 0 and game_finished:
         print("Draw")
-    elif len(who_won) > 1 or abs(x_moves - o_moves) >= 2:
-        print("Impossible")
-    elif len(who_won) == 0 and not game_finished:
-        print("Game not finished")
+    # elif len(who_won) > 1 or abs(x_moves - o_moves) >= 2:
+    #     print("Impossible")
+    # elif len(who_won) == 0 and not game_finished:
+    #     print("Game not finished")
     elif len(who_won) == 1:
         print(who_won[0])
+        game_finished = True
+
+    return game_finished
 
 
 valid_range = [1, 2, 3]
@@ -124,14 +128,19 @@ def read_cell(col, row):
     return board[3 - int(row)][int(col) - 1]
 
 
-print_board()
+move = "X"
 
+print_board()
 col, row = input("Enter the coordinates: ").split()
 while 1:
     if validate_input(col, row):
-        write_cell(col, row, "X")
-        break
+        write_cell(col, row, move)
+        print_board()
+        if state_check():
+            sys.exit()
+        if move == "X":
+            move = "O"
+        else:
+            move = "X"
     else:
         col, row = input("Enter the coordinates: ").split()
-
-print_board()
