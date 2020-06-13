@@ -138,5 +138,5 @@ files:
             print("Your monthly payment =", payment)
   learner_created: false
 feedback_link: https://hyperskill.org/projects/90/stages/502/implement
-status: Failed
+status: Solved
 record: -1
