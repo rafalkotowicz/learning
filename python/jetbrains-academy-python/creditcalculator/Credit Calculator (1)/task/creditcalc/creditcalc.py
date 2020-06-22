@@ -47,15 +47,33 @@ def count_credit_principal(payment, periods, interest):
     count_overpayment(periods, payment, principal)
 
 
+def count_differentiate_payment(principal, periods, interest):
+    paid_back = 0
+    differentiate_payment = []
+    for m in range(1, periods + 1):
+        differentiate_payment.append(
+            ceil(principal / periods + interest * (principal - ((principal * (m - 1)) / periods))))
+        print(f"Month {m}: paid out {differentiate_payment[m - 1]}")
+    print("Overpayment = {}".format(ceil(sum(differentiate_payment)) - int(principal)))
+
+
+if len(sys.argv) < 5:
+    print("Incorrect parameters")
+    sys.exit()
+
 parser = argparse.ArgumentParser()
 parser.add_argument("--type", required=True, choices=["annuity", "diff"])
-parser.add_argument("--interest", required=True, type=float, help="Credit interest. Specify without percent sign.")
+parser.add_argument("--interest", type=float, help="Credit interest. Specify without percent sign.")
 parser.add_argument("--payment", type=float, help="Monthly payment.")
 parser.add_argument("--principal", type=float, help="Value of entire borrowed sum.")
 parser.add_argument("--periods", type=int, help="Denotes the number of months needed to repay the credit. If missing,"
                                                 " it will be calculated based on the interest, annuity payments and "
                                                 "principal.")
 args = parser.parse_args()
+
+if args.interest is None:
+    print("Incorrect parameters")
+    sys.exit()
 
 
 def validate_parameter(param):
@@ -65,10 +83,6 @@ def validate_parameter(param):
             sys.exit()
     return param
 
-
-if len(sys.argv) < 5:
-    print("Incorrect parameters")
-    sys.exit()
 
 interest = validate_parameter(args.interest) / 12 / 100
 payment = validate_parameter(args.payment)
@@ -84,12 +98,5 @@ if args.type == "annuity" and payment is None and interest is not None and perio
 if args.type == "annuity" and principal is None and interest is not None and periods is not None and payment is not None:
     count_credit_principal(payment, periods, interest)
 
-if args.type == "diff" and principal is None and interest is not None and periods is not None and payment is not None:
-    count_credit_principal(payment, periods, interest)
-
-### DEBUG ###
-# print(f'Type: {args.type}')
-# print(f'Interest: {args.interest}')
-# print(f'Payment: {args.payment}')
-# print(f'Principal: {args.principal}')
-# print(f'Periods: {args.periods}')
+if args.type == "diff" and payment is None and principal is not None and interest is not None and periods is not None:
+    count_differentiate_payment(principal, periods, interest)
