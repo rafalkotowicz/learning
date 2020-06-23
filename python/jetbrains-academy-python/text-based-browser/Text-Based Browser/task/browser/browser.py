@@ -34,4 +34,13 @@ Twitter and Square Chief Executive Officer Jack Dorsey
  Tuesday, a signal of the strong ties between the Silicon Valley giants.
 '''
 
-# write your code here
+while True:
+    requested_page = input()
+    if requested_page == "exit":
+        break;
+    elif requested_page == "bloomberg.com":
+        print(bloomberg_com)
+    elif requested_page == "nytimes.com":
+        print(nytimes_com)
+    else:
+        print("Unrecognized web page!")

@@ -124,7 +124,10 @@ files:
                         "directory \"" + path_for_tabs + "\". "
                         "This file with page should be named \"" + correct_file_name + "\"")
 
-                shutil.rmtree(path_for_tabs)
+                try:
+                    shutil.rmtree(path_for_tabs)
+                except PermissionError:
+                    return CheckResult.wrong("Impossible to remove the directory for tabs. Perhaps you haven't closed some file?")
 
                 if wrong_word in reply:
                     return CheckResult.wrong('It seems like you printed wrong variable')

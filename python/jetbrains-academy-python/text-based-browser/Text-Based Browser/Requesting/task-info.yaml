@@ -90,7 +90,10 @@ files:
                 if not self._check_files(path_for_tabs, right_word):
                     return CheckResult.wrong('There are no correct saved tabs')
 
-                shutil.rmtree(path_for_tabs)
+                try:
+                    shutil.rmtree(path_for_tabs)
+                except PermissionError:
+                    return CheckResult.wrong("Impossible to remove the directory for tabs. Perhaps you haven't closed some file?")
 
                 if '<body' in reply and right_word in reply:
                     return CheckResult.correct()
