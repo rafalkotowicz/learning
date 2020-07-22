@@ -127,7 +127,7 @@ topics:
   3:
   - title: World Wide Web
     theory_id: 6633
-  - title: HTTP protocol
+  - title: HyperText Transfer Protocol
     theory_id: 6569
   - title: HTTP URL
     theory_id: 6740
