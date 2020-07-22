@@ -33,6 +33,8 @@ topics:
     theory_id: 5859
   - title: List
     theory_id: 5979
+  - title: Indexes
+    theory_id: 6189
   - title: Taking input
     theory_id: 5913
   2:
@@ -46,8 +48,6 @@ topics:
     theory_id: 6025
   - title: Naming variables
     theory_id: 5885
-  - title: Indexes
-    theory_id: 6189
   - title: Program with numbers
     theory_id: 5872
   - title: Comparisons
