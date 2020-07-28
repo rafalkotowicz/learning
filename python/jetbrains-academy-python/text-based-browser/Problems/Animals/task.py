@@ -1,0 +1,6 @@
+animals_file = open('animals.txt', 'r', encoding='utf-8')
+animals = animals_file.read().replace("\n", " ")
+animals_file.close()
+animals_new_file = open('animals_new.txt', 'w', encoding='utf-8')
+animals_new_file.write(animals)
+animals_new_file.close()
