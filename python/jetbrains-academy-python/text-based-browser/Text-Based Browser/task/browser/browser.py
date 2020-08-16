@@ -1,3 +1,4 @@
+import sys
 
 nytimes_com = '''
 This New Liquid Is Magnetic, and Mesmerizing
@@ -34,10 +35,19 @@ Twitter and Square Chief Executive Officer Jack Dorsey
  Tuesday, a signal of the strong ties between the Silicon Valley giants.
 '''
 
+expected_noof_arguments = 2
+
+if len(sys.argv) < expected_noof_arguments:
+    print(f"Too few arguments passed to script. Expected exactly {expected_noof_arguments - 1} argument.")
+    sys.exit()
+elif len(sys.argv) > 2:
+    print(f"Too many arguments passed to script. Expected exactly {expected_noof_arguments - 1} argument.")
+    sys.exit()
+
 while True:
     requested_page = input()
     if requested_page == "exit":
-        break;
+        break
     elif requested_page == "bloomberg.com":
         print(bloomberg_com)
     elif requested_page == "nytimes.com":

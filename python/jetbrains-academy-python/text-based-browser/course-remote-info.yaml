@@ -53,8 +53,6 @@ topics:
   1:
   - title: Files
     theory_id: 6989
-  - title: Computer programming
-    theory_id: 8739
   - title: IDE
     theory_id: 3805
   - title: Quotes and multi-line strings
@@ -102,12 +100,16 @@ topics:
   2:
   - title: Computer algorithms
     theory_id: 4953
+  - title: Introducing the first algorithm
+    theory_id: 10336
   - title: The big O notation
     theory_id: 4991
   - title: Data structures
     theory_id: 5161
   - title: Stack
     theory_id: 5252
+  - title: Computer programming
+    theory_id: 8739
   - title: Intro to computational thinking
     theory_id: 8742
   - title: Components of computational thinking
@@ -149,3 +151,10 @@ topics:
     theory_id: 7536
   - title: HTML page structure
     theory_id: 6491
+  4:
+  - title: XML
+    theory_id: 6901
+  - title: 'Requests: manipulating data'
+    theory_id: 8681
+  - title: BeautifulSoup
+    theory_id: 10209

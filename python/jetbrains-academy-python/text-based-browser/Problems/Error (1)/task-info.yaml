@@ -10,13 +10,6 @@ files:
 
     f.write('2020')
   learner_created: false
-- name: years.txt
-  visible: true
-  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/8708
 status: Solved
-feedback:
-  message: <html>Correct solution<br/><br/>Continue on <a href="https://hyperskill.org/learn/step/8708">JetBrains
-    Academy</a></html>
-  time: Tue, 28 Jul 2020 22:07:09 UTC
 record: -1

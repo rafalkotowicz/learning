@@ -4,13 +4,6 @@ files:
   visible: true
   text: '# create the planets.txt'
   learner_created: false
-- name: planets.txt
-  visible: true
-  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/8339
 status: Solved
-feedback:
-  message: <html>Correct solution<br/><br/>Continue on <a href="https://hyperskill.org/learn/step/8339">JetBrains
-    Academy</a></html>
-  time: Tue, 28 Jul 2020 21:48:01 UTC
 record: -1
