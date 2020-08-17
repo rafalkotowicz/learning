@@ -1,3 +1,6 @@
+from os import rmdir, mkdir, path
+from urllib.parse import urlparse
+
 import sys
 
 nytimes_com = '''
@@ -35,20 +38,65 @@ Twitter and Square Chief Executive Officer Jack Dorsey
  Tuesday, a signal of the strong ties between the Silicon Valley giants.
 '''
 
-expected_noof_arguments = 2
+### INIT
+expected_noof_arguments = 1
+provided_args = f"You provided {len(sys.argv) - 1} arguments"
+expected_args = f"Expected exactly {expected_noof_arguments} argument"
 
-if len(sys.argv) < expected_noof_arguments:
-    print(f"Too few arguments passed to script. Expected exactly {expected_noof_arguments - 1} argument.")
-    sys.exit()
-elif len(sys.argv) > 2:
-    print(f"Too many arguments passed to script. Expected exactly {expected_noof_arguments - 1} argument.")
-    sys.exit()
+if len(sys.argv) - 1 < expected_noof_arguments:
+    print(f"Too few arguments passed to script. {provided_args}. {expected_args}.")
+    sys.exit(-1)
+elif len(sys.argv) - 1 > expected_noof_arguments:
+    print(f"Too many arguments passed to script. {provided_args}. {expected_args}.")
+    sys.exit(-1)
 
+workdir = sys.argv[1]
+rmdir(workdir)
+mkdir(workdir)
+print(f"Directory created: {workdir}")
+
+
+### UTILS
+def is_url(maybe_url):
+    parsed_url = urlparse(maybe_url)
+    if str(parsed_url.path).__contains__("."):
+        return True
+    else:
+        return False
+
+
+def read_file(param):
+    pass
+
+
+def write_file(param):
+    pass
+
+
+def process_request(request):
+    if is_url(request):
+        file_path = path.join(workdir, request)
+        if path.exists(file_path):
+            read_file(file_path)
+        else:
+            write_file(file_path)
+            read_file(file_path)
+    else:
+        print("ERROR! Provided values does not seem to be valid URL (missing dot).")
+        return False
+
+
+### MAIN
 while True:
-    requested_page = input()
+    requested_page = input("Provide valid URL or type 'exit' to leave the program\n")
+
     if requested_page == "exit":
         break
-    elif requested_page == "bloomberg.com":
+
+    if not process_request(requested_page):
+        continue
+
+    if requested_page == "bloomberg.com":
         print(bloomberg_com)
     elif requested_page == "nytimes.com":
         print(nytimes_com)
