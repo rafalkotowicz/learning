@@ -1,3 +1,4 @@
+import os
 from os import rmdir, mkdir, path
 from urllib.parse import urlparse
 
@@ -38,67 +39,74 @@ Twitter and Square Chief Executive Officer Jack Dorsey
  Tuesday, a signal of the strong ties between the Silicon Valley giants.
 '''
 
-### INIT
+# INIT
+print("[DEBUG] Initialization STARTED")
+
 expected_noof_arguments = 1
 provided_args = f"You provided {len(sys.argv) - 1} arguments"
 expected_args = f"Expected exactly {expected_noof_arguments} argument"
 
 if len(sys.argv) - 1 < expected_noof_arguments:
-    print(f"Too few arguments passed to script. {provided_args}. {expected_args}.")
+    print(f"[ERROR] Too few arguments passed to script. {provided_args}. {expected_args}.")
     sys.exit(-1)
 elif len(sys.argv) - 1 > expected_noof_arguments:
-    print(f"Too many arguments passed to script. {provided_args}. {expected_args}.")
+    print(f"[ERROR] Too many arguments passed to script. {provided_args}. {expected_args}.")
     sys.exit(-1)
 
 workdir = sys.argv[1]
-rmdir(workdir)
+if os.path.exists(workdir):
+    print(f"[DEBUG] Directory found and removed: {workdir}")
+    rmdir(workdir)
+
 mkdir(workdir)
-print(f"Directory created: {workdir}")
+print(f"[DEBUG] Directory created: {workdir}")
+
+print("[DEBUG] Initialization DONE")
 
 
-### UTILS
+# UTILS
 def is_url(maybe_url):
     parsed_url = urlparse(maybe_url)
     if str(parsed_url.path).__contains__("."):
         return True
     else:
-        return False
-
-
-def read_file(param):
-    pass
-
-
-def write_file(param):
-    pass
-
-
-def process_request(request):
-    if is_url(request):
-        file_path = path.join(workdir, request)
-        if path.exists(file_path):
-            read_file(file_path)
-        else:
-            write_file(file_path)
-            read_file(file_path)
-    else:
         print("ERROR! Provided values does not seem to be valid URL (missing dot).")
         return False
 
 
-### MAIN
-while True:
-    requested_page = input("Provide valid URL or type 'exit' to leave the program\n")
+def read_file(file_name):
+    file_path = path.join(workdir, file_name)
+    if path.exists(file_path):
+        with open(file_path, 'r', encoding='utf-8') as file_to_read:
+            print(file_to_read.read())
 
-    if requested_page == "exit":
+
+def write_file(file_name, content):
+    file_path = path.join(workdir, file_name)
+    with open(file_path, 'w', encoding='utf-8') as file_to_write:
+        file_to_write.write(content)
+
+
+# MAIN
+while True:
+    request = input("Provide valid URL or type 'exit' to leave the program\n")
+
+    if request == "exit":
         break
 
-    if not process_request(requested_page):
+    if not is_url(request):
         continue
 
-    if requested_page == "bloomberg.com":
-        print(bloomberg_com)
-    elif requested_page == "nytimes.com":
-        print(nytimes_com)
+    # noinspection SpellCheckingInspection
+    if request == "bloomberg.com":
+        write_file("bloomberg", bloomberg_com)
+        read_file("bloomberg")
+    elif request == "bloomberg":
+        read_file("bloomberg")
+    elif request == "nytimes.com":
+        write_file("nytimes", nytimes_com)
+        read_file("nytimes")
+    elif request == "nytimes":
+        read_file("nytimes")
     else:
-        print("Unrecognized web page!")
+        print("[ERROR] Unrecognized web page!")
