@@ -71,7 +71,7 @@ files:
                 ),
             ]
 
-        def _check_files(self, path_for_tabs: str, right_word: str) -> bool:
+        def _check_files(self, path_for_tabs: str, right_word: str) -> int:
             """
             Helper which checks that browser saves visited url in files and
             provides access to them.
@@ -85,11 +85,14 @@ files:
 
             for file in files:
                 with open(os.path.join(path_for_tabs, file), 'r') as tab:
-                    content = tab.read()
+                    try:
+                        content = tab.read()
+                    except UnicodeDecodeError:
+                        return -1
                     if right_word in content:
-                        return True
+                        return 1
 
-            return False
+            return 0
 
         def check(self, reply, attach):
 
@@ -117,12 +120,16 @@ files:
                         "Can't find a directory \"" + path_for_tabs + "\" "
                         "in which you should save your web pages.")
 
-                if not self._check_files(path_for_tabs, right_word):
+                check_files_result = self._check_files(path_for_tabs, right_word)
+                if not check_files_result:
                     return CheckResult.wrong(
                         "Seems like you did\'n save the web page "
                         "\"" + right_word + "\" into the "
                         "directory \"" + path_for_tabs + "\". "
                         "This file with page should be named \"" + correct_file_name + "\"")
+                elif check_files_result == -1:
+                    return CheckResult.wrong('An error occurred while reading your saved tab. '
+                                             'Perhaps you used the wrong encoding?')
 
                 try:
                     shutil.rmtree(path_for_tabs)
@@ -151,6 +158,52 @@ files:
 
     TextBasedBrowserTest('browser.browser').run_tests()
   learner_created: false
+- name: browser/browser.py
+  visible: true
+  text: "import os\nfrom os import rmdir, mkdir, path\nfrom urllib.parse import urlparse\n\
+    \nimport sys\n\nnytimes_com = '''\nThis New Liquid Is Magnetic, and Mesmerizing\n\
+    \nScientists have created “soft” magnets that can flow \nand change shape, and\
+    \ that could be a boon to medicine \nand robotics. (Source: New York Times)\n\n\
+    \nMost Wikipedia Profiles Are of Men. This Scientist Is Changing That.\n\nJessica\
+    \ Wade has added nearly 700 Wikipedia biographies for\n important female and minority\
+    \ scientists in less than two \n years.\n\n'''\n\nbloomberg_com = '''\nThe Space\
+    \ Race: From Apollo 11 to Elon Musk\n\nIt's 50 years since the world was gripped\
+    \ by historic images\n of Apollo 11, and Neil Armstrong -- the first man to walk\
+    \ \n on the moon. It was the height of the Cold War, and the charts\n were filled\
+    \ with David Bowie's Space Oddity, and Creedence's \n Bad Moon Rising. The world\
+    \ is a very different place than \n it was 5 decades ago. But how has the space\
+    \ race changed since\n the summer of '69? (Source: Bloomberg)\n\n\nTwitter CEO\
+    \ Jack Dorsey Gives Talk at Apple Headquarters\n\nTwitter and Square Chief Executive\
+    \ Officer Jack Dorsey \n addressed Apple Inc. employees at the iPhone maker’s\
+    \ headquarters\n Tuesday, a signal of the strong ties between the Silicon Valley\
+    \ giants.\n'''\n\n# INIT\nprint(\"[DEBUG] Initialization STARTED\")\n\nexpected_noof_arguments\
+    \ = 1\nprovided_args = f\"You provided {len(sys.argv) - 1} arguments\"\nexpected_args\
+    \ = f\"Expected exactly {expected_noof_arguments} argument\"\n\nif len(sys.argv)\
+    \ - 1 < expected_noof_arguments:\n    print(f\"[ERROR] Too few arguments passed\
+    \ to script. {provided_args}. {expected_args}.\")\n    sys.exit(-1)\nelif len(sys.argv)\
+    \ - 1 > expected_noof_arguments:\n    print(f\"[ERROR] Too many arguments passed\
+    \ to script. {provided_args}. {expected_args}.\")\n    sys.exit(-1)\n\nworkdir\
+    \ = sys.argv[1]\nif os.path.exists(workdir):\n    print(f\"[DEBUG] Directory found\
+    \ and removed: {workdir}\")\n    rmdir(workdir)\n\nmkdir(workdir)\nprint(f\"[DEBUG]\
+    \ Directory created: {workdir}\")\n\nprint(\"[DEBUG] Initialization DONE\")\n\n\
+    \n# UTILS\ndef is_url(maybe_url):\n    parsed_url = urlparse(maybe_url)\n    if\
+    \ str(parsed_url.path).__contains__(\".\"):\n        return True\n    else:\n\
+    \        print(\"ERROR! Provided values does not seem to be valid URL (missing\
+    \ dot).\")\n        return False\n\n\ndef read_file(file_name):\n    file_path\
+    \ = path.join(workdir, file_name)\n    if path.exists(file_path):\n        with\
+    \ open(file_path, 'r', encoding='utf-8') as file_to_read:\n            print(file_to_read.read())\n\
+    \n\ndef write_file(file_name, content):\n    file_path = path.join(workdir, file_name)\n\
+    \    with open(file_path, 'w', encoding='utf-8') as file_to_write:\n        file_to_write.write(content)\n\
+    \n\n# MAIN\nwhile True:\n    request = input(\"Provide valid URL or type 'exit'\
+    \ to leave the program\\n\")\n\n    if request == \"exit\":\n        break\n\n\
+    \    if not is_url(request):\n        continue\n\n    # noinspection SpellCheckingInspection\n\
+    \    if request == \"bloomberg.com\":\n        write_file(\"bloomberg\", bloomberg_com)\n\
+    \        read_file(\"bloomberg\")\n    elif request == \"bloomberg\":\n      \
+    \  read_file(\"bloomberg\")\n    elif request == \"nytimes.com\":\n        write_file(\"\
+    nytimes\", nytimes_com)\n        read_file(\"nytimes\")\n    elif request == \"\
+    nytimes\":\n        read_file(\"nytimes\")\n    else:\n        print(\"[ERROR]\
+    \ Unrecognized web page!\")\n"
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/79/stages/438/implement
 status: Unchecked
 record: -1

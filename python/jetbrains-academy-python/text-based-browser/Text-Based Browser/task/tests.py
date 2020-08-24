@@ -47,9 +47,25 @@ class TextBasedBrowserTest(StageTest):
                 attach=(None, 'Bloomberg', 'New York Times', 'bloomberg'),
                 args=['tb_tabs']
             ),
+            TestCase(
+                stdin='bloomberg.com\nnytimes.com\nback\nexit',
+                attach={
+                    'This New Liquid Is Magnetic, and Mesmerizing': (1, 'New York Times'),
+                    'The Space Race: From Apollo 11 to Elon Musk': (2, 'Bloomberg')
+                },
+                args=['tb_tabs']
+            ),
+            TestCase(
+                stdin='nytimes.com\nbloomberg.com\nback\nexit',
+                attach={
+                    'This New Liquid Is Magnetic, and Mesmerizing': (2, 'New York Times'),
+                    'The Space Race: From Apollo 11 to Elon Musk': (1, 'Bloomberg')
+                },
+                args=['tb_tabs']
+            ),
         ]
 
-    def _check_files(self, path_for_tabs: str, right_word: str) -> bool:
+    def _check_files(self, path_for_tabs: str, right_word: str) -> int:
         """
         Helper which checks that browser saves visited url in files and
         provides access to them.
@@ -63,11 +79,14 @@ class TextBasedBrowserTest(StageTest):
 
         for file in files:
             with open(os.path.join(path_for_tabs, file), 'r') as tab:
-                content = tab.read()
+                try:
+                    content = tab.read()
+                except UnicodeDecodeError:
+                    return -1
                 if right_word in content:
-                    return True
+                    return 1
 
-        return False
+        return 0
 
     def check(self, reply, attach):
 
@@ -95,12 +114,16 @@ class TextBasedBrowserTest(StageTest):
                     "Can't find a directory \"" + path_for_tabs + "\" "
                     "in which you should save your web pages.")
 
-            if not self._check_files(path_for_tabs, right_word):
+            check_files_result = self._check_files(path_for_tabs, right_word)
+            if not check_files_result:
                 return CheckResult.wrong(
                     "Seems like you did\'n save the web page "
                     "\"" + right_word + "\" into the "
                     "directory \"" + path_for_tabs + "\". "
                     "This file with page should be named \"" + correct_file_name + "\"")
+            elif check_files_result == -1:
+                return CheckResult.wrong('An error occurred while reading your saved tab. '
+                                         'Perhaps you used the wrong encoding?')
 
             try:
                 shutil.rmtree(path_for_tabs)
@@ -114,6 +137,17 @@ class TextBasedBrowserTest(StageTest):
                 return CheckResult.correct()
 
             return CheckResult.wrong('You printed neither bloomberg_com nor nytimes_com')
+
+        if isinstance(attach, dict):
+            for key, value in attach.items():
+                count, site = value
+                real_count = reply.count(key)
+                if reply.count(key) != count:
+                    return CheckResult.wrong(
+                        f'The site "{site}" should be displayed {count} time(s).\n'
+                        f'Actually displayed: {real_count} time(s).'
+                    )
+            return CheckResult.correct()
 
 
 TextBasedBrowserTest('browser.browser').run_tests()

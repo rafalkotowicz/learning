@@ -47,7 +47,7 @@ files:
                 ),
             ]
 
-        def _check_files(self, path_for_tabs: str, right_word: str) -> bool:
+        def _check_files(self, path_for_tabs: str, right_word: str) -> int:
             """
             Helper which checks that browser saves visited url in files and
             provides access to them.
@@ -62,13 +62,16 @@ files:
             for file in filenames:
 
                 with open(os.path.join(path_for_tabs, file), 'r', encoding='utf-8') as tab:
-                    content = tab.read()
+                    try:
+                        content = tab.read()
+                    except UnicodeDecodeError:
+                        return -1
 
                     if '</p>' not in content and '</script>' not in content:
                         if '</div>' not in content and right_word in content:
-                            return True
+                            return 1
 
-            return False
+            return 0
 
         def check(self, reply, attach):
 
@@ -88,8 +91,12 @@ files:
                 if not os.path.isdir(path_for_tabs):
                     return CheckResult.wrong("There are no directory for tabs")
 
-                if not self._check_files(path_for_tabs, right_word):
+                check_files_result = self._check_files(path_for_tabs, right_word)
+                if not check_files_result:
                     return CheckResult.wrong('There are no correct saved tabs')
+                elif check_files_result == -1:
+                    return CheckResult.wrong('An error occurred while reading your saved tab. '
+                                             'Perhaps you used the wrong encoding?')
 
                 try:
                     shutil.rmtree(path_for_tabs)
