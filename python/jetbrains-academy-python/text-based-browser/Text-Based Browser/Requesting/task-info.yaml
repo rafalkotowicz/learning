@@ -77,7 +77,7 @@ files:
             # Incorrect URL
             if attach is None:
                 if '<p>' in reply:
-                    return CheckResult.wrong('You haven\'t checked was URL correct')
+                    return CheckResult.wrong('You haven\'t checked whether the URL was correct')
                 else:
                     return CheckResult.correct()
 
