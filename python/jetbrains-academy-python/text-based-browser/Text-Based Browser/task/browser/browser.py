@@ -1,4 +1,5 @@
 import os
+from collections import deque
 from os import rmdir, mkdir, path
 from urllib.parse import urlparse
 
@@ -55,8 +56,14 @@ elif len(sys.argv) - 1 > expected_noof_arguments:
 
 workdir = sys.argv[1]
 if os.path.exists(workdir):
-    print(f"[DEBUG] Directory found and removed: {workdir}")
+    for root, dirs, files in os.walk(workdir, topdown=False):
+        for name in files:
+            os.remove(os.path.join(root, name))
+    for name in dirs:
+        os.rmdir(os.path.join(root, name))
+
     rmdir(workdir)
+    print(f"[DEBUG] Directory found and removed: {workdir}")
 
 mkdir(workdir)
 print(f"[DEBUG] Directory created: {workdir}")
@@ -70,7 +77,6 @@ def is_url(maybe_url):
     if str(parsed_url.path).__contains__("."):
         return True
     else:
-        print("ERROR! Provided values does not seem to be valid URL (missing dot).")
         return False
 
 
@@ -79,6 +85,7 @@ def read_file(file_name):
     if path.exists(file_path):
         with open(file_path, 'r', encoding='utf-8') as file_to_read:
             print(file_to_read.read())
+            history.append(file_name)
 
 
 def write_file(file_name, content):
@@ -88,16 +95,21 @@ def write_file(file_name, content):
 
 
 # MAIN
+history = deque()
 while True:
     request = input("Provide valid URL or type 'exit' to leave the program\n")
 
     if request == "exit":
         break
 
-    if not is_url(request):
-        continue
+    if request == "back":
+        print(f"History len: {len(history)}")
+        if len(history) == 0:
+            continue
+        else:
+            history.pop()
+            request = history.pop()
 
-    # noinspection SpellCheckingInspection
     if request == "bloomberg.com":
         write_file("bloomberg", bloomberg_com)
         read_file("bloomberg")
