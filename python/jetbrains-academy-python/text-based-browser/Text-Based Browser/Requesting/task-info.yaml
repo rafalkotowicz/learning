@@ -165,43 +165,9 @@ files:
   visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/projects/79/stages/439/implement
-status: Failed
+status: Solved
 feedback:
-  message: "Wrong answer in test #1\n\nThere are no correct saved tabs\n\nPlease find\
-    \ below the output of your program during this failed test.\nNote that the '>'\
-    \ character indicates the beginning of the input line.\n\n---\n\n[DEBUG] Initialization\
-    \ STARTED\n[DEBUG] Directory found and removed: tb_tabs\n[DEBUG] Directory created:\
-    \ tb_tabs\n[DEBUG] Initialization DONE\nProvide valid URL or type 'exit' to leave\
-    \ the program\n> bloomberg.com\n\nThe Space Race: From Apollo 11 to Elon Musk\n\
-    \nIt's 50 years since the world was gripped by historic images\n of Apollo 11,\
-    \ and Neil Armstrong -- the first man to walk \n on the moon. It was the height\
-    \ of the Cold War, and the charts\n were filled with David Bowie's Space Oddity,\
-    \ and Creedence's \n Bad Moon Rising. The world is a very different place than\
-    \ \n it was 5 decades ago. But how has the space race changed since\n the summer\
-    \ of '69? (Source: Bloomberg)\n\n\nTwitter CEO Jack Dorsey Gives Talk at Apple\
-    \ Headquarters\n\nTwitter and Square Chief Executive Officer Jack Dorsey \n addressed\
-    \ Apple Inc. employees at the iPhone maker’s headquarters\n Tuesday, a signal\
-    \ of the strong ties between the Silicon Valley giants.\n\nProvide valid URL or\
-    \ type 'exit' to leave the program\n> bloomberg\n\nThe Space Race: From Apollo\
-    \ 11 to Elon Musk\n\nIt's 50 years since the world was gripped by historic images\n\
-    \ of Apollo 11, and Neil Armstrong -- the first man to walk \n on the moon. It\
-    \ was the height of the Cold War, and the charts\n were filled with David Bowie's\
-    \ Space Oddity, and Creedence's \n Bad Moon Rising. The world is a very different\
-    \ place than \n it was 5 decades ago. But how has the space race changed since\n\
-    \ the summer of '69? (Source: Bloomberg)\n\n\nTwitter CEO Jack Dorsey Gives Talk\
-    \ at Apple Headquarters\n\nTwitter and Square Chief Executive Officer Jack Dorsey\
-    \ \n addressed Apple Inc. employees at the iPhone maker’s headquarters\n Tuesday,\
-    \ a signal of the strong ties between the Silicon Valley giants.\n\nProvide valid\
-    \ URL or type 'exit' to leave the program\n> exit\nfile: bloomberg\n\nThe Space\
-    \ Race: From Apollo 11 to Elon Musk\n\nIt's 50 years since the world was gripped\
-    \ by historic images\n of Apollo 11, and Neil Armstrong -- the first man to walk\
-    \ \n on the moon. It was the height of the Cold War, and the charts\n were filled\
-    \ with David Bowie's Space Oddity, and Creedence's \n Bad Moon Rising. The world\
-    \ is a very different place than \n it was 5 decades ago. But how has the space\
-    \ race changed since\n the summer of '69? (Source: Bloomberg)\n\n\nTwitter CEO\
-    \ Jack Dorsey Gives Talk at Apple Headquarters\n\nTwitter and Square Chief Executive\
-    \ Officer Jack Dorsey \n addressed Apple Inc. employees at the iPhone maker’s\
-    \ headquarters\n Tuesday, a signal of the strong ties between the Silicon Valley\
-    \ giants."
-  time: Sun, 06 Sep 2020 22:09:30 UTC
+  message: Congratulations! Continue on <a href="https://hyperskill.org/projects/79/stages/439/implement">JetBrains
+    Academy</a>
+  time: Mon, 07 Sep 2020 20:55:20 UTC
 record: -1
