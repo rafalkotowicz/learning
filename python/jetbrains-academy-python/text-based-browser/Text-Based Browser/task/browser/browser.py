@@ -25,8 +25,8 @@ if os.path.exists(workdir):
     for root, dirs, files in os.walk(workdir, topdown=False):
         for name in files:
             os.remove(os.path.join(root, name))
-    for name in dirs:
-        os.rmdir(os.path.join(root, name))
+        for name in dirs:
+            os.rmdir(os.path.join(root, name))
 
     rmdir(workdir)
     print(f"[DEBUG] Directory found and removed: {workdir}")
