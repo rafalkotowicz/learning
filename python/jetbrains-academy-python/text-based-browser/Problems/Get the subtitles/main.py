@@ -7,7 +7,4 @@ url = input()
 
 response = requests.get(url)
 parsed_response = BeautifulSoup(response.content, 'html.parser')
-
-print(parsed_response.find_all('h2')[article_id])
-
-
+print(parsed_response.find_all('h2')[article_id].get_text())

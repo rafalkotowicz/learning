@@ -8,9 +8,9 @@ files:
     from bs4 import BeautifulSoup
   learner_created: false
 feedback_link: https://hyperskill.org/learn/step/10214
-status: Failed
+status: Solved
 feedback:
-  message: |
-    Failed test #1 of 7. Wrong answer
-  time: Tue, 15 Sep 2020 11:32:47 UTC
+  message: <html>Correct solution<br/><br/>Continue on <a href="https://hyperskill.org/learn/step/10214">JetBrains
+    Academy</a></html>
+  time: Thu, 24 Sep 2020 20:23:16 UTC
 record: -1

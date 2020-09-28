@@ -1,0 +1,16 @@
+type: code
+files:
+- name: main.py
+  visible: true
+  text: |-
+    import requests
+
+    from bs4 import BeautifulSoup
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/10215
+status: Failed
+feedback:
+  message: |
+    Failed test #1 of 5. Wrong answer
+  time: Sat, 26 Sep 2020 20:45:44 UTC
+record: -1
