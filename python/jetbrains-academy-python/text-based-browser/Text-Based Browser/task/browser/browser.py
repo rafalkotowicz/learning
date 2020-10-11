@@ -7,6 +7,8 @@ import requests
 import sys
 
 # INIT
+from bs4 import BeautifulSoup, ResultSet
+
 print("[DEBUG] Initialization STARTED")
 
 expected_noof_arguments = 1
@@ -73,11 +75,16 @@ def strip_file_name(url: str):
     file_name = remove_https_protocol(url)
     return file_name[0:file_name.find(".")]
 
-
 def call_the_internetz(url: str):
     response = requests.get(add_https_protocol(url))
+    soup = BeautifulSoup(response.content, 'html.parser')
+    found_tags = soup.find_all(['p', 'a', 'ul', 'ol', 'li'])
+    string_list = []
+    for tag in found_tags:
+        string_list.append(tag.text)
+
     file_name = strip_file_name(url)
-    write_file(file_name, response.text)
+    write_file(file_name, ''.join(string_list))
     read_file(file_name)
 
 
