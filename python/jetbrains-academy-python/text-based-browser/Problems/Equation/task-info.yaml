@@ -1,0 +1,15 @@
+type: code
+files:
+- name: main.py
+  visible: true
+  text: |-
+    def equation_writing(...):
+        ...
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/10302
+status: Solved
+feedback:
+  message: <html>Correct solution<br/><br/>Continue on <a href="https://hyperskill.org/learn/step/10302">JetBrains
+    Academy</a></html>
+  time: Sun, 18 Oct 2020 11:22:44 UTC
+record: -1

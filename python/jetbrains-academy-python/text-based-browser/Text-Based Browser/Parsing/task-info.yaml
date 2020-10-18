@@ -221,5 +221,5 @@ files:
             read_file(command)
   learner_created: true
 feedback_link: https://hyperskill.org/projects/79/stages/440/implement
-status: Unchecked
-record: -1
+status: Solved
+record: 6

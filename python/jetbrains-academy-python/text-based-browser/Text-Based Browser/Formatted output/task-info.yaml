@@ -117,6 +117,9 @@ files:
 
     TextBasedBrowserTest('browser.browser').run_tests()
   learner_created: false
+- name: tb_tabs/2.python-requests
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/79/stages/441/implement
-status: Unchecked
-record: -1
+status: Failed
+record: 5
