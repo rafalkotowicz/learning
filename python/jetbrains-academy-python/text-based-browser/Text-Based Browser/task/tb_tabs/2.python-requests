@@ -34,12 +34,15 @@ http://docs.readthedocs.org/en/latest/canonical.html
 -->
   <link href="https://requests.readthedocs.io/en/master/" rel="canonical"/>
   <link href="https://assets.readthedocs.org/static/css/readthedocs-doc-embed.css" rel="stylesheet" type="text/css"/>
-  <script src="_static/readthedocs-data.js" type="text/javascript">
+  <script id="READTHEDOCS_DATA" type="application/json">
+   {"ad_free": true, "api_host": "https://readthedocs.org", "build_date": "2020-11-01T16:53:17Z", "builder": "sphinx", "canonical_url": "https://requests.readthedocs.io/en/master/", "commit": "2f70990c", "docroot": "/docs/", "features": {"docsearch_disabled": false}, "global_analytics_code": "UA-17997319-1", "language": "en", "page": "index", "programming_language": "py", "project": "requests", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {"requests-docs-cn": "https://requests.readthedocs.io/zh_CN/latest/", "requests-docs-de": "https://requests.readthedocs.io/de/latest/", "requests-docs-es": "https://requests.readthedocs.io/es/latest/", "requests-docs-it": "https://requests.readthedocs.io/projects/it/it/latest/", "requests-docs-pl": "https://requests.readthedocs.io/pl/latest/", "requests-docs-pt": "https://requests.readthedocs.io/pt_BR/latest/", "requests-html": "https://requests.readthedocs.io/projects/requests-html/en/latest/", "requests3": "https://requests.readthedocs.io/projects/3/"}, "theme": "alabaster", "user_analytics_code": "", "version": "master"}
   </script>
-  <!-- Add page-specific data, which must exist in the page js, not global -->
+  <!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
   <script type="text/javascript">
-   READTHEDOCS_DATA['page'] = "index"
-READTHEDOCS_DATA['source_suffix'] = ".rst"
+   READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
   </script>
   <script async="async" src="https://assets.readthedocs.org/static/javascript/readthedocs-analytics.js" type="text/javascript">
   </script>

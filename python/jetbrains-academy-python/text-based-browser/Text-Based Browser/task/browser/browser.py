@@ -102,9 +102,6 @@ def call_the_internet(url: str):
 
     print_the_page(response_read)
 
-
-
-
 # MAIN
 history = deque()
 
