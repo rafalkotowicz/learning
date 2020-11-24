@@ -157,13 +157,10 @@ files:
 - name: rps/rating.txt
   visible: true
   learner_created: true
-- name: rps/__init__.py
-  visible: true
-  learner_created: true
 feedback_link: https://hyperskill.org/projects/78/stages/434/implement#comment
 status: Solved
 feedback:
   message: Congratulations! Continue on <a href="https://hyperskill.org/projects/78/stages/434/implement">JetBrains
     Academy</a>
   time: Tue, 17 Nov 2020 23:31:45 UTC
-record: -1
+record: 4
