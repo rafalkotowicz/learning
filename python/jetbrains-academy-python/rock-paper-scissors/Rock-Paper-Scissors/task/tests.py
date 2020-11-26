@@ -193,7 +193,7 @@ class RPSTest(StageTest):
                     if option in line.lower():
                         break
                 else:
-                    return CheckResult.wrong('Wrong win!')
+                    return CheckResult.wrong(f'Wrong win! user_choice = {option}, winning set = {win}')
             elif 'draw' in line.lower() and inp not in line.lower():
                 return CheckResult.wrong('Wrong draw!')
             elif 'sorry' in line.lower():
@@ -201,7 +201,7 @@ class RPSTest(StageTest):
                     if option in line.lower():
                         break
                 else:
-                    return CheckResult.wrong('Wrong lose!')
+                    return CheckResult.wrong(f'Wrong lose! user_choice = {option}, loosing set = {lose}')
             i += 1
         return CheckResult.correct()
 
