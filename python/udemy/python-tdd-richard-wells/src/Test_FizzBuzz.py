@@ -3,13 +3,16 @@
 #and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz”.
 
 def fizzBuzz(value):
-    if value % 15 == 0:
+    if isMultiple(value, 15):
         return 'FizzBuzz'
-    if value % 3 == 0:
-        return 'Fizz'
-    if value % 5 == 0:
+    if isMultiple(value, 5):
         return 'Buzz'
+    if isMultiple(value, 3):
+        return 'Fizz'
     return value
+
+def isMultiple(value, mod):
+    return value % mod == 0
 
 def printer(numbers):
     transformed = list()
