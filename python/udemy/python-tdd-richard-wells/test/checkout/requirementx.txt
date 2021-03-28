@@ -1,0 +1,8 @@
+v init Checkout
+v add item with price to offer
+v add item to cart
+v calculate current total
+v Then adding multiple items and getting the correct total.
+v Then the class needs the ability to add discount rules.
+v Then the class needs to be able to apply the discount rules when calculating the total.
+v And lastly the class needs to throw an exception when an item is added that doesn’t have a defined Price
