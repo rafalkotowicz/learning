@@ -1,7 +1,9 @@
-# definition of the class
-Class House():
+class House:
     construction = "building"
     elevator = True
 
-# object of the class House
+    def __init__(self, construction):
+        self.construction = construction
+
+
 new_house = House("building")
