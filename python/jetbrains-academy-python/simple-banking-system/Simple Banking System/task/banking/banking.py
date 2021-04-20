@@ -1,6 +1,39 @@
-# gui functions
-# CreditCard class
 import random
+import sqlite3
+from sqlite3 import Error
+
+
+class DatabaseConnector:
+
+    def __init__(self, db_path="example.s3db"):
+        try:
+            self.connection = sqlite3.connect(db_path)
+            self.cursor = self.connection.cursor()
+        except Error as error:
+            print(error)
+
+    def __del__(self):
+        self.close_connection()
+
+    def execute_query(self, query):
+        self.cursor.execute(query)
+        self.connection.commit()
+
+    def close_connection(self):
+        self.connection.close()
+
+    def init_card_table(self):
+        self.execute_query("""
+            CREATE TABLE IF NOT EXISTS card (
+                id INTEGER PRIMARY KEY,
+                number TEXT,
+                pin TEXT,
+                balance INTEGER DEFAULT 0  
+            );
+        """)
+
+
+dc = DatabaseConnector()
 
 
 def bank_gui():
@@ -25,7 +58,7 @@ def login_gui():
     while True:
         user_card = int(input("Enter your card number:"))
         user_pin = int(input("Enter your PIN:"))
-        card = CreditCard.find_card(user_card)
+        card = CreditCard.find_card_in_memory(user_card)
         if "CardNotFound" == card:
             print("Wrong card number or PIN!")
             bank_gui()
@@ -57,7 +90,7 @@ class CreditCard:
     IIN = 400000
     all_cards = []
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         self.account_number = random.randint(100000000, 999999999)
         self.card_number_no_luhn = CreditCard.IIN * 10000000000 + self.account_number * 10
         self.luhn = self.calculate_luhn()
@@ -70,6 +103,7 @@ class CreditCard:
         print(self.pin)
         self.balance = 0
         CreditCard.all_cards.append(self)
+        self.write_to_db()
 
     def __repr__(self):
         return "Card number: " + str(self.card_number) + " PIN: " + str(self.pin)
@@ -87,12 +121,34 @@ class CreditCard:
                     digit_sum -= 9
         return 0 if digit_sum % 10 == 0 else 10 - digit_sum % 10
 
-    @staticmethod
-    def find_card(find_card):
-        for card in CreditCard.all_cards:
-            if card.card_number == find_card:
-                return card
-        return "CardNotFound"
+    def write_to_db(self):
+        dc.execute_query(f"""
+            INSERT INTO card (number, pin) 
+            VALUES ({self.card_number}, {self.pin});
+        """)
 
 
-bank_gui()
+def find_card_in_memory(find_card) -> CreditCard:
+    for card in CreditCard.all_cards:
+        if card.card_number == find_card:
+            return card
+    return "CardNotFound"
+
+
+def find_card_in_db(find_card) -> CreditCard:
+    dc.execute_query(f"""
+        select number, pin, balance from card where number={find_card};
+    """)
+    (number, pin, balance) = dc.cursor.fetchone()
+    # TODO: find a way to create CARD without inserting it to DB again
+    # return card
+    # return "CardNotFound"
+
+
+if __name__ == '__main__':
+    dc.init_card_table()
+    # dc.execute_query(f"""
+    #     select number, pin, balance from card where number={find_card};
+    # """)
+    # (number, pin, balance) = dc.cursor.fetchone()
+    # bank_gui()
