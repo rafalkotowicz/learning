@@ -5,7 +5,7 @@ from sqlite3 import Error
 
 class DatabaseConnector:
 
-    def __init__(self, db_path="example.s3db"):
+    def __init__(self, db_path="card.s3db"):
         try:
             self.connection = sqlite3.connect(db_path)
             self.cursor = self.connection.cursor()
@@ -56,9 +56,9 @@ def bank_gui():
 
 def login_gui():
     while True:
-        user_card = int(input("Enter your card number:"))
-        user_pin = int(input("Enter your PIN:"))
-        card = CreditCard.find_card_in_memory(user_card)
+        user_card = input("Enter your card number:")
+        user_pin = input("Enter your PIN:")
+        card = find_card_in_db(user_card)
         if "CardNotFound" == card:
             print("Wrong card number or PIN!")
             bank_gui()
@@ -91,6 +91,18 @@ class CreditCard:
     all_cards = []
 
     def __init__(self, *args, **kwargs):
+        self.card_number = None
+        self.pin = None
+        self.balance = 0
+        if (kwargs.get("is_new", True)):
+            self.create_new_card()
+            self.write_to_db()
+            CreditCard.all_cards.append(self)
+        else:
+            self.load_from_db(kwargs.get("number", None), kwargs.get("pin", None), kwargs.get("balance", 0))
+            CreditCard.all_cards.append(self)
+
+    def create_new_card(self):
         self.account_number = random.randint(100000000, 999999999)
         self.card_number_no_luhn = CreditCard.IIN * 10000000000 + self.account_number * 10
         self.luhn = self.calculate_luhn()
@@ -102,8 +114,11 @@ class CreditCard:
         print("Your card PIN:")
         print(self.pin)
         self.balance = 0
-        CreditCard.all_cards.append(self)
-        self.write_to_db()
+
+    def load_from_db(self, number, pin, balance):
+        self.card_number = number
+        self.pin = pin
+        self.balance = balance
 
     def __repr__(self):
         return "Card number: " + str(self.card_number) + " PIN: " + str(self.pin)
@@ -139,16 +154,16 @@ def find_card_in_db(find_card) -> CreditCard:
     dc.execute_query(f"""
         select number, pin, balance from card where number={find_card};
     """)
-    (number, pin, balance) = dc.cursor.fetchone()
-    # TODO: find a way to create CARD without inserting it to DB again
-    # return card
-    # return "CardNotFound"
+    query_result = dc.cursor.fetchone()
+
+    if query_result is not None:
+        (number, pin, balance) = query_result
+        found_card = CreditCard(is_new=False, number=number, pin=pin, balance=balance)
+        return found_card
+    else:
+        return "CardNotFound"
 
 
 if __name__ == '__main__':
     dc.init_card_table()
-    # dc.execute_query(f"""
-    #     select number, pin, balance from card where number={find_card};
-    # """)
-    # (number, pin, balance) = dc.cursor.fetchone()
-    # bank_gui()
+    bank_gui()
