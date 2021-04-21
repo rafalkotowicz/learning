@@ -266,3 +266,4 @@ $RECYCLE.BIN/
 .idea/
 .gradle/
 **/target/*
+*.s3db
