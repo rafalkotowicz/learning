@@ -1,10 +1,5 @@
 type: edu
 files:
-- name: banking/banking.py
-  visible: true
-  text: |
-    # Write your code here
-  learner_created: false
 - name: tests.py
   visible: false
   text: |
@@ -419,6 +414,17 @@ files:
     if __name__ == '__main__':
         BankingSystem('banking.banking').run_tests()
   learner_created: false
+- name: banking/banking.py
+  visible: true
+  text: |
+    # Write your code here
+  learner_created: false
+- name: banking/example.s3db
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/109/stages/594/implement#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Fri, 23 Apr 2021 00:00:09 UTC
 record: -1
