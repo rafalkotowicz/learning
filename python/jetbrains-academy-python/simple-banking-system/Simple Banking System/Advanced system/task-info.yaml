@@ -414,9 +414,6 @@ files:
     if __name__ == '__main__':
         BankingSystem('banking.banking').run_tests()
   learner_created: false
-- name: banking/example.s3db
-  visible: true
-  learner_created: true
 - name: banking/banking.py
   visible: true
   text: |
@@ -426,5 +423,5 @@ feedback_link: https://hyperskill.org/projects/109/stages/594/implement#comment
 status: Solved
 feedback:
   message: Congratulations!
-  time: Fri, 23 Apr 2021 00:00:09 UTC
+  time: Sat, 24 Apr 2021 20:28:23 UTC
 record: -1
