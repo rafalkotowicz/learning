@@ -33,7 +33,7 @@ print(words[2:9999])  # ['not', 'only', 'a', 'snake', '!']</code></pre>
 print(planets[2:7:2])  # ['Earth', 'Jupiter', 'Uranus']</code></pre> 
   <p>Each part of the slice has a default value, so it can be omitted. If we don't specify the <code class="language-python">start</code> index, it is considered to be <strong>0</strong>; if we don't specify the <code class="language-python">stop</code> index, it is equal <strong>to the length of the sequence</strong>. The default <code class="language-python">step</code> is <strong>1</strong>, i.e. every element between the beginning and the end is put in the slice.</p> 
   <p>Here's what happens if we slice without specifying some indexes:</p> 
-  <pre><code class="language-python">sequence[:end]    # element from the 1st element to end-1
+  <pre><code class="language-python">sequence[:end]    # elements from start to end-1
 sequence[start:]  # elements from start to the last element
 sequence[:]       # the full copy of the sequence
 sequence[::step]  # every element with a given step</code></pre> 
