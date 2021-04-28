@@ -7,18 +7,26 @@ files:
     from hstest.test_case import TestCase
     import ast
 
+    INVALID_RESULT = "No one is joining for the party"
+
 
     class BillSplitterTest(StageTest):
         def generate(self) -> List[TestCase]:
             return [TestCase(stdin=["5", "Marc", "Jem", "Monica", "Anna", "Jason"], attach="5"),
                     TestCase(stdin=["3", "Jake", "Sam", "Irina"], attach="3"),
                     TestCase(stdin=["0"], attach="0"),
-                    TestCase(stdin=["-1"], attach="0")
+                    TestCase(stdin=["-1"], attach="-1")
                     ]
 
         def check(self, reply: str, attach: Any) -> CheckResult:
             strings = [s for s in reply.split('\n') if s != '']
-            if (len(strings) != 3):
+            if int(attach) <= 0:
+                if len(strings) != 2:
+                    return CheckResult.wrong("Your code is not printing expected number of lines of output")
+                elif strings[1] != INVALID_RESULT:
+                    return CheckResult.wrong("Expected output was No one is joining for the party!")
+                return CheckResult.correct()
+            elif int(attach) > 0 and len(strings) != 3:
                 return CheckResult.wrong("Your code is not printing expected number of lines of output")
             try:
                 output = ast.literal_eval(strings[2])
@@ -46,20 +54,8 @@ files:
     # write your code here
   learner_created: false
 feedback_link: https://hyperskill.org/projects/175/stages/901/implement#comment
-status: Failed
+status: Solved
 feedback:
-  message: |-
-    Wrong answer in test #3
-
-    Your code is not printing expected number of lines of output
-
-    Please find below the output of your program during this failed test.
-    Note that the '>' character indicates the beginning of the input line.
-
-    ---
-
-    Enter the number of friends joining (including you):
-    > 0
-    {}
-  time: Sun, 25 Apr 2021 12:18:06 UTC
+  message: Congratulations!
+  time: Wed, 28 Apr 2021 22:30:35 UTC
 record: -1

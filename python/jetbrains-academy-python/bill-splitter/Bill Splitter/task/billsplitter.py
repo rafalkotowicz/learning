@@ -1,7 +1,7 @@
 print("Enter the number of friends joining (including you):")
 no_participants = int(input())
 if no_participants < 1:
-    print({})
+    print("No one is joining for the party")
     exit("invalid number of people")
 
 participants_list = []

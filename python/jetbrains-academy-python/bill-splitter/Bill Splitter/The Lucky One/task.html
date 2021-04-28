@@ -11,9 +11,10 @@
 <p>In this stage your program should perform the following steps together with the steps from the previous stages:</p>
 
 <ol>
-	<li>Ask the user whether they want to use the "Who is Lucky?" feature;</li>
-	<li>Take input from a user.</li>
-	<li>If a user wants to use the feature (<code class="java">Yes</code>), choose a name from the dictionary keys at random and print the following: <code class="java">{Name} is the lucky one!</code>.</li>
+	<li>In case of an invalid number of people, <code class="java">"No one is joining for the party"</code> is expected as an output;</li>
+	<li>Otherwise, ask the user whether they want to use the "Who is lucky?" feature;</li>
+	<li>Take input from the user;</li>
+	<li>If a user wants to use the feature (<code class="java">Yes</code>), choose a name from the dictionary keys at random and print the following: <code class="java">{Name} is the lucky one!</code>;</li>
 	<li>If <code class="java">No</code>, print <code class="java">No one is going to be lucky</code>.</li>
 </ol>
 
@@ -62,3 +63,10 @@ Do you want to use the "Who is lucky?" feature? Write Yes/No:
 &gt; No
 
 No one is going to be lucky</code></pre>
+
+<p><strong>Example 3:</strong><em> Invalid input</em></p>
+
+<pre><code class="language-no-highlight">Enter the number of friends joining (including you):
+&gt; 0
+
+No one is joining for the party</code></pre>
