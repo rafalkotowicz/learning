@@ -52,8 +52,16 @@ files:
         BillSplitterTest().run_tests()
   learner_created: false
 feedback_link: https://hyperskill.org/projects/175/stages/903/implement#comment
-status: Solved
+status: Failed
 feedback:
-  message: Congratulations!
-  time: Wed, 28 Apr 2021 23:48:24 UTC
-record: -1
+  message: "Wrong answer in test #1\n\nYour code is not printing expected number of\
+    \ lines of output, check examples\n\nPlease find below the output of your program\
+    \ during this failed test.\nNote that the '>' character indicates the beginning\
+    \ of the input line.\n\n---\n\nEnter the number of friends joining (including\
+    \ you):\n> 5\nEnter the name of every friend (including you), each on a new line:\n\
+    > Marc\n> Jem\n> Monica\n> Anna\n> Jason\nEnter the total bill value: \n> 100\n\
+    Do you want to use the \"Who is lucky?\" feature? Write Yes/No:\n> Yes\nMarc is\
+    \ the lucky one!\n{'Marc': 0, 'Jem': 25.0, 'Monica': 25.0, 'Anna': 25.0, 'Jason':\
+    \ 25.0}"
+  time: Wed, 28 Apr 2021 23:49:48 UTC
+record: 3

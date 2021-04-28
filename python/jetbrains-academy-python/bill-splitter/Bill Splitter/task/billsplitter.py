@@ -36,4 +36,4 @@ for participant in participants_dict:
         participants_dict[participant] = round(bill_total / len(
             participants_list), 2)
 
-# print(participants_dict)
+print(participants_dict)
