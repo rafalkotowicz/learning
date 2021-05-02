@@ -5,7 +5,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-engine = create_engine('sqlite:///todo.db?check_same_thread=False', echo=True)
 Base = declarative_base()
 
 
@@ -26,30 +25,38 @@ class Task(Base):
         return self.task
 
 
-Base.metadata.create_all(engine)
+class DbHandler():
+    engine = create_engine('sqlite:///todo.db?check_same_thread=False',
+                           echo=True)
+    Base.metadata.create_all(engine)
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
-Session = sessionmaker(bind=engine)
-session = Session()
+    def print_all_tasks(self):
+        rows = self.session.query(Task).all()
+        print("Today:")
+        if len(rows) == 0:
+            print("Nothing to do!")
+        else:
+            for row in rows:
+                print(f"{row.id}. {str(row)}")
 
-# TODO: refactor - extract operations to functions
-def gui():
+    def add_task(self, task_text):
+        self.session.add(Task(task_text))
+        self.session.commit()
+
+
+def gui(dbHandler: DbHandler):
     while True:
         print("1) Today's tasks")
         print("2) Add task")
         print("0) Exit")
         user_input = int(input())
         if 1 == user_input:
-            rows = session.query(Task).all()
-            print("Today:")
-            if len(rows) == 0:
-                print("Nothing to do!")
-            else:
-                for row in rows:
-                    print(f"{row.id}. {str(row)}")
+            dbHandler.print_all_tasks()
         elif 2 == user_input:
             print("Enter task")
-            session.add(Task(input()))
-            session.commit()
+            dbHandler.add_task(input())
         elif 0 == user_input:
             print("Bye!")
             exit(0)
@@ -57,4 +64,5 @@ def gui():
             print("Invalid option chosen")
 
 
-gui()
+dbHandler = DbHandler()
+gui(dbHandler)
