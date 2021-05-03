@@ -2,3 +2,5 @@ content:
 - Exception handling
 - Magic methods
 - Inheritance
+- Tuple
+- Identity testing
