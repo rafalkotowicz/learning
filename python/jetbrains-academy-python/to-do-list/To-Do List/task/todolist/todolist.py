@@ -25,7 +25,7 @@ class Task(Base):
         return self.task
 
 
-class DbHandler():
+class DbHandler:
     engine = create_engine('sqlite:///todo.db?check_same_thread=False',
                            echo=True)
     Base.metadata.create_all(engine)
@@ -41,22 +41,42 @@ class DbHandler():
             for row in rows:
                 print(f"{row.id}. {str(row)}")
 
-    def add_task(self, task_text):
-        self.session.add(Task(task_text))
+    def print_todays_tasks(self):
+        rows = self.session.query(Task).filter(Task.deadline ==
+                                               datetime.today().date()).all()
+        print(f"Today {datetime.today().strftime('%d %B')}:")
+        if len(rows) == 0:
+            print("Nothing to do!")
+        else:
+            for row in rows:
+                print(f"{row.id}. {str(row)}")
+
+    def add_task(self, task_text="NO_TITLE", deadline=datetime.now()):
+        self.session.add(Task(task_text, deadline=deadline))
         self.session.commit()
 
 
 def gui(dbHandler: DbHandler):
     while True:
         print("1) Today's tasks")
-        print("2) Add task")
+        print("2) Week's tasks")
+        print("3) All tasks")
+        print("4) Add task")
         print("0) Exit")
         user_input = int(input())
         if 1 == user_input:
-            dbHandler.print_all_tasks()
+            dbHandler.print_todays_tasks()
         elif 2 == user_input:
+            pass
+        elif 3 == user_input:
+            dbHandler.print_all_tasks()
+        elif 4 == user_input:
             print("Enter task")
-            dbHandler.add_task(input())
+            task = input()
+            print("Enter deadline")
+            deadline = datetime.fromisoformat(input())
+            dbHandler.add_task(task, deadline)
+
         elif 0 == user_input:
             print("Bye!")
             exit(0)
@@ -65,4 +85,5 @@ def gui(dbHandler: DbHandler):
 
 
 dbHandler = DbHandler()
+# dbHandler.print_all_tasks()
 gui(dbHandler)
