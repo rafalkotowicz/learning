@@ -10,11 +10,5 @@ files:
         pass
   learner_created: false
 feedback_link: https://hyperskill.org/learn/step/8563#comment
-status: Unchecked
-feedback:
-  message: |-
-    Connection to server was interrupted
-
-    timeout
-  time: Tue, 04 May 2021 01:01:29 UTC
+status: Solved
 record: -1
