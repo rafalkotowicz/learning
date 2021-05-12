@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from sqlalchemy import Column, Integer, String, Date
 from sqlalchemy import create_engine
@@ -27,33 +27,65 @@ class Task(Base):
 
 class DbHandler:
     engine = create_engine('sqlite:///todo.db?check_same_thread=False',
-                           echo=True)
+                           echo=False)
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
 
     def print_all_tasks(self):
-        rows = self.session.query(Task).all()
-        print("Today:")
-        if len(rows) == 0:
-            print("Nothing to do!")
-        else:
-            for row in rows:
-                print(f"{row.id}. {str(row)}")
+        rows = self.session.query(Task).order_by(Task.deadline).all()
+        print_rows(rows, True)
+
+    def print_week(self):
+        for day_offset in range(7):
+            day = datetime.today() + timedelta(days=day_offset)
+            rows: list = self.session.query(Task).filter(Task.deadline ==
+                                                         day.date()).all()
+            print(f"{get_name_of_weekday(day)} {day.strftime('%d %B')}")
+            print_rows(rows)
+            print()
 
     def print_todays_tasks(self):
-        rows = self.session.query(Task).filter(Task.deadline ==
-                                               datetime.today().date()).all()
+        rows: list = self.session.query(Task).filter(Task.deadline ==
+                                                     datetime.today().date()).all()
         print(f"Today {datetime.today().strftime('%d %B')}:")
-        if len(rows) == 0:
-            print("Nothing to do!")
-        else:
-            for row in rows:
-                print(f"{row.id}. {str(row)}")
+        print_rows(rows)
 
     def add_task(self, task_text="NO_TITLE", deadline=datetime.now()):
         self.session.add(Task(task_text, deadline=deadline))
         self.session.commit()
+
+
+def print_rows(rows: list, all_tasks=False):
+    if len(rows) == 0:
+        print("Nothing to do!")
+    else:
+        i = 1
+        for row in rows:
+            if all_tasks:
+                print(
+                    f"{i}. {str(row.task)}. {row.deadline.strftime('%d %B')}")
+            else:
+                print(f"{i}. {str(row.task)}")
+            i += 1
+
+
+def get_name_of_weekday(date: datetime):
+    day = date.isoweekday()
+    if day == 1:
+        return "Monday"
+    elif day == 2:
+        return "Tuesday"
+    elif day == 3:
+        return "Wednesday"
+    elif day == 4:
+        return "Thursday"
+    elif day == 5:
+        return "Friday"
+    elif day == 6:
+        return "Saturday"
+    elif day == 7:
+        return "Sunday"
 
 
 def gui(dbHandler: DbHandler):
@@ -67,7 +99,7 @@ def gui(dbHandler: DbHandler):
         if 1 == user_input:
             dbHandler.print_todays_tasks()
         elif 2 == user_input:
-            pass
+            dbHandler.print_week()
         elif 3 == user_input:
             dbHandler.print_all_tasks()
         elif 4 == user_input:

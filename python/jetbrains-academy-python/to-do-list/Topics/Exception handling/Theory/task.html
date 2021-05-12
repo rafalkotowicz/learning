@@ -2,17 +2,16 @@
  <head></head>
  <body>
   <p>Imagine a simple calculator, which can only divide numbers, where we ask a user for input of two numbers and then print the result.</p> 
-  <pre><code class="language-python">while True:
-   number_one = int(input("Please, enter the first number: "))
-   number_two = int(input("Please, enter the second number: "))
-   result = number_one / number_two
-   print("The result of your division is: ", result)</code></pre> 
+  <pre><code class="language-python">number_one = int(input("Please, enter the first number: "))
+number_two = int(input("Please, enter the second number: "))
+result = number_one / number_two
+print("The result of your division is: ", result)</code></pre> 
   <p>Let's run it:</p> 
-  <pre><code class="language-python">&gt;&gt;&gt; Please, enter the first number: 5
+  <pre><code class="language-no-highlight">&gt;&gt;&gt; Please, enter the first number: 5
 &gt;&gt;&gt; Please, enter the second number:  2
 &gt;&gt;&gt; The result of your division is: 2.5</code></pre> 
   <p>Once again:</p> 
-  <pre><code class="language-python">&gt;&gt;&gt; Please, enter the first number: 2
+  <pre><code class="language-no-highlight">&gt;&gt;&gt; Please, enter the first number: 2
 &gt;&gt;&gt; Please, enter the second number: 1
 &gt;&gt;&gt; The result of your division is:  2.0</code></pre> 
   <p>Now let's try the impossible:</p> 
@@ -20,21 +19,20 @@
 &gt;&gt;&gt; Please, enter the second number: 0
 Traceback (most recent call last):
 File "&lt;input&gt;", line 1, in &lt;module&gt;
-File "C:/Users/User/.PyCharm2018.2/config/scratches/scratch_9.py", line 4, in &lt;module&gt;
+File "C:/Users/User/.PyCharm2018.2/config/scratches/scratch_9.py", line 3, in &lt;module&gt;
     result = number_one / number_two
 ZeroDivisionError: division by zero</code></pre> 
-  <p>Again we encounter this annoying traceback which crashes our program completely! For preventing this, we need to use <strong>try-except statements</strong> in the place, which can be a possible source of errors. Here is the place where we make the division — the variable <code class="language-python">result</code>, so let's brace it with try-except blocks:</p> 
-  <pre><code class="language-python">while True:
-   number_one = int(input("Please, enter the first number: "))
-   number_two = int(input("Please, enter the second number: "))
-   try:
-       result = number_one / number_two
-   except ZeroDivisionError:
-       print("We achieve it thanks to except ***You can not divide by zero!!")
-   else:
-       print("The result of your division is: ", result)
-   finally:
-       print("It is done through finally ***Thanks for using our calculator! Come again!")</code></pre> 
+  <p>Again we encounter this annoying traceback that crashes our program completely! For preventing this, we need to use <strong>try-except statements</strong> in the place, which can be a possible source of errors. Here is the place where we make the division — the variable <code class="language-python">result</code>, so let's brace it with try-except blocks:</p> 
+  <pre><code class="language-python">number_one = int(input("Please, enter the first number: "))
+number_two = int(input("Please, enter the second number: "))
+try:
+    result = number_one / number_two
+except ZeroDivisionError:
+    print("We achieve it thanks to except ***You can not divide by zero!!")
+else:
+    print("The result of your division is: ", result)
+finally:
+    print("It is done through finally ***Thanks for using our calculator! Come again!")</code></pre> 
   <h2 style="text-align: center;">Exception handling keywords</h2> 
   <p>Here you can see not only <code class="language-python">try</code> and <code class="language-python">except</code>keywords but also <code class="language-python">else</code> and <code class="language-python">finally</code>. The full exception handling block works as follows:</p> 
   <ul> 
@@ -47,32 +45,32 @@ ZeroDivisionError: division by zero</code></pre>
   </ul> 
   <p style="text-align: center;"><img alt="" height="739" src="https://ucarecdn.com/d796dba0-bdb1-4ae7-941f-de5671a85679/" width="690"></p> 
   <p>So let’s try executing our program now!</p> 
-  <pre><code class="language-python">&gt;&gt;&gt; Please, enter the first number: &gt;? 5
-&gt;&gt;&gt; Please, enter the second number: &gt;? 0
+  <pre><code class="language-no-highlight">&gt;&gt;&gt; Please, enter the first number: 5
+&gt;&gt;&gt; Please, enter the second number: 0
 &gt;&gt;&gt; We achieve it thanks to except ***You can not divide by zero!!
 &gt;&gt;&gt; It is done through finally ***Thanks for using our calculator! Come again!</code></pre> 
   <p>See? Now our program will be working even if the user makes a mistake and wants to divide by zero.</p> 
   <h2 style="text-align: center;">Handling several exceptions</h2> 
   <p>But what if our user doesn't understand what the "number" is and enters, for example, "one"?</p> 
-  <pre><code class="language-python">&gt;&gt;&gt; Please, enter the first number: &gt;? 5
-&gt;&gt;&gt; Please, enter the second number: &gt;? one
+  <pre><code class="language-python">&gt;&gt;&gt; Please, enter the first number: 5
+&gt;&gt;&gt; Please, enter the second number: one
 Traceback (most recent call last):
 File "&lt;input&gt;", line 1, in &lt;module&gt;
-File "C:/Users/User/.PyCharm2018.2/config/scratches/scratch_9.py", line 3, in &lt;module&gt;
+File "C:/Users/User/.PyCharm2018.2/config/scratches/scratch_9.py", line 2, in &lt;module&gt;
     number_two = int(input("Please, enter the second number: "))
 ValueError: invalid literal for int() with base 10: 'one'</code></pre> 
   <p>Oh, Lord! We see those red disappointing lines again! Why? Well, because we specified only a <code class="language-python">ZeroDivisionError</code> exception in our try-except block. And here we have a <code class="language-python">ValueError</code> exception, so Python doesn't know how to deal with it in our program.</p> 
   <p>As you know, the built-in exceptions comprise <strong>a hierarchical structure</strong>, so you can do the following and identify no specific exception:</p> 
   <pre><code class="language-python">except:
-   print("An error occurred! Try again.")</code></pre> 
+    print("An error occurred! Try again.")</code></pre> 
   <p>Thus you'll catch any exception from the list. But it will also work for <code class="language-python">KeyboardInterrupt</code> and other useful exceptions and moreover, it's considered to be a bad tone in programming, so it'd be better to use <strong>two or more </strong><code class="language-python">except</code> blocks for different exceptions:</p> 
   <pre><code class="language-python">except ZeroDivisionError:
-   print("We achieve it thanks to except ***You can't divide by zero!!")
+    print("We achieve it thanks to except ***You can't divide by zero!!")
 except ValueError:
-   print("You can only enter numbers consisting of digits, not text!!")</code></pre> 
+    print("You can only enter numbers consisting of digits, not text!!")</code></pre> 
   <p>An <code class="language-python">except</code> clause also may specify multiple exceptions as a <strong>parenthesized tuple</strong>, for example:</p> 
   <pre><code class="language-python">except (ValueError, TypeError):
-   print("You can only enter numbers consisting of digits, not text!!")</code></pre> 
+    print("You can only enter numbers consisting of digits, not text!!")</code></pre> 
   <p>Due to the hierarchical structure, one exception can actually catch multiple exceptions. For example:</p> 
   <pre><code class="language-python">except ArithmeticError:
     print("I will also catch FloatingPointError, OverflowError, and ZeroDivisionError")</code></pre> 

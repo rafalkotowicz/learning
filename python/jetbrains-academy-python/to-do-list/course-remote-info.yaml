@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/346277/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Tue, 04 May 2021 20:04:43 UTC
+update_date: Wed, 12 May 2021 21:22:33 UTC
 stages:
 - id: 570
   step: 9619
@@ -13,7 +13,7 @@ stages:
   is_completed: true
 - id: 572
   step: 9621
-  is_completed: false
+  is_completed: true
 - id: 573
   step: 9622
   is_completed: false
@@ -21,14 +21,16 @@ topics:
   0:
   - title: IDE
     theory_id: 10996
-  - title: Introduction to OOP
-    theory_id: 3614
-  - title: Inheritance
-    theory_id: 9844
+  - title: Computer programming
+    theory_id: 8739
   - title: Intro to computational thinking
     theory_id: 8742
   - title: Components of computational thinking
     theory_id: 8745
+  - title: Introduction to OOP
+    theory_id: 3614
+  - title: Inheritance
+    theory_id: 9844
   - title: Introduction to Python
     theory_id: 5204
   - title: Overview of the basic program
@@ -96,10 +98,10 @@ topics:
   - title: Comparisons
     theory_id: 5920
   1:
-  - title: Files
-    theory_id: 13025
   - title: Introduction to operating systems
     theory_id: 9704
+  - title: Files
+    theory_id: 13025
   - title: Introduction to databases
     theory_id: 8497
   - title: Introduction to SQLite
