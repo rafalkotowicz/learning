@@ -30,11 +30,18 @@ class DbHandler:
                            echo=False)
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
-    session = Session()
+    session: Session = Session()
 
     def print_all_tasks(self):
         rows = self.session.query(Task).order_by(Task.deadline).all()
         print_rows(rows, True)
+        return rows
+
+    def print_todays_tasks(self):
+        rows: list = self.session.query(Task).filter(Task.deadline ==
+                                                     datetime.today().date()).all()
+        print(f"Today {datetime.today().strftime('%d %B')}:")
+        print_rows(rows)
 
     def print_week(self):
         for day_offset in range(7):
@@ -45,24 +52,33 @@ class DbHandler:
             print_rows(rows)
             print()
 
-    def print_todays_tasks(self):
-        rows: list = self.session.query(Task).filter(Task.deadline ==
+    def print_missed_tasks(self):
+        rows: list = self.session.query(Task).filter(Task.deadline <
                                                      datetime.today().date()).all()
-        print(f"Today {datetime.today().strftime('%d %B')}:")
-        print_rows(rows)
+        print("Missed tasks:")
+        if (len(rows) == 0):
+            print("Nothing is missed!")
+        else:
+            print_rows(rows, True)
+        print()
 
     def add_task(self, task_text="NO_TITLE", deadline=datetime.now()):
         self.session.add(Task(task_text, deadline=deadline))
         self.session.commit()
 
+    def delete_task(self, task):
+        self.session.delete(task)
+        self.session.commit()
+        print("The task has been deleted!")
 
-def print_rows(rows: list, all_tasks=False):
+
+def print_rows(rows: list, with_deadline=False):
     if len(rows) == 0:
         print("Nothing to do!")
     else:
         i = 1
         for row in rows:
-            if all_tasks:
+            if with_deadline:
                 print(
                     f"{i}. {str(row.task)}. {row.deadline.strftime('%d %B')}")
             else:
@@ -93,7 +109,9 @@ def gui(dbHandler: DbHandler):
         print("1) Today's tasks")
         print("2) Week's tasks")
         print("3) All tasks")
-        print("4) Add task")
+        print("4) Missed tasks")
+        print("5) Add task")
+        print("6) Delete task")
         print("0) Exit")
         user_input = int(input())
         if 1 == user_input:
@@ -103,12 +121,18 @@ def gui(dbHandler: DbHandler):
         elif 3 == user_input:
             dbHandler.print_all_tasks()
         elif 4 == user_input:
+            dbHandler.print_missed_tasks()
+        elif 5 == user_input:
             print("Enter task")
             task = input()
             print("Enter deadline")
             deadline = datetime.fromisoformat(input())
             dbHandler.add_task(task, deadline)
-
+        elif 6 == user_input:
+            print("Choose the number of the task you want to delete:")
+            rows = dbHandler.print_all_tasks()
+            id = int(input())
+            dbHandler.delete_task(rows[id - 1])
         elif 0 == user_input:
             print("Bye!")
             exit(0)
@@ -117,5 +141,4 @@ def gui(dbHandler: DbHandler):
 
 
 dbHandler = DbHandler()
-# dbHandler.print_all_tasks()
 gui(dbHandler)
