@@ -14,3 +14,7 @@ content:
 - Class instances
 - Class vs instance
 - Regexps in Python
+- Regexp sets and ranges
+- Slicing
+- Shorthands
+- Regexp quantifiers

@@ -103,7 +103,7 @@ return_value = testable.popitem()
   </div>
   <p></p> 
   <h2 style="text-align: center;">Cleaning the dictionary</h2> 
-  <p>All the methods described above return a value or an item (key, value) upon removing, but sometimes this is not we want. There are two ways that remove an item from the dictionary (they do not return anything) or the entire dictionary at once.</p> 
+  <p>All the methods described above return a value or an item (key, value) upon removing, but sometimes this is not we want. There are two ways that remove an item from the dictionary (they do not return anything) or the entire dictionary content at once.</p> 
   <p><em>1. Delete (remove from a dictionary) a value by its key with the </em><code class="language-python">del</code><em> keyword:</em></p> 
   <pre><code class="language-python">testable = {'September': '16°C', 'December': '-10°C', 'July': '23°C'}
 
@@ -111,10 +111,10 @@ return_value = testable.popitem()
 del testable['September']  
 print(testable)  # {'December': '-10°C', 'July': '23°C'}
 
-# throws a KeyError, because there's no such key in the dictionary
+# throws a KeyError because there's no such key in the dictionary
 del testable['May']
  
-# throws a KeyError as we've already deleted the object by the key
+# throws a KeyError, as we've already deleted the object by the key
 del testable['September']
 
 # deletes the whole dictionary

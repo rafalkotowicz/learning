@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/346277/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Fri, 14 May 2021 22:44:27 UTC
+update_date: Mon, 17 May 2021 20:16:27 UTC
 stages:
 - id: 570
   step: 9619
@@ -104,8 +104,6 @@ topics:
     theory_id: 13025
   - title: Introduction to databases
     theory_id: 8497
-  - title: Introduction to SQLite
-    theory_id: 12165
   - title: What is SQL
     theory_id: 7054
   - title: Basic data types
@@ -120,6 +118,8 @@ topics:
     theory_id: 9084
   - title: Basic INSERT statement
     theory_id: 9059
+  - title: Introduction to SQLite
+    theory_id: 12165
   - title: Introduction to logging
     theory_id: 5538
   - title: Load module
