@@ -18,3 +18,5 @@ content:
 - Slicing
 - Shorthands
 - Regexp quantifiers
+- Groups and alternations
+- Match object and flags
