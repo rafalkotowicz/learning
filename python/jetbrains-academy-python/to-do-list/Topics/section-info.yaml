@@ -20,3 +20,4 @@ content:
 - Regexp quantifiers
 - Groups and alternations
 - Match object and flags
+- Set
