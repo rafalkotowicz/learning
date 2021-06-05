@@ -14,6 +14,7 @@ class GameState:
     cpu_won = "Status: The game is over. The computer won!"
     draw = "Status: The game is over. It's a draw!"
     unknown = "Status: Uknown game state. Contact support 0700727272"
+    end_game = [cpu_won, human_won, draw]
 
 
 def init_stock_pieces() -> list([int, int]):
@@ -99,4 +100,7 @@ def init_game() -> GameState:
 
 current_game_state = GameState.unknown
 current_game_state, stock_pieces, computer_pieces, player_pieces = init_game()
-print_game_state(stock_pieces, computer_pieces, player_pieces, domino_snake, current_game_state)
+# GAME ON!
+while current_game_state not in GameState.end_game:
+    print_game_state(stock_pieces, computer_pieces, player_pieces, domino_snake, current_game_state)
+    input()
