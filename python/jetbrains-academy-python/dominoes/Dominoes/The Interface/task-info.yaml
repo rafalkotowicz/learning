@@ -1,13 +1,13 @@
 type: edu
 files:
-  - name: dominoes/dominoes.py
-    visible: true
-    text: |
-      # Write your code here
-    learner_created: false
-  - name: tests.py
-    visible: false
-    text: "from typing import List, Any\nfrom hstest import *\nimport ast\n\n\nclass\
+- name: dominoes/dominoes.py
+  visible: true
+  text: |
+    # Write your code here
+  learner_created: false
+- name: tests.py
+  visible: false
+  text: "from typing import List, Any\nfrom hstest import *\nimport ast\n\n\nclass\
     \ TestStage2(StageTest):\n\n    def generate(self) -> List[TestCase]:\n      \
     \  return [\n            TestCase(),\n            TestCase(),\n            TestCase()\n\
     \        ]\n\n    def get_the_stock(self, reply):\n        \"\"\"Get the player's\
@@ -67,7 +67,7 @@ files:
     Something is not right about the pieces played\")\n        if not self.check_the_status(reply,\
     \ cs):\n            return CheckResult.wrong(\"The status of the game is wrong\"\
     )\n        return CheckResult.correct()\n\n\nif __name__ == '__main__':\n    TestStage2('dominoes.dominoes').run_tests()\n"
-    learner_created: false
+  learner_created: false
 feedback_link: https://hyperskill.org/projects/146/stages/787/implement#comment
 status: Solved
 feedback:

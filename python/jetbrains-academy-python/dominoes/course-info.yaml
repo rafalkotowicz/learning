@@ -9,5 +9,6 @@ summary: "Have you ever wanted to code a game where the computer is your enemy? 
   \ game.<br/><br/>Learn more at <a href=\"https://hyperskill.org\">https://hyperskill.org/projects/146</a>"
 programming_language: Python
 content:
-  - Dominoes
+- Dominoes
+- Topics
 mode: Study

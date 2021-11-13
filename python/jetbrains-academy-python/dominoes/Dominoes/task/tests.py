@@ -1,10 +1,9 @@
-import ast
 from typing import List, Any
-
 from hstest import WrongAnswer
-from hstest.check_result import CheckResult
 from hstest.stage_test import StageTest
 from hstest.test_case import TestCase
+from hstest.check_result import CheckResult
+import ast
 
 
 class TestStage3(StageTest):
@@ -81,7 +80,7 @@ class TestStage3(StageTest):
             the_stock = [ast.literal_eval(i[-6:]) for i in try_stock]
         except (ValueError, SyntaxError):
             raise WrongAnswer("An error occurred while processing your output.\n"
-                              "Please make sure that your program's output is formatted exactly as described.")
+                                       "Please make sure that your program's output is formatted exactly as described.")
         return the_stock
 
     def check_player_unique(self, output):
@@ -103,7 +102,7 @@ class TestStage3(StageTest):
             self.right_end = ast.literal_eval(domino_snake[-6:])
         except (SyntaxError, ValueError, IndexError):
             raise WrongAnswer("Make sure your output is formatted according to the examples")
-        except IndexError:
+        except Exception:
             raise WrongAnswer("Some elements are missing from the snake")
 
     def check_the_design(self, output):
@@ -301,9 +300,8 @@ class TestStage3(StageTest):
         design = '=' * 70
         reply_parsed = reply.split(design)
         last = [i for i in reply_parsed[-1].split('\n') if i]
-        self.fill_the_snake(last[2], True)
-        print()
         try:
+            self.fill_the_snake(last[2], True)
             the_last = [i for i in reply_parsed[-1].strip().split('\n') if i]
             comp_pieces = int([i.strip() for i in the_last[1].split(':') if i][-1])
             check_the_pieces = ':[' in reply_parsed[-1] or comp_pieces == 0

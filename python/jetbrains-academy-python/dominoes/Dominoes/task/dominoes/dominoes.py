@@ -1,3 +1,4 @@
+import math
 import random
 
 PIECE_NOT_FOUND = [-1, -1]
@@ -9,11 +10,12 @@ domino_snake = []
 
 class GameState:
     human_next = "Status: It's your turn to make a move. Enter your command."
-    cpu_next = "Status: Computer is about to make a move. Press Enter to continue..."
+    cpu_next = "Status: Computer is about to make a move. Press Enter to " \
+               "continue... "
     human_won = "Status: The game is over. You won!"
     cpu_won = "Status: The game is over. The computer won!"
     draw = "Status: The game is over. It's a draw!"
-    unknown = "Status: Uknown game state. Contact support 0700727272"
+    unknown = "Status: Unknown game state. Contact support 0700727272"
     end_game = [cpu_won, human_won, draw]
 
 
@@ -27,7 +29,8 @@ def init_stock_pieces() -> list([int, int]):
     return all_dominoes
 
 
-def get_random_pieces_from_stock(from_pieces: list, how_many_pieces: int) -> list:
+def get_random_pieces_from_stock(from_pieces: list,
+                                 how_many_pieces: int) -> list:
     random_pieces = []
     random_elements = random.sample(range(len(from_pieces)), how_many_pieces)
     random_elements.sort(reverse=True)
@@ -63,24 +66,26 @@ def starting_conditions(computer: list, player: list) -> ([int, int], str):
         return highest_player_piece, GameState.cpu_next, computer, player
 
 
-def player_pieces_print(player: list) -> str:
-    return "\n" + "".join([f"{i + 1}:{player[i]}\n" for i in range(len(player))])
+def print_player_pieces(player: list) -> str:
+    return "\n" + "".join(
+        [f"{i + 1}:{player[i]}\n" for i in range(len(player))])
 
 
-def get_long_status(whose_next: str) -> str:
-    if "player" == whose_next:
-        return "It's your turn to make a move. Enter your command."
-    else:
-        return "Computer is about to make a move. Press Enter to continue..."
+# def get_long_status(whose_next: str) -> str:
+#     if "player" == whose_next:
+#         return "It's your turn to make a move. Enter your command."
+#     else:
+#         return "Computer is about to make a move. Press Enter to continue..."
 
 
-def print_game_state(all_pieces: list, computer: list, player: list, snake: [int, int], status: str):
+def print_game_state(all_pieces: list, computer: list, player: list,
+                     snake: [int, int], status: str):
     gui_width: int = 70
     print("=" * gui_width)
     print(f"Stock size: {len(all_pieces)}")
     print(f"Computer pieces: {len(computer)}")
     print(f"\n{snake}\n")
-    print(f"Your pieces: {player_pieces_print(player)}")
+    print(f"Your pieces: {print_player_pieces(player)}")
     print(status)
 
 
@@ -92,7 +97,8 @@ def init_game() -> GameState:
         stock_pieces = init_stock_pieces()
         cpu_pieces = get_random_pieces_from_stock(stock_pieces, 7)
         human_pieces = get_random_pieces_from_stock(stock_pieces, 7)
-        starting_piece, game_state, cpu_pieces, human_pieces = starting_conditions(cpu_pieces, human_pieces)
+        starting_piece, game_state, cpu_pieces, human_pieces = starting_conditions(
+            cpu_pieces, human_pieces)
         domino_snake.clear()
         domino_snake.append(starting_piece)
     return game_state, stock_pieces, cpu_pieces, human_pieces
@@ -102,5 +108,15 @@ current_game_state = GameState.unknown
 current_game_state, stock_pieces, computer_pieces, player_pieces = init_game()
 # GAME ON!
 while current_game_state not in GameState.end_game:
-    print_game_state(stock_pieces, computer_pieces, player_pieces, domino_snake, current_game_state)
-    input()
+    print_game_state(stock_pieces, computer_pieces, player_pieces, domino_snake,
+                     current_game_state)
+
+    is_move_valid = False
+    while is_move_valid:
+        if current_game_state == GameState.human_next:
+            player_input = int(input())
+            if math.fabs(player_input) > len(player_pieces):
+                print("Invalid input. Please try again.")
+                continue
+            elif math.fabs(player_input):
+                pass

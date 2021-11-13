@@ -1,29 +1,21 @@
-<h2>Description</h2>
+<h5>Description</h5>
 
-<p>Randomly made choices are hardly a sign of intelligence. Teach your computer to make educated decisions with the help
-    of basic statistics. Here's how it works:</p>
+<p>Randomly made choices are hardly a sign of intelligence. Teach your computer to make educated decisions with the help of basic statistics. Here's how it works:</p>
 
-<p>The primary objective of the AI is to determine which domino is the least favorable and then get rid of it. To reduce
-    your chances of skipping a turn, you must increase the diversity of your pieces. For example, it's unwise to play
-    your only domino that has a 3, unless there's nothing else that can be done. Using this logic, the AI will evaluate
-    each domino in possession, based on the rarity. Dominoes with rare numbers will get lower scores, while dominoes
-    with common numbers will get higher scores.</p>
+<p>The primary objective of the AI is to determine which domino is the least favorable and then get rid of it. To reduce your chances of skipping a turn, you must increase the diversity of your pieces. For example, it's unwise to play your only domino that has a 3, unless there's nothing else that can be done. Using this logic, the AI will evaluate each domino in possession, based on the rarity. Dominoes with rare numbers will get lower scores, while dominoes with common numbers will get higher scores.</p>
 
 <p>The AI should use the following algorithm to calculate the score:</p>
 
 <ol>
-    <li>Count the number of 0's, 1's, 2's, etc., in your hand, and in the snake.</li>
-    <li>Each domino in your hand receives a score equal to the sum of appearances of each of its numbers.</li>
+	<li>Count the number of 0's, 1's, 2's, etc., in your hand, and in the snake.</li>
+	<li>Each domino in your hand receives a score equal to the sum of appearances of each of its numbers.</li>
 </ol>
 
-<p>The AI will now attempt to play the domino with the largest score, trying both the left and the right sides of the
-    snake. If the rules prohibit this move, the AI will move down the score list and try another domino. The AI will
-    skip the turn if it runs out of options.</p>
+<p>The AI will now attempt to play the domino with the largest score, trying both the left and the right sides of the snake. If the rules prohibit this move, the AI will move down the score list and try another domino. The AI will skip the turn if it runs out of options.</p>
 
-<h2>Objectives</h2>
+<h5>Objectives</h5>
 
-<p>Replace the random move generator with the algorithm described above. Let's analyze how the computer will act in two
-    example situations:</p>
+<p>Replace the random move generator with the algorithm described above. Let's analyze how the computer will act in two example situations:</p>
 
 <p>1. The first case<strong> </strong>(see Example 1 below).</p>
 
@@ -48,12 +40,11 @@ Domino snake: [4,4],[4,2],[2,1],[1,0],[0,0],[0,2]</code></pre>
 </code></pre>
 
 <p>Attempts:<br>
-    Domino <code class="java">[0,5]</code> has the highest score. However, it cannot be played at this moment.<br>
-    Domino <code class="java">[2,5]</code> has the second-highest score. We can play it by appending it to the right
-    side of the snake.</p>
+Domino <code class="java">[0,5]</code> has the highest score. However, it cannot be played at this moment.<br>
+Domino <code class="java">[2,5]</code> has the second-highest score. We can play it by appending it to the right side of the snake.</p>
 
 <p>The result:<br>
-    Play the <code class="java">[2,5]</code> domino by appending it to the right side of the snake.</p>
+Play the <code class="java">[2,5]</code> domino by appending it to the right side of the snake.</p>
 
 <p>2.<strong> </strong>The second case (see example 2 below).</p>
 
@@ -78,19 +69,16 @@ Domino snake: [4,4],[4,2],[2,1],[1,0],[0,0],[0,2]</code></pre>
 </code></pre>
 
 <p>Attempts:<br>
-    Domino <code class="java">[0,5]</code> has the highest score. However, it cannot be played at this moment.<br>
-    Domino <code class="java">[1,5]</code> has the second-highest score. However, it cannot be played at this
-    moment.<br>
-    Domino <code class="java">[3,5]</code> is the last option. Unfortunately, it also cannot be played at this moment.
-</p>
+Domino <code class="java">[0,5]</code> has the highest score. However, it cannot be played at this moment.<br>
+Domino <code class="java">[1,5]</code> has the second-highest score. However, it cannot be played at this moment.<br>
+Domino <code class="java">[3,5]</code> is the last option. Unfortunately, it also cannot be played at this moment.</p>
 
 <p>The result:<br>
-    Take an extra piece from the stock (if it's not empty) and skip a turn.</p>
+Take an extra piece from the stock (if it's not empty) and skip a turn.</p>
 
-<h2>Examples</h2>
+<h5>Examples</h5>
 
-<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that
-    it's not part of the input.</p>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
 
 <p><strong>Example 1</strong></p>
 
