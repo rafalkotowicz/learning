@@ -1,0 +1,24 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="PL3 - All Functional Tests" verbose="1" >
+    <test name="PL3 - Positive Tests" >
+        <groups>
+            <run>
+                <include name="PL3"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="section_03.LoginPagePositiveTests" />
+        </classes>
+    </test>
+    <test name="PL3 - Negative Tests" >
+        <groups>
+            <run>
+                <include name="PL3"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="section_04.LoginPageNegativeTests"/>
+        </classes>
+    </test>
+</suite>

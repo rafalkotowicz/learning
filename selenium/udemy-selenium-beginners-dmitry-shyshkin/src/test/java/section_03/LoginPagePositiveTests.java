@@ -10,7 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginPagePositiveTests {
-    @Test
+    @Test(priority = 100, groups = {"PL1", "PL2", "PL3"})
     public void successfulLoginTest() {
         System.setProperty("webdriver.chrome.driver","src/main/resources/chromedriver.exe");
         WebDriver driver = new ChromeDriver();

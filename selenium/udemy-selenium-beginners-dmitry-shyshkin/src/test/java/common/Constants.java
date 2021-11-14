@@ -1,6 +1,7 @@
 package common;
 
 public class Constants {
-    public static String valid_user = "tomsmith";
-    public static String valid_password = "tomsmith";
+    @SuppressWarnings("SpellCheckingInspection")
+    public static final String valid_user = "tomsmith";
+    public static final String valid_password = "SuperSecretPassword!";
 }

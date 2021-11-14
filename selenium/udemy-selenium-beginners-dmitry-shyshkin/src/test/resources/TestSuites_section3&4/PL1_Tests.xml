@@ -1,0 +1,24 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="PL1 - Sanity Tests" verbose="1" >
+    <test name="PL1 - Sanity Positive Tests" >
+        <groups>
+            <run>
+                <include name="PL1"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="section_03.LoginPagePositiveTests" />
+        </classes>
+    </test>
+    <test name="PL1 - Sanity Negative Tests" >
+        <groups>
+            <run>
+                <include name="PL1"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="section_04.LoginPageNegativeTests"/>
+        </classes>
+    </test>
+</suite>
