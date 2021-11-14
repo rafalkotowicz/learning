@@ -3,10 +3,10 @@
 <suite name="NegativeLogInTestSuite" verbose="1" parallel="tests" thread-count="4">
 
     <test name="NegativeUsernameTest-CH">
-        <parameter name="username" value="incorrectUsername"></parameter>
-        <parameter name="password" value="SuperSecretPassword!"></parameter>
-        <parameter name="expectedMessage" value="Your username is invalid!"></parameter>
-        <parameter name="browser" value="chrome"></parameter>
+        <parameter name="username" value="incorrectUsername" />
+        <parameter name="password" value="SuperSecretPassword!" />
+        <parameter name="expectedMessage" value="Your username is invalid!" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="com.herokuapp.theinternet.loginpagetests.NegativeLogInTests">
             </class>
@@ -14,10 +14,10 @@
     </test>
 
     <test name="NegativeUsernameTest-FF">
-        <parameter name="username" value="incorrectUsername"></parameter>
-        <parameter name="password" value="SuperSecretPassword!"></parameter>
-        <parameter name="expectedMessage" value="Your username is invalid!"></parameter>
-        <parameter name="browser" value="firefox"></parameter>
+        <parameter name="username" value="incorrectUsername" />
+        <parameter name="password" value="SuperSecretPassword!" />
+        <parameter name="expectedMessage" value="Your username is invalid!" />
+        <parameter name="browser" value="firefox" />
         <classes>
             <class name="com.herokuapp.theinternet.loginpagetests.NegativeLogInTests">
             </class>
@@ -25,10 +25,10 @@
     </test>
 
     <test name="NegativePasswordTest-CH">
-        <parameter name="username" value="tomsmith"></parameter>
-        <parameter name="password" value="incorrectPassword"></parameter>
-        <parameter name="expectedMessage" value="Your password is invalid!"></parameter>
-        <parameter name="browser" value="chrome"></parameter>
+        <parameter name="username" value="tomsmith" />
+        <parameter name="password" value="incorrectPassword" />
+        <parameter name="expectedMessage" value="Your password is invalid!" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="com.herokuapp.theinternet.loginpagetests.NegativeLogInTests">
             </class>
@@ -36,10 +36,10 @@
     </test>
 
     <test name="NegativePasswordTest-FF">
-        <parameter name="username" value="tomsmith"></parameter>
-        <parameter name="password" value="incorrectPassword"></parameter>
-        <parameter name="expectedMessage" value="Your password is invalid!"></parameter>
-        <parameter name="browser" value="firefox"></parameter>
+        <parameter name="username" value="tomsmith" />
+        <parameter name="password" value="incorrectPassword" />
+        <parameter name="expectedMessage" value="Your password is invalid!" />
+        <parameter name="browser" value="firefox" />
         <classes>
             <class name="com.herokuapp.theinternet.loginpagetests.NegativeLogInTests">
             </class>
