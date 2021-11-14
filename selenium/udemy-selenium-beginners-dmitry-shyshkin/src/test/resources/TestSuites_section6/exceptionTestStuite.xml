@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="ExceptionsTests" verbose="1">
+    <test name="Various Exceptions">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="section_06.DynamicLoadingElementTests"/>
+            <class name="section_06.StaleElementTests"/>
+        </classes>
+    </test>
+</suite>
