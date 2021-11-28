@@ -28,7 +28,7 @@ public class BrowserDriverFactory {
                 driver.set(new FirefoxDriver());
             }
             default -> {
-                log.info("Do not know how to start: " + browser + ", starting chrome.");
+                log.warn("Do not know how to start: " + browser + ", starting chrome.");
                 System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
                 driver.set(new ChromeDriver());
             }
