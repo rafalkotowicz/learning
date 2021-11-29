@@ -37,4 +37,10 @@
         </classes>
     </test>
 
+    <test name="DropdownTests">
+        <classes>
+            <class name="com.herokuapp.theinternet.dropdowntests.DropdownTest"/>
+        </classes>
+    </test>
+
 </suite>
