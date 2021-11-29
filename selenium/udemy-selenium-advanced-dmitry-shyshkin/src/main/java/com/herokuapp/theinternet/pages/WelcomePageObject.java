@@ -5,17 +5,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class WelcomePageObject extends BasePageObject {
-    private final String pageUrl = "http://the-internet.herokuapp.com/";
 
     private final By formAuthenticationLinkLocator = By.linkText("Form Authentication");
     private final By checkboxesLinkLocator = By.linkText("Checkboxes");
     private final By dropdownLinkLocator = By.linkText("Dropdown");
+    private final By javaScriptAlertsLinkLocator = By.linkText("JavaScript Alerts");
 
     public WelcomePageObject(WebDriver driver, Logger log) {
         super(driver, log);
     }
 
     public void openPage() {
+        String pageUrl = "http://the-internet.herokuapp.com/";
         log.info("Opening page: " + pageUrl);
         openUrl(pageUrl);
         log.info("Page opened: " + pageUrl);
@@ -37,5 +38,11 @@ public class WelcomePageObject extends BasePageObject {
         log.info("Clicking 'Dropdown' link on Welcome Page");
         click(dropdownLinkLocator);
         return new DropdownPage(driver, log);
+    }
+
+    public JavaScriptAlertsPage clickJavaScriptAlertsLink() {
+        log.info("Clicking 'JavaScript Alerts' link on Welcome Page");
+        click(javaScriptAlertsLinkLocator);
+        return new JavaScriptAlertsPage(driver, log);
     }
 }

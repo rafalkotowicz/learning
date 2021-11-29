@@ -29,12 +29,11 @@ public class LoginPage extends BasePageObject {
         return new SecureAreaPage(driver, log);
     }
 
-    public LoginPage logInWithInvalidData(final String username, final String password) {
+    public void logInWithInvalidData(final String username, final String password) {
         log.info("Executing Log In with invalid data - username [" + username + "] and password [" + password + "]");
         type(username, usernameLocator);
         type(password, passwordLocator);
         click(logInButtonLocator);
-        return this;
     }
 
     public void waitForErrorMessage() {

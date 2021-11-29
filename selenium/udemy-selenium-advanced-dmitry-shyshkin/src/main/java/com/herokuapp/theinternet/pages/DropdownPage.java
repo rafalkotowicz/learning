@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class DropdownPage extends BasePageObject {
-    private By dropdownLocator = By.id("dropdown");
+    private final By dropdownLocator = By.id("dropdown");
 
     public DropdownPage(WebDriver driver, Logger log) {
         super(driver, log);

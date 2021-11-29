@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class BrowserDriverFactory {
     private final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     private final String browser;
-    private Logger log;
+    private final Logger log;
 
     public BrowserDriverFactory(String browser, Logger log) {
         this.browser = browser.toLowerCase();
