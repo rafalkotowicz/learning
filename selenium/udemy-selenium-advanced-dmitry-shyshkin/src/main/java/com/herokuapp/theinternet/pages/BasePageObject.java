@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Set;
 
 public class BasePageObject {
     protected final WebDriver driver;
@@ -16,13 +17,6 @@ public class BasePageObject {
     public BasePageObject(WebDriver driver, Logger log) {
         this.driver = driver;
         this.log = log;
-    }
-
-    /**
-     * Get URL from driver
-     */
-    public String getCurrentUrl() {
-        return driver.getCurrentUrl();
     }
 
     protected void openUrl(String url) {
@@ -45,6 +39,27 @@ public class BasePageObject {
     protected void type(String text, By locator) {
         waitForVisibilityOf(locator, 5);
         find(locator).sendKeys(text);
+    }
+
+    /**
+     * Get URL of current page from browser
+     */
+    public String getCurrentUrl() {
+        return driver.getCurrentUrl();
+    }
+
+    /**
+     * Get title of current page
+     */
+    public String getCurrentPageTitle() {
+        return driver.getTitle();
+    }
+
+    /**
+     * Get source of current page
+     */
+    public String getCurrentPageSource() {
+        return driver.getPageSource();
     }
 
     private void waitFor(ExpectedCondition<WebElement> condition, Integer timeOutInSeconds) {
@@ -71,6 +86,30 @@ public class BasePageObject {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.alertIsPresent());
         return driver.switchTo().alert();
+    }
+
+    public void switchToWindowWithTitle(String expectedTitle) {
+        String firstWindow = driver.getWindowHandle();
+        log.info("Trying to leave window with title: " + firstWindow);
+
+        Set<String> allWindows = driver.getWindowHandles();
+
+        for (String windowHandle : allWindows) {
+            if (!windowHandle.equals(firstWindow)) {
+                driver.switchTo().window(windowHandle);
+                if (getCurrentPageTitle().equals(expectedTitle)) {
+                    log.info("Successfully switched to given window: " + expectedTitle);
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * Switch to iFrame using it's locator
+     */
+    protected void switchToFrame(By frameLocator) {
+        driver.switchTo().frame(find(frameLocator));
     }
 
 }
