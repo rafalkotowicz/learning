@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class BasePageObject {
     protected final WebDriver driver;
@@ -20,18 +21,23 @@ public class BasePageObject {
         this.log = log;
     }
 
-    /** Get URL from driver */
+    /**
+     * Get URL from driver
+     */
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
 
-    /** Get URL value from browser */
     protected void openUrl(String url) {
         driver.get(url);
     }
 
     protected WebElement find(By locator) {
         return driver.findElement(locator);
+    }
+
+    protected List<WebElement> findAll(By locator) {
+        return driver.findElements(locator);
     }
 
     protected void click(By locator) {
@@ -62,8 +68,6 @@ public class BasePageObject {
             }
             attempts++;
         }
-
     }
-
 
 }

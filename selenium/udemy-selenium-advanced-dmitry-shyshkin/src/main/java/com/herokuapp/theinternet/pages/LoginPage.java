@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePageObject {
-    private String pageUrl = "http://the-internet.herokuapp.com/login";
+    private final String pageUrl = "http://the-internet.herokuapp.com/login";
 
     private final By usernameLocator = By.id("username");
     private final By passwordLocator = By.name("password");
@@ -21,8 +21,8 @@ public class LoginPage extends BasePageObject {
         return find(errorMessageLocator).getText();
     }
 
-    public SecureAreaPage logIn(final String username, final String password) {
-        log.info("Executing Log In with username [" + username + "] and password [" + password + "]");
+    public SecureAreaPage logInSuccessfully(final String username, final String password) {
+        log.info("Executing Log In with valid data - username [" + username + "] and password [" + password + "]");
         type(username, usernameLocator);
         type(password, passwordLocator);
         click(logInButtonLocator);
