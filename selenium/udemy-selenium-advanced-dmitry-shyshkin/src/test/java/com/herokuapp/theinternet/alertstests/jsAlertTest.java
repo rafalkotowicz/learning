@@ -3,14 +3,14 @@ package com.herokuapp.theinternet.alertstests;
 import com.herokuapp.theinternet.base.TestUtilities;
 import com.herokuapp.theinternet.pages.JavaScriptAlertsPage;
 import com.herokuapp.theinternet.pages.WelcomePageObject;
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class jsAlertTest extends TestUtilities {
-
     @Test
     public void jsBasicAlertTest() {
         log.info("Starting jsAlertTest");
+        SoftAssert softAssert = new SoftAssert();
 
         //open main page
         WelcomePageObject welcomePageObject = new WelcomePageObject(driver, log);
@@ -34,16 +34,18 @@ public class jsAlertTest extends TestUtilities {
         //VERIFICATION
         //1.  Alert text is as expected
         final String expectedAlertMessage = "I am a JS Alert";
-        Assert.assertEquals(actualAlertMessage, expectedAlertMessage, "Invalid Alert message found");
+        softAssert.assertEquals(actualAlertMessage, expectedAlertMessage, "Invalid Alert message found");
 
         //2.  Result text is as expected
         final String expectedResultText = "You successfully clicked an alert";
-        Assert.assertEquals(actualResultMessage, expectedResultText, "Invalid result text found");
+        softAssert.assertEquals(actualResultMessage, expectedResultText, "Invalid result text found");
+        softAssert.assertAll();
     }
 
     @Test
     public void jsConfirmDismissTest() {
         log.info("Starting jsConfirmDismissTest");
+        SoftAssert softAssert = new SoftAssert();
 
         WelcomePageObject welcomePageObject = new WelcomePageObject(driver, log);
         welcomePageObject.openPage();
@@ -55,14 +57,16 @@ public class jsAlertTest extends TestUtilities {
 
         //VERIFICATION
         final String expectedAlertMessage = "I am a JS Confirm";
-        Assert.assertEquals(actualAlertMessage, expectedAlertMessage, "Invalid Alert message found");
+        softAssert.assertEquals(actualAlertMessage, expectedAlertMessage, "Invalid Alert message found");
         final String expectedResultText = "You clicked: Cancel";
-        Assert.assertEquals(actualResultMessage, expectedResultText, "Invalid result text found");
+        softAssert.assertEquals(actualResultMessage, expectedResultText, "Invalid result text found");
+        softAssert.assertAll();
     }
 
     @Test
     public void jsConfirmAcceptTest() {
         log.info("Starting jsConfirmAcceptTest");
+        SoftAssert softAssert = new SoftAssert();
 
         WelcomePageObject welcomePageObject = new WelcomePageObject(driver, log);
         welcomePageObject.openPage();
@@ -74,14 +78,16 @@ public class jsAlertTest extends TestUtilities {
 
         //VERIFICATION
         final String expectedAlertMessage = "I am a JS Confirm";
-        Assert.assertEquals(actualAlertMessage, expectedAlertMessage, "Invalid Alert message found");
+        softAssert.assertEquals(actualAlertMessage, expectedAlertMessage, "Invalid Alert message found");
         final String expectedResultText = "You clicked: Ok";
-        Assert.assertEquals(actualResultMessage, expectedResultText, "Invalid result text found");
+        softAssert.assertEquals(actualResultMessage, expectedResultText, "Invalid result text found");
+        softAssert.assertAll();
     }
 
     @Test
     public void jsPromptTest() {
         log.info("Starting jsPromptTest");
+        SoftAssert softAssert = new SoftAssert();
 
         //open main page
         WelcomePageObject welcomePageObject = new WelcomePageObject(driver, log);
@@ -106,10 +112,11 @@ public class jsAlertTest extends TestUtilities {
         //VERIFICATION
         //1.  Alert text is as expected
         final String expectedAlertMessage = "I am a JS prompt";
-        Assert.assertEquals(actualAlertMessage, expectedAlertMessage, "Invalid Alert message found");
+        softAssert.assertEquals(actualAlertMessage, expectedAlertMessage, "Invalid Alert message found");
 
         //2.  Result text is as expected
         final String expectedResultText = "You entered: " + sentMessageToAlert;
-        Assert.assertEquals(actualResultMessage, expectedResultText, "Invalid result text found");
+        softAssert.assertEquals(actualResultMessage, expectedResultText, "Invalid result text found");
+        softAssert.assertAll();
     }
 }
