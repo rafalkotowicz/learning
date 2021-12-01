@@ -2,7 +2,7 @@ package com.herokuapp.theinternet.alertstests;
 
 import com.herokuapp.theinternet.base.TestUtilities;
 import com.herokuapp.theinternet.pages.JavaScriptAlertsPage;
-import com.herokuapp.theinternet.pages.WelcomePageObject;
+import com.herokuapp.theinternet.pages.WelcomePage;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -13,11 +13,11 @@ public class jsAlertTest extends TestUtilities {
         SoftAssert softAssert = new SoftAssert();
 
         //open main page
-        WelcomePageObject welcomePageObject = new WelcomePageObject(driver, log);
-        welcomePageObject.openPage();
+        WelcomePage welcomePage = new WelcomePage(driver, log);
+        welcomePage.openPage();
 
         //click on 'JavaScript Alerts' link
-        JavaScriptAlertsPage javaScriptAlertsPage = welcomePageObject.clickJavaScriptAlertsLink();
+        JavaScriptAlertsPage javaScriptAlertsPage = welcomePage.clickJavaScriptAlertsLink();
 
         //click JS Alert button
         javaScriptAlertsPage.openJSAlert();
@@ -47,9 +47,9 @@ public class jsAlertTest extends TestUtilities {
         log.info("Starting jsConfirmDismissTest");
         SoftAssert softAssert = new SoftAssert();
 
-        WelcomePageObject welcomePageObject = new WelcomePageObject(driver, log);
-        welcomePageObject.openPage();
-        JavaScriptAlertsPage javaScriptAlertsPage = welcomePageObject.clickJavaScriptAlertsLink();
+        WelcomePage welcomePage = new WelcomePage(driver, log);
+        welcomePage.openPage();
+        JavaScriptAlertsPage javaScriptAlertsPage = welcomePage.clickJavaScriptAlertsLink();
         javaScriptAlertsPage.openJSConfirm();
         String actualAlertMessage = javaScriptAlertsPage.getAlertText();
         javaScriptAlertsPage.dismissAlert();
@@ -68,9 +68,9 @@ public class jsAlertTest extends TestUtilities {
         log.info("Starting jsConfirmAcceptTest");
         SoftAssert softAssert = new SoftAssert();
 
-        WelcomePageObject welcomePageObject = new WelcomePageObject(driver, log);
-        welcomePageObject.openPage();
-        JavaScriptAlertsPage javaScriptAlertsPage = welcomePageObject.clickJavaScriptAlertsLink();
+        WelcomePage welcomePage = new WelcomePage(driver, log);
+        welcomePage.openPage();
+        JavaScriptAlertsPage javaScriptAlertsPage = welcomePage.clickJavaScriptAlertsLink();
         javaScriptAlertsPage.openJSConfirm();
         String actualAlertMessage = javaScriptAlertsPage.getAlertText();
         javaScriptAlertsPage.acceptAlert();
@@ -90,11 +90,11 @@ public class jsAlertTest extends TestUtilities {
         SoftAssert softAssert = new SoftAssert();
 
         //open main page
-        WelcomePageObject welcomePageObject = new WelcomePageObject(driver, log);
-        welcomePageObject.openPage();
+        WelcomePage welcomePage = new WelcomePage(driver, log);
+        welcomePage.openPage();
 
         //click on 'JavaScript Alerts' link
-        JavaScriptAlertsPage javaScriptAlertsPage = welcomePageObject.clickJavaScriptAlertsLink();
+        JavaScriptAlertsPage javaScriptAlertsPage = welcomePage.clickJavaScriptAlertsLink();
 
         //click JS Prompt button
         javaScriptAlertsPage.openJSPrompt();

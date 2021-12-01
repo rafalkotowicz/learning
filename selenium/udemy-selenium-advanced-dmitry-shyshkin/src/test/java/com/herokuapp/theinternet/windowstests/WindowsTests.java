@@ -2,7 +2,7 @@ package com.herokuapp.theinternet.windowstests;
 
 import com.herokuapp.theinternet.base.TestUtilities;
 import com.herokuapp.theinternet.pages.NewWindowPage;
-import com.herokuapp.theinternet.pages.WelcomePageObject;
+import com.herokuapp.theinternet.pages.WelcomePage;
 import com.herokuapp.theinternet.pages.WindowsPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -13,9 +13,9 @@ public class WindowsTests extends TestUtilities {
     public void newWindowTest() {
         log.info("Starting newWindowTest");
 
-        WelcomePageObject welcomePageObject = new WelcomePageObject(driver, log);
-        welcomePageObject.openPage();
-        WindowsPage windowsPage = welcomePageObject.clickMultipleWindowsLink();
+        WelcomePage welcomePage = new WelcomePage(driver, log);
+        welcomePage.openPage();
+        WindowsPage windowsPage = welcomePage.clickMultipleWindowsLink();
         windowsPage.openNewWindow();
         NewWindowPage newWindowPage = windowsPage.switchToNewWindowPage();
 

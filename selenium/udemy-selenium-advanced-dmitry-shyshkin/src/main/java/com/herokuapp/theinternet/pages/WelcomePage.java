@@ -4,7 +4,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class WelcomePageObject extends BasePageObject {
+public class WelcomePage extends BasePageObject {
 
     private final By formAuthenticationLinkLocator = By.linkText("Form Authentication");
     private final By checkboxesLinkLocator = By.linkText("Checkboxes");
@@ -13,7 +13,7 @@ public class WelcomePageObject extends BasePageObject {
     private final By multipleWindowsLinkLocator = By.linkText("Multiple Windows");
     private final By wYSIWYGEditorLinkLocator = By.linkText("WYSIWYG Editor");
 
-    public WelcomePageObject(WebDriver driver, Logger log) {
+    public WelcomePage(WebDriver driver, Logger log) {
         super(driver, log);
     }
 
