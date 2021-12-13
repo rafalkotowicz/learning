@@ -68,7 +68,7 @@ files:
     \ cs):\n            return CheckResult.wrong(\"The status of the game is wrong\"\
     )\n        return CheckResult.correct()\n\n\nif __name__ == '__main__':\n    TestStage2('dominoes.dominoes').run_tests()\n"
   learner_created: false
-feedback_link: https://hyperskill.org/projects/146/stages/787/implement#comment
+feedback_link: https://hyperskill.org/learn/step/11856#comment
 status: Solved
 feedback:
   message: Congratulations!
