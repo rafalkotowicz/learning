@@ -4,7 +4,7 @@
  <body>
   <p>There are different ways to enrich the functionality of your classes in Python. One of them is creating custom methods which you've already learned about. Another way, the one that we'll cover in this topic, is using "<strong>magic" methods.</strong></p> 
   <h5 style="text-align: center;">What are "magic" methods?</h5> 
-  <p>Magic methods are special methods that make using your objects much easier. They are recognizable in the code of the class definitions because they are enclosed in<strong> double underscores:</strong> <code class="language-python">__init__</code> , for example, is one of those "magic" methods in Python. Since they are characterized by double underscores they are often called <strong>dunders.</strong> </p> 
+  <p>Magic methods are special methods that make using your objects much easier. They are recognizable in the code of the class definitions because they are enclosed in<strong> double underscores: </strong>for example, <code class="language-python">__init__</code> is one of those "magic" methods in Python. Since they are characterized by double underscores they are often called <strong>dunders.</strong> </p> 
   <p>Dunders are not meant to be invoked directly by you or the user of your class, it happens internally on a certain action. For example, we do not explicitly call the <code class="language-python">__init__</code> method when we create a new object of the class, but instead, this method is invoked internally. All we need to do is to define the method inside the class in a way that makes sense for our project.</p> 
   <p>There are many different dunders that you can use, but in this topic, we will focus on the most helpful ones.</p> 
   <h5 style="text-align: center;">__new__ vs __init__</h5> 
