@@ -164,7 +164,9 @@ class TestStage3(StageTest):
         if not self.check_the_status(output):
             raise WrongAnswer("The result is not right")
         if not self.check_the_snake(output):
-            raise WrongAnswer("Your snake is too long")
+            raise WrongAnswer("Your snake is too long.\n"
+                              "Print only the first and the last three pieces of the domino snake "
+                              "if it exceeds six dominoes in length.")
         if 'computer is' in output.lower():
             self.current_status = 'player'
             return ''
@@ -186,7 +188,9 @@ class TestStage3(StageTest):
         if not self.check_the_status(output):
             raise WrongAnswer("The result is not right")
         if not self.check_the_snake(output):
-            raise WrongAnswer("Your snake is too long")
+            raise WrongAnswer("Your snake is too long.\n"
+                              "Print only the first and the last three pieces of the domino snake "
+                              "if it exceeds six dominoes in length.")
         if 'computer is' in output.lower():
             self.current_status = 'player'
             return ''
