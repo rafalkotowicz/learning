@@ -1,8 +1,8 @@
 type: framework
 content:
-  - Setting Up the Game
-  - The Interface
-  - Taking Turns
-  - Enforcing Rules
-  - The AI
-current_task: 2
+- Setting Up the Game
+- The Interface
+- Taking Turns
+- Enforcing Rules
+- The AI
+current_task: 3

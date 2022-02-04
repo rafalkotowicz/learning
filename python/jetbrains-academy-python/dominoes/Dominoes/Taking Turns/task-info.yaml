@@ -351,5 +351,8 @@ files:
     # Write your code here
   learner_created: false
 feedback_link: https://hyperskill.org/learn/step/11857#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Fri, 04 Feb 2022 01:05:03 UTC
+record: 1
