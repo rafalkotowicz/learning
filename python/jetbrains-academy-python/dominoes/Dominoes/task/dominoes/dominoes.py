@@ -115,7 +115,7 @@ def init_game() -> GameState:
     return game_state, stock_pieces, cpu_pieces, human_pieces
 
 
-def cpu_makes_move():
+def cpu_makes_move() -> int:
     return random.randint(-len(computer_pieces), len(computer_pieces))
 
 
@@ -129,7 +129,7 @@ def numbers_used(look_for: int):
     return used
 
 
-def check_for_stalemate():
+def check_for_stalemate() -> bool:
     head = domino_snake[0][0]
     tail = domino_snake[-1][1]
     if head == tail and numbers_used(head) == 8:
@@ -137,7 +137,7 @@ def check_for_stalemate():
     return False
 
 
-def check_end_game_condition():
+def check_end_game_condition() -> GameState:
     if 0 == len(player_pieces):
         return GameState.human_won
     elif 0 == len(computer_pieces):
@@ -147,7 +147,40 @@ def check_end_game_condition():
     return current_game_state
 
 
+def is_move_valid(where: str, piece: [int, int]) -> bool:
+    if "left" == where:
+        if domino_snake[0][0] == piece[0] or domino_snake[0][0] == piece[1]:
+            return True
+    elif "right" == where:
+        if domino_snake[-1][-1] == piece[0] or domino_snake[-1][-1] == piece[1]:
+            return True
+    else:
+        print("[ERROR] Please provide where to match")
+
+    return False
+
+
 current_game_state, stock_pieces, computer_pieces, player_pieces = init_game()
+
+
+def insert_piece(where: str, piece: [int, int]):
+    if "left" == where:
+        if domino_snake[0][0] == piece[1]:
+            domino_snake.insert(0, piece)
+        else:
+            domino_snake.insert(0, [piece[1], piece[0]])
+    elif "right" == where:
+        if domino_snake[-1][-1] == piece[0]:
+            domino_snake.append(piece)
+        else:
+            domino_snake.append([piece[1], piece[0]])
+
+
+def check_int(s: str) -> bool:
+    if s[0] in ('-', '+'):
+        return s[1:].isdigit()
+    return s.isdigit()
+
 
 while current_game_state not in GameState.end_game:
     current_game_state = check_end_game_condition()
@@ -158,7 +191,7 @@ while current_game_state not in GameState.end_game:
 
     if GameState.human_next == current_game_state:
         player_input = input()
-        if not player_input.isnumeric():
+        if not check_int(player_input):
             print("Invalid input. Please try again.")
             continue
         player_input = int(player_input)
@@ -172,16 +205,24 @@ while current_game_state not in GameState.end_game:
                 player_pieces.append(get_random_pieces_from_stock(stock_pieces, 1).pop())
         elif player_input < 0:
             chosen_piece_index = int(math.fabs(player_input)) - 1
-            domino_snake.insert(0, player_pieces[chosen_piece_index])
+            if is_move_valid("left", player_pieces[chosen_piece_index]):
+                insert_piece("left", player_pieces[chosen_piece_index])
+            else:
+                print("Illegal move. Please try again.")
+                continue
             player_pieces.pop(chosen_piece_index)
         else:
             chosen_piece_index = int(math.fabs(player_input)) - 1
-            domino_snake.append(player_pieces[chosen_piece_index])
+            if is_move_valid("right", player_pieces[chosen_piece_index]):
+                insert_piece("right", player_pieces[chosen_piece_index])
+            else:
+                print("Illegal move. Please try again.")
+                continue
             player_pieces.pop(chosen_piece_index)
         current_game_state = GameState.cpu_next
     elif GameState.cpu_next == current_game_state:
-        cpu_input = cpu_makes_move()
         input()
+        cpu_input = cpu_makes_move()
         if 0 == cpu_input:
             if 0 == len(stock_pieces):
                 print("There are no pieces left in stock! Turn skipped")
@@ -189,11 +230,18 @@ while current_game_state not in GameState.end_game:
                 computer_pieces.append(get_random_pieces_from_stock(stock_pieces, 1).pop())
         elif cpu_input < 0:
             chosen_piece_index = int(math.fabs(cpu_input)) - 1
-            domino_snake.insert(0, computer_pieces[chosen_piece_index])
-            computer_pieces.pop(chosen_piece_index)
+            if is_move_valid("left", computer_pieces[chosen_piece_index]):
+                insert_piece("left", computer_pieces[chosen_piece_index])
+                computer_pieces.pop(chosen_piece_index)
+            else:
+                print("Illegal move. Please try again.")
+                continue
         else:
             chosen_piece_index = int(math.fabs(cpu_input)) - 1
-            domino_snake.append(computer_pieces[chosen_piece_index])
-            computer_pieces.pop(chosen_piece_index)
-
+            if is_move_valid("right", computer_pieces[chosen_piece_index]):
+                insert_piece("right", computer_pieces[chosen_piece_index])
+                computer_pieces.pop(chosen_piece_index)
+            else:
+                print("Illegal move. Please try again.")
+                continue
         current_game_state = GameState.human_next
