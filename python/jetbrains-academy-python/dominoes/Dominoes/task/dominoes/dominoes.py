@@ -200,7 +200,8 @@ while current_game_state not in GameState.end_game:
             continue
         if 0 == player_input:
             if 0 == len(stock_pieces):
-                print("There are no pieces left in stock! Turn skipped")
+                # print("There are no pieces left in stock! Turn skipped")
+                continue
             else:
                 player_pieces.append(get_random_pieces_from_stock(stock_pieces, 1).pop())
         elif player_input < 0:
@@ -221,11 +222,12 @@ while current_game_state not in GameState.end_game:
             player_pieces.pop(chosen_piece_index)
         current_game_state = GameState.cpu_next
     elif GameState.cpu_next == current_game_state:
-        input()
+        # input()
         cpu_input = cpu_makes_move()
         if 0 == cpu_input:
             if 0 == len(stock_pieces):
-                print("There are no pieces left in stock! Turn skipped")
+                # print("There are no pieces left in stock! Turn skipped")
+                continue
             else:
                 computer_pieces.append(get_random_pieces_from_stock(stock_pieces, 1).pop())
         elif cpu_input < 0:
@@ -234,7 +236,7 @@ while current_game_state not in GameState.end_game:
                 insert_piece("left", computer_pieces[chosen_piece_index])
                 computer_pieces.pop(chosen_piece_index)
             else:
-                print("Illegal move. Please try again.")
+                # print("Illegal move. Please try again.")
                 continue
         else:
             chosen_piece_index = int(math.fabs(cpu_input)) - 1
@@ -242,6 +244,6 @@ while current_game_state not in GameState.end_game:
                 insert_piece("right", computer_pieces[chosen_piece_index])
                 computer_pieces.pop(chosen_piece_index)
             else:
-                print("Illegal move. Please try again.")
+                # print("Illegal move. Please try again.")
                 continue
         current_game_state = GameState.human_next
