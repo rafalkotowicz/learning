@@ -15,14 +15,12 @@ def value_of_card(card: str) -> int:
     :return: int - value of a given card. 'J', 'Q', 'K' = 10; 'A' = 1; numerical value otherwise.
     """
 
-    value = 0
     if card in FACE_CARDS:
-        value = CARDS_10_SCORE
+        return CARDS_10_SCORE
     elif card == 'A':
-        value = 1
+        return 1
     else:
-        value = int(card)
-    return value
+        return int(card)
 
 
 def higher_card(card_one: str, card_two: str):
