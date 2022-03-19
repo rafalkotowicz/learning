@@ -26,7 +26,7 @@ def color_code(color: str) -> int:
         return 9
 
 
-def actual(colors: list[str]) -> int:
+def value(colors: list[str]) -> int:
     translated = []
     for color in colors:
         translated.append(color_code(color))
