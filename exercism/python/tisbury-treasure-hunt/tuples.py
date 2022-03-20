@@ -15,7 +15,7 @@ def convert_coordinate(coordinate: str) -> (str, str):
     """
 
     :param coordinate: str - a string map coordinate
-    :return:  tuple - the string coordinate seperated into its individual components.
+    :return:  tuple - the string coordinate separated into its individual components.
     """
 
     return tuple(coordinate)
