@@ -1,9 +1,15 @@
-const person: {
-    name: string,
-    age: number
-} = {
-    name: "Rafal",
-    age: 35
-};
+let userInput: unknown;
+let userName: string;
 
-console.log(person.age)
+userInput = 5;
+userInput = 'Max';
+if (typeof userInput === 'string') {
+  userName = userInput;
+}
+
+function generateError(message: string, code: number): never {
+  throw { message: message, errorCode: code };
+  // while (true) {}
+}
+
+generateError('An error occurred!', 500);
