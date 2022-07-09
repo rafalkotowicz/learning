@@ -83,19 +83,19 @@ describe('School', () => {
     expect(school.grade(2)).toEqual([])
   })
 
-  it("added student exists in db", () => {
-    school.add('Aimee', 2);
-    expect(school.findStudent('Aimee')).toEqual([2,0]);
-  })
-
-  it("cannot find student", () => {
-    school.add('Aimee', 2);
-    expect(school.findStudent('Pajeet')).toEqual([NaN,-1]);
-  })
-
-  it("removed student does not exists in db", () => {
-    school.add('Aimee', 2);
-    school.remove('Aimee');
-    expect(school.grade(2)).toEqual([]);
-  })
+  // it("added student exists in db", () => {
+  //   school.add('Aimee', 2);
+  //   expect(school.findStudent('Aimee')).toEqual([2,0]);
+  // })
+  //
+  // it("cannot find student", () => {
+  //   school.add('Aimee', 2);
+  //   expect(school.findStudent('Pajeet')).toEqual([NaN,-1]);
+  // })
+  //
+  // it("removed student does not exists in db", () => {
+  //   school.add('Aimee', 2);
+  //   school.remove('Aimee');
+  //   expect(school.grade(2)).toEqual([]);
+  // })
 })

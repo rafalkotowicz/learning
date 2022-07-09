@@ -1,5 +1,5 @@
-//REFACTOR: a lot of weird ideas mixed together. Remove: remove, findStudent functions as not requested.
-//          some inspiration below.
+// REFACTOR: a lot of weird ideas mixed together. Remove: remove, findStudent functions as not requested.
+//           some inspiration below.
 export class GradeSchool {
   readonly db: Map<number, string[]>;
 
@@ -59,6 +59,8 @@ export class GradeSchool {
 
 //not mine solution (https://exercism.org/tracks/typescript/exercises/grade-school/solutions/bobahop)
 // interface DB {
+//   class DB {
+//   type DB = {
 //   [key: number]: string[];
 // }
 //
