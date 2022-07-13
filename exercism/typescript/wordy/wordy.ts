@@ -1,3 +1,8 @@
+enum ParsingErrors {
+  UNKNOWN_OPERATION = "Unknown operation",
+  SYNTAX_ERROR = "Syntax error",
+}
+
 function sanitize(command: string) {
   let removeBegining: string = command.replaceAll(new RegExp("What is", "g"), "").trim();
   let removeQuestionMark: string = removeBegining.replaceAll(new RegExp("[?]", "g"), "");
@@ -16,33 +21,45 @@ export function doOperation(accumulator: number, num: number, operation: string)
       return accumulator * num;
     case "dividedby":
       return accumulator / num;
+    default:
+      throw new Error(ParsingErrors.SYNTAX_ERROR)
   }
-  return accumulator;
 }
 
 export const answer = (command: string): number => {
   let result: number = 0;
-  command = sanitize(command);
-  let tokens: string[] = command.split(" ");
-
+  let operatorCount: number = 0;
+  let sanitizedCommand = sanitize(command);
+  let tokens: string[] = sanitizedCommand.split(" ");
   let operation: string = "";
+
+  if (command.substring(0, 7) !== "What is") {
+    throw new Error(ParsingErrors.UNKNOWN_OPERATION);
+  }
+  if (isNaN(Number(tokens[0])) || sanitizedCommand === "") {
+    throw new Error(ParsingErrors.SYNTAX_ERROR);
+  }
+
 
   for (let pos = 0; pos < tokens.length; pos++) {
     let currentToken: string = tokens[pos];
     if (isNaN(Number(currentToken))) {
       operation += currentToken;
     } else {
+      if (operation === "" && pos > 0) {
+        throw new Error(ParsingErrors.SYNTAX_ERROR);
+      }
       result = doOperation(result, parseInt(currentToken), operation);
       operation = "";
+      operatorCount += 1;
     }
   }
 
-  if(operation === "plus") {
-    throw new Error('Syntax error');
+  if (operation === "cubed") {
+    throw new Error(ParsingErrors.UNKNOWN_OPERATION);
   }
-
-  if(operation !== "") {
-    throw new Error('Unknown operation');
+  if (operation !== "" || operatorCount === 0) {
+    throw new Error(ParsingErrors.SYNTAX_ERROR);
   }
 
   return result;

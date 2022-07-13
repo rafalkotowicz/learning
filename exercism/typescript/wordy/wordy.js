@@ -1,3 +1,8 @@
+var ParsingErrors;
+(function (ParsingErrors) {
+    ParsingErrors["UNKNOWN_OPERATION"] = "Unknown operation";
+    ParsingErrors["SYNTAX_ERROR"] = "Syntax error";
+})(ParsingErrors || (ParsingErrors = {}));
 function sanitize(command) {
     let removeBegining = command.replaceAll(new RegExp("What is", "g"), "").trim();
     let removeQuestionMark = removeBegining.replaceAll(new RegExp("[?]", "g"), "");
@@ -15,29 +20,41 @@ export function doOperation(accumulator, num, operation) {
             return accumulator * num;
         case "dividedby":
             return accumulator / num;
+        default:
+            throw new Error(ParsingErrors.SYNTAX_ERROR);
     }
-    return accumulator;
 }
 export const answer = (command) => {
     let result = 0;
-    command = sanitize(command);
-    let tokens = command.split(" ");
+    let operatorCount = 0;
+    let sanitizedCommand = sanitize(command);
+    let tokens = sanitizedCommand.split(" ");
     let operation = "";
+    if (command.substring(0, 7) !== "What is") {
+        throw new Error(ParsingErrors.UNKNOWN_OPERATION);
+    }
+    if (isNaN(Number(tokens[0])) || sanitizedCommand === "") {
+        throw new Error(ParsingErrors.SYNTAX_ERROR);
+    }
     for (let pos = 0; pos < tokens.length; pos++) {
         let currentToken = tokens[pos];
         if (isNaN(Number(currentToken))) {
             operation += currentToken;
         }
         else {
+            if (operation === "" && pos > 0) {
+                throw new Error(ParsingErrors.SYNTAX_ERROR);
+            }
             result = doOperation(result, parseInt(currentToken), operation);
             operation = "";
+            operatorCount += 1;
         }
     }
-    if (operation === "plus") {
-        throw new Error('Syntax error');
+    if (operation === "cubed") {
+        throw new Error(ParsingErrors.UNKNOWN_OPERATION);
     }
-    if (operation !== "") {
-        throw new Error('Unknown operation');
+    if (operation !== "" || operatorCount === 0) {
+        throw new Error(ParsingErrors.SYNTAX_ERROR);
     }
     return result;
 };
