@@ -1,9 +1,1 @@
-{
-  "track": "python",
-  "exercise": "acronym",
-  "id": "929e66a76a814706a2f415d2653aefce",
-  "url": "https://exercism.org/tracks/python/exercises/acronym",
-  "handle": "rafalkotowicz",
-  "is_requester": true,
-  "auto_approve": false
-}
+{"track":"python","exercise":"acronym","id":"929e66a76a814706a2f415d2653aefce","url":"https://exercism.org/tracks/python/exercises/acronym","handle":"rafalkotowicz","is_requester":true,"auto_approve":false}

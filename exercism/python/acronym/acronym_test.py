@@ -4,7 +4,6 @@ from acronym import (
     abbreviate,
 )
 
-
 # Tests adapted from `problem-specifications//canonical-data.json`
 
 
