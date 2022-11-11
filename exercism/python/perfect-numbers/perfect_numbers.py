@@ -7,7 +7,7 @@ def classify(number: int) -> str:
     if number <= 0:
         raise ValueError("Classification is only possible for positive integers.")
 
-    aliquot_sum: int = sum(factors(number))
+    aliquot_sum: int = sum(factors(number)) - number
     if aliquot_sum == number:
         return "perfect"
     elif aliquot_sum > number:
@@ -17,8 +17,8 @@ def classify(number: int) -> str:
 
 
 def factors(number: int) -> [int]:
-    """ Calculates all the factors of the given number (not including the number itself)
+    """ Calculates all the factors of the given number
     :param number: int - a positive integer
-    :return :[int] - list of all factors for a givet number
+    :return :[int] - list of all factors for a given number
     """
-    return [x for x in range(1, number // 2 + 1) if number % x == 0]
+    return [x for x in range(1, number // 2 + 1) if number % x == 0] + [number]
