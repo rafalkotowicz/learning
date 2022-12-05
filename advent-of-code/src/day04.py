@@ -48,5 +48,3 @@ with open('day04.txt') as f:
             sum += 1
 
 print(sum)
-
-# PART 2
