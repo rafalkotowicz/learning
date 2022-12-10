@@ -12,7 +12,7 @@ def get_common_in_line(rucksack: str) -> str:
     return set(left).intersection(set(right)).pop()
 
 
-with open('day03.txt') as f:
+with open('../test/resources/day03.txt') as f:
     lines = f.readlines()
     sum = 0
     for line in lines:
@@ -39,7 +39,7 @@ def get_common_in_lines(lines: str) -> str:
     return common.pop()
 
 
-with open('day03.txt') as f:
+with open('../test/resources/day03.txt') as f:
     lines = f.readlines()
     sum = 0
     need_3: [str] = []

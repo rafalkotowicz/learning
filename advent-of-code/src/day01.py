@@ -1,4 +1,4 @@
-with open('day01.txt') as f:
+with open('../test/resources/day01.txt') as f:
     lines = f.readlines()
 
     elf_calories = []

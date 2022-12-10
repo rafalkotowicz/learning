@@ -20,7 +20,7 @@ def sanitize_line(line: str) -> str:
     return line.replace('\n', '')
 
 
-with open('day04.txt') as f:
+with open('../test/resources/day04.txt') as f:
     lines = f.readlines()
     sum = 0
     for line in lines:
@@ -39,7 +39,7 @@ def does_overlap(ranges: ([int], [int])) -> bool:
     return len(s1.intersection(s2)) != 0
 
 
-with open('day04.txt') as f:
+with open('../test/resources/day04.txt') as f:
     lines = f.readlines()
     sum = 0
     for line in lines:

@@ -10,7 +10,7 @@
 #  1   2   3   4   5   6   7   8   9
 import re
 
-with open('day05.txt') as f:
+with open('../test/resources/day05.txt') as f:
     lines = f.readlines()
 
 

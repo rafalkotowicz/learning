@@ -39,7 +39,7 @@ def match_points(match: [str]) -> int:
         return 0 + shape_score[me]
 
 
-with open('day02.txt') as f:
+with open('../test/resources/day02.txt') as f:
     lines = f.readlines()
     sum = 0
     for line in lines:

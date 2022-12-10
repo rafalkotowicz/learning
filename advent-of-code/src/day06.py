@@ -1,4 +1,4 @@
-with open('day06.txt') as f:
+with open('../test/resources/day06.txt') as f:
     line = f.readline()
 
 
