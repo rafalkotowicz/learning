@@ -2,7 +2,7 @@ import math
 
 from utils.common import read_and_sanitize
 
-lines = read_and_sanitize('../test/resources/day09.txt')
+lines = read_and_sanitize('../test/resources/day09_test.txt')
 
 SIZE = 500
 SIZE_W = SIZE
