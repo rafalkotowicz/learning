@@ -1,0 +1,20 @@
+{
+  "authors": [
+    "ystromm"
+  ],
+  "contributors": [
+    "mirkoperillo"
+  ],
+  "files": {
+    "solution": [
+      "src/main/java/NeedForSpeed.java"
+    ],
+    "test": [
+      "src/test/java/NeedForSpeedTest.java"
+    ],
+    "exemplar": [
+      ".meta/src/reference/java/NeedForSpeed.java"
+    ]
+  },
+  "blurb": "Learn about classes by creating cars."
+}
