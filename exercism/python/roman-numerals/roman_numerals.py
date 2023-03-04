@@ -6,19 +6,19 @@ def roman(number: int) -> str:
     roman_number: str = ""
 
     if thousands:
-        roman_number += build_element(thousands, ["M", "M", "M"])
+        roman_number += translate_one_digit_to_roman(thousands, ["M", "M", "M"])
     if hundreds:
-        roman_number += build_element(hundreds, ["C", "D", "M"])
+        roman_number += translate_one_digit_to_roman(hundreds, ["C", "D", "M"])
     if tens:
-        roman_number += build_element(tens, ["X", "L", "C"])
+        roman_number += translate_one_digit_to_roman(tens, ["X", "L", "C"])
     if other:
-        roman_number += build_element(other, ["I", "V", "X"])
+        roman_number += translate_one_digit_to_roman(other, ["I", "V", "X"])
 
     return roman_number
 
 
-def build_element(digit, roman_digits: [str]) -> str:
-    low, mid, high = roman_digits
+def translate_one_digit_to_roman(digit, roman_chars: [str]) -> str:
+    low, mid, high = roman_chars
     roman_number_part: str = ""
     if digit in [1, 2, 3]:
         roman_number_part += low * digit
