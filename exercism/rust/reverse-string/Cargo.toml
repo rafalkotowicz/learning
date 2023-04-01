@@ -1,6 +1,8 @@
 [dependencies]
+unicode-segmentation = "1.10.1"
 
 [features]
+default = ["grapheme"]
 grapheme = []
 
 [package]
