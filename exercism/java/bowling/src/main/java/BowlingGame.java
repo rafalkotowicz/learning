@@ -1,53 +1,65 @@
+/*
+
+Since this exercise has a difficulty of > 4 it doesn't come
+with any starter implementation.
+This is so that you get to practice creating classes and methods
+which is an important part of programming in Java.
+
+Please remove this comment when submitting your solution.
+
+*/
+
+
 import java.util.ArrayList;
-import java.util.List;
+import java.util.logging.Logger;
 
-class BowlingGame {
-    static int STRIKE = 10;
-    static int SPARE = 10;
-    List<Integer> rolls;
+enum FrameState {
+    Open,
+    Spare,
+    Strike,
+    New
+}
 
-    BowlingGame() {
-        rolls = new ArrayList<Integer>();
+
+class Frame {
+    public int id;
+    public ArrayList<Integer> rolls;
+    public FrameState state;
+
+    public Frame(int id) {
+        this.id = id;
+        this.rolls = new ArrayList<>();
+        this.state = FrameState.New;
+    }
+}
+
+public class BowlingGame {
+    private final ArrayList<Frame> frames;
+    private Frame currentFrame;
+    private final Logger logger = Logger.getLogger(BowlingGame.class.getName());
+
+    public BowlingGame() {
+        this.frames = new ArrayList<Frame>();
+        initFrames();
+    }
+
+    private void initFrames() {
+        this.logger.info("Initializing Frames");
+        for (int i = 1; i <= 10; i++) {
+            this.frames.add(new Frame(i));
+        }
+        this.currentFrame = this.frames.get(0);
+        this.logger.info("Initialized " + this.frames.size() + " Frames");
     }
 
     public void roll(int pins) {
-        if (pins < 0) {
-            throw new IllegalStateException("Negative roll is invalid");
+        currentFrame.rolls.add(pins);
+        if (currentFrame.rolls.size() >= 2){
+
         }
-        if (pins > STRIKE) {
-            throw new IllegalStateException("Pin count exceeds pins on the lane");
-        }
-        int previousRoll = rolls.size() > 0 ? rolls.get(rolls.size() - 1) : 0;
-        if (previousRoll < STRIKE && previousRoll + pins > STRIKE) {
-            throw new IllegalStateException("Pin count exceeds pins on the lane");
-        }
-        rolls.add(pins);
     }
 
     public int score() {
-        int frame = 1;
-        int sum = 0;
-        for (int i = 0; i < rolls.size(); i += 2) {
-            int currRoll = rolls.get(i);
-            int nextRoll = i + 1 < rolls.size() ? rolls.get(i + 1) : 0;
-            int nextNextRoll = i + 2 < rolls.size() ? rolls.get(i + 2) : 0;
-
-            if (frame < 10) {
-                if (currRoll == STRIKE) {
-                    sum += currRoll + nextRoll + nextNextRoll;
-                    i -= 1;
-                } else if (currRoll + nextRoll == SPARE) {
-                    sum += currRoll + nextRoll + nextNextRoll;
-                } else {
-                    sum += currRoll + nextRoll;
-                }
-            } else {
-                sum += currRoll + nextRoll + nextNextRoll;
-                break;
-            }
-            frame += 1;
-        }
-        System.out.println(frame);
-        return sum;
+        return 0;
     }
 }
