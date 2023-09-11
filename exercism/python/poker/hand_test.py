@@ -63,8 +63,8 @@ class HandTest(unittest.TestCase):
         init_hand: str = "2S 2C 2D 3H 3D"
         hand: Hand = Hand(init_hand)
         expected_grouping: dict = {
-            "2" : 3,
-            "3" : 2
+            "2": 3,
+            "3": 2
         }
         self.assertEqual(expected_grouping, hand._group_cards())
 
@@ -149,6 +149,17 @@ class HandTest(unittest.TestCase):
     def test_conversion_values_to_ranks(self):
         init_hand: str = "6S 3S 4H 4D JH"
         hand: Hand = Hand(init_hand)
-        values_to_convert: [str]= ["6", "3", "J"]
+        values_to_convert: [str] = ["6", "3", "J"]
         expected_ranks: [int] = [3, 6, 11]
         self.assertEqual(expected_ranks, sorted(hand._value_to_ranks(values_to_convert)))
+
+    def test_compare_not_set_cards(self):
+        # best_hands(["3S 4H 6S 4D JH", "2S 4C 6C 4S JS"]), ["3S 4H 6S 4D JH"]
+        # best_hands(["3S 5H 6S 8D 7H", "2S 5D 6D 8C 7S"]), ["3S 5H 6S 8D 7H"]
+        init_hand_1: Hand = Hand("3S 4H 6S 4D JH")
+        init_hand_2: Hand = Hand("2S 4C 6C 4S JS")
+        self.assertEqual(init_hand_1, init_hand_1._compare_not_set_cards(init_hand_2))
+
+        init_hand_3: Hand = Hand("3S 5H 6S 8D 7H")
+        init_hand_4: Hand = Hand("2S 5D 6D 8C 7S")
+        self.assertEqual(init_hand_3, init_hand_3._compare_not_set_cards(init_hand_4))

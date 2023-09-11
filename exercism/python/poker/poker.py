@@ -27,7 +27,7 @@ class Card:
 
     def __eq__(self, other) -> bool:
         return self.value == other.value and self.suit == other.suit
-    
+
 
 class Hand:
     original_input: str = None
@@ -110,15 +110,15 @@ class Hand:
         return groups
 
     def _is_four_of_a_kind(self) -> bool:
-        return [1,4] == sorted(self._group_cards().values())
+        return [1, 4] == sorted(self._group_cards().values())
 
     def _is_full_house(self) -> bool:
         grouped: [int] = self._group_cards().values()
-        return [2,3] == sorted(grouped)
+        return [2, 3] == sorted(grouped)
 
     def _is_three_of_a_kind(self) -> bool:
         grouped: [int] = self._group_cards().values()
-        return [1,1,3] == sorted(grouped)
+        return [1, 1, 3] == sorted(grouped)
 
     def _is_two_pair(self) -> bool:
         grouped: [int] = self._group_cards().values()
@@ -146,26 +146,33 @@ class Hand:
     def _value_to_ranks(self, values) -> [int]:
         return [Card.card_ranks[value] for value in values]
 
+    def _compare_not_set_cards(self, other_hand):
+        this_remaining = self._get_cards_without_set()
+        other_remaining = other_hand._get_cards_without_set()
+        for this, other in zip(this_remaining, other_remaining):
+            if this > other:
+                return self
+            elif this < other:
+                return other_hand
+        return None
+
     def better_hand(self, other_hand):
         if self.hand_rank > other_hand.hand_rank:
             return self
         elif self.hand_rank < other_hand.hand_rank:
             return other_hand
         else:
-            if self.is_one_pair and other_hand.is_one_pair:
+            if self.is_high_card and other_hand.is_high_card:
+                return self._compare_not_set_cards(other_hand)
+
+            elif self.is_one_pair and other_hand.is_one_pair:
                 if self._get_pair_values()[0] > other_hand._get_pair_values()[0]:
                     return self
                 elif self._get_pair_values()[0] < other_hand._get_pair_values()[0]:
                     return other_hand
                 else:
-                    this_remaining = self._get_cards_without_set()
-                    other_remaining = other_hand._get_cards_without_set()
-                    for this, other in zip(this_remaining, other_remaining):
-                        if this > other:
-                            return self
-                        elif this < other:
-                            return other_hand
-                    return None
+                    return self._compare_not_set_cards(other_hand)
+
             elif self.is_two_pair and other_hand.is_two_pair:
                 if self._get_pair_values()[0] > other_hand._get_pair_values()[0]:
                     return self
@@ -183,7 +190,6 @@ class Hand:
                             return other_hand
                         else:
                             return None
-
 
 
 def best_hands(hands: [str]) -> [str]:
