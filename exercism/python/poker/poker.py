@@ -224,6 +224,9 @@ class Hand:
             elif self.is_flush and other_hand.is_flush:
                 return self._compare_not_set_cards(other_hand)
 
+            elif self.is_straight and other_hand.is_straight:
+                return self._compare_not_set_cards(other_hand)
+
 
 def best_hands(hands: [str]) -> [str]:
     hands: [Hand] = [Hand(hand) for hand in hands]
