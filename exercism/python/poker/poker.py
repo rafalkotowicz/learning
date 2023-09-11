@@ -136,7 +136,7 @@ class Hand:
         return self._is_straight() and self._is_flush()
 
     def _get_pair_values(self) -> [int]:
-        pair_values: [str] = [card[0] for card in self._group_cards().items() if card[1] == 2]
+        pair_values: [str] = [card[0] for card in self._group_cards().items() if card[1] >= 2]
         return sorted(self._value_to_ranks(pair_values), reverse=True)
 
     def _get_cards_without_set(self) -> [int]:
@@ -190,6 +190,13 @@ class Hand:
                             return other_hand
                         else:
                             return None
+            elif self.is_three_of_a_kind and other_hand.is_three_of_a_kind:
+                if self._get_pair_values()[0] > other_hand._get_pair_values()[0]:
+                    return self
+                elif self._get_pair_values()[0] < other_hand._get_pair_values()[0]:
+                    return other_hand
+                else:
+                    return self._compare_not_set_cards(other_hand)
 
 
 def best_hands(hands: [str]) -> [str]:
