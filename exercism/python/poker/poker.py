@@ -184,12 +184,8 @@ class Hand:
                     elif self._get_pair_values()[1] < other_hand._get_pair_values()[1]:
                         return other_hand
                     else:
-                        if self._get_cards_without_set()[0] > other_hand._get_cards_without_set()[0]:
-                            return self
-                        if self._get_cards_without_set()[0] < other_hand._get_cards_without_set()[0]:
-                            return other_hand
-                        else:
-                            return None
+                        return self._compare_not_set_cards(other_hand)
+
             elif self.is_three_of_a_kind and other_hand.is_three_of_a_kind:
                 if self._get_pair_values()[0] > other_hand._get_pair_values()[0]:
                     return self
