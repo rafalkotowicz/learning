@@ -140,6 +140,13 @@ class HandTest(unittest.TestCase):
         expected_pairs = [3, 4]
         self.assertEqual(expected_pairs, sorted(hand._get_pair_values()))
 
+    def test_get_set_value(self):
+        init_hand: str = "3S 3H 3C 4D JH"
+        hand: Hand = Hand(init_hand)
+        expected_set_value = 3
+        self.assertEqual(expected_set_value, hand._get_set_value())
+
+
     def test_get_cards_without_set(self):
         init_hand: str = "6S 3S 4H 4D JH"
         hand: Hand = Hand(init_hand)
@@ -154,8 +161,6 @@ class HandTest(unittest.TestCase):
         self.assertEqual(expected_ranks, sorted(hand._value_to_ranks(values_to_convert)))
 
     def test_compare_not_set_cards(self):
-        # best_hands(["3S 4H 6S 4D JH", "2S 4C 6C 4S JS"]), ["3S 4H 6S 4D JH"]
-        # best_hands(["3S 5H 6S 8D 7H", "2S 5D 6D 8C 7S"]), ["3S 5H 6S 8D 7H"]
         init_hand_1: Hand = Hand("3S 4H 6S 4D JH")
         init_hand_2: Hand = Hand("2S 4C 6C 4S JS")
         self.assertEqual(init_hand_1, init_hand_1._compare_not_set_cards(init_hand_2))

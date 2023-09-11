@@ -136,8 +136,12 @@ class Hand:
         return self._is_straight() and self._is_flush()
 
     def _get_pair_values(self) -> [int]:
-        pair_values: [str] = [card[0] for card in self._group_cards().items() if card[1] >= 2]
+        pair_values: [str] = [card[0] for card in self._group_cards().items() if card[1] == 2]
         return sorted(self._value_to_ranks(pair_values), reverse=True)
+
+    def _get_set_value(self) -> int:
+        set_values: [str] = [card[0] for card in self._group_cards().items() if card[1] == 3]
+        return self._value_to_ranks(set_values)[0]
 
     def _get_cards_without_set(self) -> [int]:
         cards_without_set: [str] = [card[0] for card in self._group_cards().items() if card[1] == 1]
@@ -187,13 +191,25 @@ class Hand:
                         return self._compare_not_set_cards(other_hand)
 
             elif self.is_three_of_a_kind and other_hand.is_three_of_a_kind:
-                if self._get_pair_values()[0] > other_hand._get_pair_values()[0]:
+                if self._get_set_value() > other_hand._get_set_value():
                     return self
-                elif self._get_pair_values()[0] < other_hand._get_pair_values()[0]:
+                elif self._get_set_value() < other_hand._get_set_value():
                     return other_hand
                 else:
                     return self._compare_not_set_cards(other_hand)
 
+            elif self.is_full_house and other_hand.is_full_house:
+                if self._get_set_value() > other_hand._get_set_value():
+                    return self
+                elif self._get_set_value() < other_hand._get_set_value():
+                    return other_hand
+                else:
+                    if self._get_pair_values()[0] > other_hand._get_pair_values()[0]:
+                        return self
+                    elif self._get_pair_values()[0] < other_hand._get_pair_values()[0]:
+                        return other_hand
+                    else:
+                        return None
 
 def best_hands(hands: [str]) -> [str]:
     hands: [Hand] = [Hand(hand) for hand in hands]
