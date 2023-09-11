@@ -36,6 +36,7 @@ class Hand:
     is_straight_flush: bool = False
     is_flush: bool = False
     is_straight: bool = False
+    is_straight_ace_low: bool = False
     is_four_of_a_kind: bool = False
     is_full_house: bool = False
     is_three_of_a_kind: bool = False
@@ -86,16 +87,17 @@ class Hand:
         return 1 == len(set([card.suit for card in self.cards]))
 
     def _is_straight(self) -> bool:
-        is_straight: bool = False
         if self._has_given_card_rank("A"):
             ace_high: [int] = sorted([Card.card_ranks[card.value] for card in self.cards])
             ace_low: [int] = sorted([Card.card_ranks[card.value] if card.value != "A" else 1 for card in self.cards])
-            is_straight = list(range(min(ace_high), max(ace_high) + 1)) == ace_high or list(
-                range(min(ace_low), max(ace_low) + 1)) == ace_low
+            ace_high_straight: bool = list(range(min(ace_high), max(ace_high) + 1)) == ace_high
+            ace_low_straight: bool = list(range(min(ace_low), max(ace_low) + 1)) == ace_low
+            if ace_low_straight:
+                self.is_straight_ace_low = True
+            return ace_high_straight or ace_low_straight
         else:
             aceless_hand: [int] = sorted([Card.card_ranks[card.value] for card in self.cards])
-            is_straight = list(range(min(aceless_hand), max(aceless_hand) + 1)) == aceless_hand
-        return is_straight
+            return list(range(min(aceless_hand), max(aceless_hand) + 1)) == aceless_hand
 
     def _has_given_card_rank(self, searched_card: str) -> bool:
         return len([card for card in self.cards if card.value == searched_card]) > 0
@@ -225,6 +227,10 @@ class Hand:
                 return self._compare_not_set_cards(other_hand)
 
             elif self.is_straight and other_hand.is_straight:
+
+                return self._compare_not_set_cards(other_hand)
+
+            elif self.is_straight_flush and other_hand.is_straight_flush:
                 return self._compare_not_set_cards(other_hand)
 
 
