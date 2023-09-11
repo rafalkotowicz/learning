@@ -166,6 +166,14 @@ class Hand:
                 return other_hand
         return None
 
+    def _compare_straights(self, other_hand):
+        if not self.is_straight_ace_low and other_hand.is_straight_ace_low:
+            return self
+        elif self.is_straight_ace_low and not other_hand.is_straight_ace_low:
+            return other_hand
+        else:
+            return self._compare_not_set_cards(other_hand)
+
     def better_hand(self, other_hand):
         if self.hand_rank > other_hand.hand_rank:
             return self
@@ -227,11 +235,10 @@ class Hand:
                 return self._compare_not_set_cards(other_hand)
 
             elif self.is_straight and other_hand.is_straight:
-
-                return self._compare_not_set_cards(other_hand)
+                return self._compare_straights(other_hand)
 
             elif self.is_straight_flush and other_hand.is_straight_flush:
-                return self._compare_not_set_cards(other_hand)
+                return self._compare_straights(other_hand)
 
 
 def best_hands(hands: [str]) -> [str]:
