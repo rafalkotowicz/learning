@@ -225,6 +225,15 @@ class Hand:
                 return self._compare_not_set_cards(other_hand)
 
 
+            elif self.is_four_of_a_kind and other_hand.is_four_of_a_kind:
+                if self._get_quads_value() > other_hand._get_quads_value():
+                    return self
+                elif self._get_quads_value() < other_hand._get_quads_value():
+                    return other_hand
+                else:
+                    return self._compare_not_set_cards(other_hand)
+
+
 def best_hands(hands: [str]) -> [str]:
     hands: [Hand] = [Hand(hand) for hand in hands]
 
