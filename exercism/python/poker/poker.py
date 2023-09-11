@@ -212,8 +212,6 @@ class Hand:
                         return self
                     elif self._get_pair_values()[0] < other_hand._get_pair_values()[0]:
                         return other_hand
-                    else:
-                        return None
 
             elif self.is_four_of_a_kind and other_hand.is_four_of_a_kind:
                 if self._get_quads_value() > other_hand._get_quads_value():
@@ -222,6 +220,9 @@ class Hand:
                     return other_hand
                 else:
                     return self._compare_not_set_cards(other_hand)
+
+            elif self.is_flush and other_hand.is_flush:
+                return self._compare_not_set_cards(other_hand)
 
 
 def best_hands(hands: [str]) -> [str]:
