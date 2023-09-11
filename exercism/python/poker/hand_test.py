@@ -146,6 +146,11 @@ class HandTest(unittest.TestCase):
         expected_set_value = 3
         self.assertEqual(expected_set_value, hand._get_set_value())
 
+    def test_get_set_value(self):
+        init_hand: str = "3S 3H 3C 3D JH"
+        hand: Hand = Hand(init_hand)
+        expected_set_value = 3
+        self.assertEqual(expected_set_value, hand._get_quads_value())
 
     def test_get_cards_without_set(self):
         init_hand: str = "6S 3S 4H 4D JH"

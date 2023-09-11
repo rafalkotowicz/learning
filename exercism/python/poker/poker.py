@@ -143,6 +143,10 @@ class Hand:
         set_values: [str] = [card[0] for card in self._group_cards().items() if card[1] == 3]
         return self._value_to_ranks(set_values)[0]
 
+    def _get_quads_value(self) -> int:
+        set_values: [str] = [card[0] for card in self._group_cards().items() if card[1] == 4]
+        return self._value_to_ranks(set_values)[0]
+
     def _get_cards_without_set(self) -> [int]:
         cards_without_set: [str] = [card[0] for card in self._group_cards().items() if card[1] == 1]
         return sorted(self._value_to_ranks(cards_without_set), reverse=True)
@@ -210,6 +214,15 @@ class Hand:
                         return other_hand
                     else:
                         return None
+
+            elif self.is_four_of_a_kind and other_hand.is_four_of_a_kind:
+                if self._get_quads_value() > other_hand._get_quads_value():
+                    return self
+                elif self._get_quads_value() < other_hand._get_quads_value():
+                    return other_hand
+                else:
+                    return self._compare_not_set_cards(other_hand)
+
 
 def best_hands(hands: [str]) -> [str]:
     hands: [Hand] = [Hand(hand) for hand in hands]
