@@ -13,14 +13,12 @@ class PokerTest(unittest.TestCase):
     def test_single_hand_always_wins(self):
         self.assertEqual(best_hands(["4S 5S 7H 8D JC"]), ["4S 5S 7H 8D JC"])
 
-    @unittest.skip("more than 2 hands not implemented")
     def test_highest_card_out_of_all_hands_wins(self):
         self.assertEqual(
             best_hands(["4D 5S 6S 8D 3C", "2S 4C 7S 9H 10H", "3S 4S 5D 6H JH"]),
             ["3S 4S 5D 6H JH"],
         )
 
-    @unittest.skip("more than 2 hands not implemented")
     def test_a_tie_has_multiple_winners(self):
         self.assertEqual(
             best_hands(

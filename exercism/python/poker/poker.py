@@ -33,6 +33,7 @@ class Hand:
     original_input: str = None
     cards: [Card] = None
     hand_rank: int = -1
+    hand_score: int = 0
     is_straight_flush: bool = False
     is_flush: bool = False
     is_straight: bool = False
@@ -240,6 +241,12 @@ class Hand:
             elif self.is_straight_flush and other_hand.is_straight_flush:
                 return self._compare_straights(other_hand)
 
+    def __str__(self):
+        return self.original_input
+
+    def __repr__(self):
+        return self.original_input
+
 
 def best_hands(hands: [str]) -> [str]:
     hands: [Hand] = [Hand(hand) for hand in hands]
@@ -251,3 +258,26 @@ def best_hands(hands: [str]) -> [str]:
         h2: Hand = hands[1]
         better_hand: Hand = h1.better_hand(h2)
         return [better_hand.original_input]
+    else:
+        pairs: [{Hand, Hand}] = []
+        for hand_1 in hands:
+            for hand_2 in hands:
+                if hand_1 != hand_2 and {hand_1, hand_2} not in pairs:
+                    pairs.append({hand_1, hand_2})
+
+        for pair in pairs:
+            hand_1, hand_2 = pair
+            better_hand: Hand = hand_1.better_hand(hand_2)
+            if better_hand:
+                better_hand.hand_score += 1
+
+        winners: [Hand] = [hands[0]]
+        for hand in hands:
+            if hand.hand_score > winners[0].hand_score:
+                winners = [hand]
+            elif hand.hand_score == winners[0].hand_score:
+                winners.append(hand)
+            else:
+                continue
+
+        return [hand.original_input for hand in winners]
