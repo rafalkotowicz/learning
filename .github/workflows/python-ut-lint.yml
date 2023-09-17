@@ -6,11 +6,9 @@ name: Python UT & Lint
 on:
   push:
     branches: 
-      - "master"
       - "[Exercism][Python]**"
   pull_request:
     branches: 
-      - "master"
       - "[Exercism][Python]**"
   workflow_dispatch:
 
