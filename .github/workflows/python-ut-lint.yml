@@ -12,17 +12,23 @@ on:
     branches: 
       - "master"
       - "[Exercism][Python]**"
+  on: workflow_dispatch
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+
+    env:
+      working-directory: ./exercism/python
+
+    defaults:
+      run:
+        working-directory: ${{ env.working-directory }}
+
     strategy:
       fail-fast: false
       matrix:
         python-version:
-          - "3.9"
-          - "3.10"
           - "3.11"
 
     steps:
@@ -44,4 +50,4 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest exercism/python
+        pytest
