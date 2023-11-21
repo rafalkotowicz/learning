@@ -290,6 +290,10 @@ web_modules/
 # Output of 'npm pack'
 *.tgz
 
+# Yarn
+**/.yarn/
+**/.yarnrc.yml
+
 # Yarn Integrity file
 .yarn-integrity
 
