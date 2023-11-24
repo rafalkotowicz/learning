@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from src.day10 import CPU
+from aoc_2022.src.day10 import CPU
 from utils.common import read_and_sanitize
 
 
@@ -49,7 +49,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(self.cpu.register, -1)
 
     def test_register_values_146_instructions(self):
-        instructions = read_and_sanitize('../test/resources/day10_test.txt')
+        instructions = read_and_sanitize('resources/day10_test.txt')
         self.cpu.store_instructions(instructions)
         self.assertEqual(len(self.cpu.instructions), 146)
         self.cpu.tick(19)
@@ -66,7 +66,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(self.cpu.register, 18)
 
     def test_signal_strength_146_instructions(self):
-        instructions = read_and_sanitize('../test/resources/day10_test.txt')
+        instructions = read_and_sanitize('resources/day10_test.txt')
         self.cpu.store_instructions(instructions)
         self.assertEqual(len(self.cpu.instructions), 146)
         expected: [(int, int)] = [
