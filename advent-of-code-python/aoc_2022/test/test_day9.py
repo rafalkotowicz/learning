@@ -1,6 +1,6 @@
 import unittest
 
-from src.day09 import process_input, is_tail_moving
+from aoc_2022.src.day09 import process_input, is_tail_moving
 from utils.common import read_and_sanitize
 
 
@@ -57,7 +57,7 @@ class MyTestCase(unittest.TestCase):
             ['.', 5, '.', '.', '.', '.'],
             [6, '.', '.', '.', '.', '.']
         ]
-        lines = read_and_sanitize('../test/resources/day09_test.txt')
+        lines = read_and_sanitize('resources/day09_test.txt')
         actual = process_input(lines)
         self.assertEqual(expected, actual)
 

@@ -1,6 +1,6 @@
 import unittest
 
-from src.day15 import ESS, Sensor, Beacon, Node, SensorArea, calculate_tuning_frequency
+from aoc_2022.src.day15 import ESS, Sensor, Beacon, Node, SensorArea, calculate_tuning_frequency
 from utils.common import read_and_sanitize
 
 
@@ -58,12 +58,12 @@ class TestTestSensorsPart1(unittest.TestCase):
         self.assertEqual(1, len(node.get_nodes_within_distance_on_y(9, 16)))
 
     def test_load_14_sensors(self):
-        lines = read_and_sanitize('../test/resources/day15_test.txt')
+        lines = read_and_sanitize('resources/day15_test.txt')
         self.ESS.load_many_lines(lines)
         self.assertEqual(14, len(self.ESS.sensors_with_beacons))
 
     def test_unavailable_beacons(self):
-        lines = read_and_sanitize('../test/resources/day15_test.txt')
+        lines = read_and_sanitize('resources/day15_test.txt')
         self.ESS.load_many_lines(lines)
         self.assertEqual(25, len(self.ESS.beacon_impossible_y(9)))
         self.assertEqual(26, len(self.ESS.beacon_impossible_y(10)))
@@ -79,7 +79,7 @@ class TestSensorsPart1(unittest.TestCase):
         self.ESS = None
 
     def test_line_2000000(self):
-        lines = read_and_sanitize('../test/resources/day15.txt')
+        lines = read_and_sanitize('resources/day15.txt')
         self.ESS.load_many_lines(lines)
         self.assertEqual(26, len(self.ESS.sensors_with_beacons))
         y = 2_000_000
@@ -105,7 +105,7 @@ class TestTestSensorsPart2(unittest.TestCase):
         self.assertEqual((8, 8), sensor_area.area[16])
 
     def test_find_distress_beacon(self):
-        lines = read_and_sanitize('../test/resources/day15_test.txt')
+        lines = read_and_sanitize('resources/day15_test.txt')
         self.ESS.load_many_lines(lines)
         self.assertEqual(14, len(self.ESS.sensors_with_beacons))
         self.ESS.calculate_areas()
@@ -122,7 +122,7 @@ class TestSensorsPart2(unittest.TestCase):
         self.ESS = None
 
     def test_find_distress_beacon(self):
-        lines = read_and_sanitize('../test/resources/day15.txt')
+        lines = read_and_sanitize('resources/day15.txt')
         self.ESS.load_many_lines(lines)
         self.assertEqual(26, len(self.ESS.sensors_with_beacons))
         self.ESS.calculate_areas()

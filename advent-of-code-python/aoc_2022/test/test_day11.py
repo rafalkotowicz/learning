@@ -1,10 +1,7 @@
 import unittest
 from functools import reduce
-from unittest.mock import MagicMock
 
-from src.day10 import CPU
-from src.day11 import Monkey, MonkeyGame
-from utils.common import read_and_sanitize
+from aoc_2022.src.day11 import Monkey, MonkeyGame
 
 
 class Test4MonkeysPart1(unittest.TestCase):
