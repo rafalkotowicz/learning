@@ -19,7 +19,35 @@ def make_dirs() -> None:
 def make_files(dir: str, prefix: str, suffix: str):
     for i in generate_01_to_25():
         with open(f'{dir}/{prefix}{i}{suffix}', 'w') as f:
-            pass
+            if prefix == "test_day":
+                f.write(f"""import unittest
+
+
+class TestDay{i}Part01(unittest.TestCase):
+    def setUp(self) -> None:
+        pass
+
+    def tearDown(self) -> None:
+        pass
+
+    def test_init_state(self):
+        self.assertEqual(True, True)
+
+
+class TestDay{i}Part02(unittest.TestCase):
+    def setUp(self) -> None:
+        pass
+
+    def tearDown(self) -> None:
+        pass
+
+    def test_init_state(self):
+        self.assertEqual(True, True)
+
+
+if __name__ == '__main__':
+    unittest.main()
+""")
 
 
 def generate_01_to_25() -> [str]:
