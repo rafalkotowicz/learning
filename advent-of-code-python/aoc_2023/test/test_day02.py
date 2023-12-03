@@ -33,8 +33,8 @@ class TestDay02Part01(unittest.TestCase):
         actual_value = possible_games(input, 12, 13, 14)
         self.assertEqual(expected_value, actual_value)
 
-    def test_example(self):
-        expected_value = 8
+    def test_puzle(self):
+        expected_value = 2331
         input: [str] = read_and_sanitize('resources/day02puzzle.txt')
         actual_value = possible_games(input, 12, 13, 14)
         self.assertEqual(expected_value, actual_value)
@@ -53,8 +53,8 @@ class TestDay02Part02(unittest.TestCase):
         actual_value = possible_games_2(input)
         self.assertEqual(expected_value, actual_value)
 
-    def test_example(self):
-        expected_value = 8
+    def test_puzzle(self):
+        expected_value = 71585
         input: [str] = read_and_sanitize('resources/day02puzzle.txt')
         actual_value = possible_games_2(input)
         self.assertEqual(expected_value, actual_value)

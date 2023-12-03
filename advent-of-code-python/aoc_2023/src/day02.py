@@ -2,6 +2,10 @@ import re
 
 
 class Game:
+    game_id: int
+    red_cubes: [int]
+    green_cubes: [int]
+    blue_cubes: [int]
 
     def __init__(self, id: int, red: [int], green: [int], blue: [int]):
         self.game_id: int = id
