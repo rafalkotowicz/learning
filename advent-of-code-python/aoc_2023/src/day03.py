@@ -1,6 +1,6 @@
 # Entities: engine_schematic, part (number, positions), symbol
 # solution: load schematic -> find parts -> check adjacency -> sum missing parts
-# find parts:
+# find gears: add '*' position and filter by it
 class Part:
     value: int
     x_start: int
@@ -27,7 +27,6 @@ class Part:
             self.gear_y = y
             self.gear_x = x
         elif self.gear_x == x and self.gear_y == y:
-            # print(f'[INFO] Same gear detected (part={self.value}, x={x}), y={y}')
             pass
         else:
             print(f'[WARN] Second gear detected (part={self.value}, x={x}), y={y}')
@@ -134,20 +133,12 @@ def sum_of_gear_ratios(input: [str]) -> int:
 
     potential_gears: [Part] = [part for part in parts if part.gear_y]
     gears_centers_positions: (int, int) = [(part.gear_x, part.gear_y) for part in potential_gears]
-    print(gears_centers_positions)
     gear_centers_grouped = {gear_pos: gears_centers_positions.count(gear_pos) for gear_pos in
                             set(gears_centers_positions)}
-    print(gear_centers_grouped)
-
-    pairs: set() = set()
+    pairs: [] = []
     for part in potential_gears:
         if gear_centers_grouped[(part.gear_x, part.gear_y)] == 2:
             gears: (Part, Part) = find_by_gear_pos(potential_gears, part.gear_x, part.gear_y)
-            pairs.add((gears[0].value, gears[1].value))
-        else:
-            print(f'Not a gear: {part}')
+            pairs.append((gears[0].value, gears[1].value))
 
-    [print(f'{pair} = {pair[0] * pair[1]}') for pair in pairs]
-
-
-    return sum([pair[0] * pair[1] for pair in pairs])
+    return sum([pair[0] * pair[1] for pair in pairs]) // 2

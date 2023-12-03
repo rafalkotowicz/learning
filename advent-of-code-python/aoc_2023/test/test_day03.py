@@ -1,6 +1,6 @@
 import unittest
 
-from aoc_2023.src._day03 import build_engine_schematic, Part, find_parts, sum_missing_engine_parts, label_engine_parts, \
+from aoc_2023.src.day03 import build_engine_schematic, Part, find_parts, sum_missing_engine_parts, label_engine_parts, \
     sum_of_gear_ratios
 from utils.common import read_and_sanitize
 
@@ -72,7 +72,7 @@ class TestDay03Part02(unittest.TestCase):
 
     # 79725552 is too low
     def test_puzzle(self):
-        expected_value = 467835
+        expected_value = 79844424
         input: [str] = read_and_sanitize('resources/day03puzzle.txt')
         actual_value = sum_of_gear_ratios(input)
         self.assertEqual(expected_value, actual_value)
