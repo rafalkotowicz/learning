@@ -83,3 +83,65 @@ def lowest_location_number(lines: str) -> int:
         current_numbers = map_once(cur_map, current_numbers)
 
     return min(current_numbers)
+
+
+# PART 2 Game plan
+# * build seed ranges
+# * sort mapping ranges
+# * process ranges: ranges 1--->*  mapped_ranges
+# * combine ranges after mapping? (probably not needed)
+#
+# adapt along the way :)
+
+def build_seed_ranges(seeds: [int]) -> [(int, int)]:
+    seed_ranges: [(int, int)] = []
+    for id in range(0, len(seeds), 2):
+        if 0 <= id + 1 < len(seeds):
+            range_start = seeds[id]
+            range_end = range_start + seeds[id + 1] - 1
+            seed_ranges.append((range_start, range_end))
+    return seed_ranges
+
+
+def is_in_range(mapping: (int, int), in_range: (int, int)) -> bool:
+    return in_range[0] <= mapping[0] <= in_range[1] or in_range[0] <= mapping[1] <= in_range[1] or \
+        mapping[0] <= in_range[0] and mapping[1] >= in_range[1]
+
+
+def get_overlapping_range(mapping: (int, int), in_range: (int, int)) -> (int, int):
+    start, end = -1, -1
+    if in_range[0] <= mapping[0] <= in_range[1]:
+        start = mapping[0]
+    else:
+        start = in_range[0]
+    if in_range[0] <= mapping[1] <= in_range[1]:
+        end = mapping[1]
+    else:
+        end = in_range[1]
+
+    return start, end
+
+
+def get_mapped_range(overlapping_range, change):
+    return overlapping_range[0] + change, overlapping_range[1] + change
+
+
+def map_range_once(mappings: [(int, int, int)], input_ranges: [(int, int)]):
+    mapped_ranges: [(int, int)] = []
+    sorted_mappings = sorted(mappings, key=lambda x: x[1])
+
+    for input_range in input_ranges:
+        for mapping in sorted_mappings:
+            map_start = mapping[1]
+            map_end = map_start + mapping[2]
+            map_dst = mapping[0]
+            map_change = map_dst - map_start
+            if input_range[0] < map_start :
+
+
+    return mapped_ranges
+
+
+def lowest_location_number_seed_ranges(lines: str) -> int:
+    seeds, maps = parse_input(lines)
+    seed_ranges: [(int, int)] = build_seed_ranges(seeds)

@@ -1,6 +1,7 @@
 import unittest
 
-from aoc_2023.src._day05 import lowest_location_number, parse_input, map_once
+from aoc_2023.src._day05 import lowest_location_number, parse_input, map_once, build_seed_ranges, is_in_range, \
+    get_overlapping_range, get_mapped_range, map_range_once
 from utils.common import read_and_sanitize
 
 
@@ -54,8 +55,41 @@ class TestDay05Part02(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_init_state(self):
-        self.assertEqual(True, True)
+    def test_build_seed_ranges(self):
+        seeds_input: [int] = [79, 14, 55, 13]
+        expected_seeds_ranges: [(int, int)] = [(79, 92), (55, 67)]
+        actual_seeds_ranges: [(int, int)] = build_seed_ranges(seeds_input)
+        self.assertEqual(expected_seeds_ranges, actual_seeds_ranges)
+
+    def test_is_in_range(self):
+        self.assertTrue(is_in_range((10, 20), (10, 20)))
+        self.assertTrue(is_in_range((0, 10), (10, 20)))
+        self.assertTrue(is_in_range((20, 25), (10, 20)))
+        self.assertTrue(is_in_range((0, 50), (10, 20)))
+        self.assertTrue(is_in_range((12, 15), (10, 20)))
+        self.assertTrue(is_in_range((12, 30), (10, 20)))
+        self.assertTrue(is_in_range((3, 15), (10, 20)))
+
+    def test_get_overlapping_range(self):
+        self.assertEqual((10, 20), get_overlapping_range((10, 20), (10, 20)))
+        self.assertEqual((10, 10), get_overlapping_range((0, 10), (10, 20)))
+        self.assertEqual((20, 20), get_overlapping_range((20, 25), (10, 20)))
+        self.assertEqual((10, 20), get_overlapping_range((0, 50), (10, 20)))
+        self.assertEqual((12, 15), get_overlapping_range((12, 15), (10, 20)))
+        self.assertEqual((12, 20), get_overlapping_range((12, 30), (10, 20)))
+        self.assertEqual((10, 15), get_overlapping_range((3, 15), (10, 20)))
+
+    def test_get_mapped_range(self):
+        self.assertEqual((8, 18), get_mapped_range((10, 20), -2))
+        self.assertEqual((13, 23), get_mapped_range((10, 20), +3))
+
+    def test_map_range_once(self):
+        input_ranges: [(int, int)] = [(79, 92), (55, 67)]
+        input_map: [(int, int, int)] = [(50, 98, 2), (52, 50, 48)]
+        expected_mapped_range: [(int, int)] = [(0,0), (0,0)]
+        actual_mapped_range: [(int, int)] = map_range_once(input_map, input_ranges)
+
+        self.assertEqual(expected_mapped_range, actual_mapped_range)
 
 
 if __name__ == '__main__':
