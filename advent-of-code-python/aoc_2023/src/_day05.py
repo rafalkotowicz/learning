@@ -137,6 +137,7 @@ def map_range_once(mappings: [(int, int, int)], input_ranges: [(int, int)]):
             map_dst = mapping[0]
             map_change = map_dst - map_start
             if input_range[0] < map_start :
+                pass
 
 
     return mapped_ranges
