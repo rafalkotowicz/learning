@@ -1,6 +1,7 @@
 import math
 import re
 
+NUMBER_REGEX = '[-+]?\\d+'
 
 class StackUnderflowError(Exception):
     def __init__(self, message):
@@ -12,7 +13,7 @@ def tokenize(input_data: str) -> list:
 
     tokens: [str] = input_data.split()
     for token in tokens:
-        if re.findall('[-+]?\d+', token):
+        if re.findall(NUMBER_REGEX, token):
             tokenized.append(int(token))
         else:
             tokenized.append(token)
@@ -29,7 +30,7 @@ def evaluate(input_data: list) -> list:
         if expression[0] == ":" and expression[-1] == ";":
             expression = expression[2:-2]
             tokenized_user = str(expression).split(maxsplit=1)
-            if re.findall('[-+]?\d+', tokenized_user[0]):
+            if re.findall(NUMBER_REGEX, tokenized_user[0]):
                 raise ValueError("illegal operation")
             else:
                 for user_word in user_defined:
@@ -59,7 +60,7 @@ def evaluate(input_data: list) -> list:
 
             for token in after_substitution:
                 index = after_substitution.index(token)
-                if re.findall('[-+]?\d+', str(token)):
+                if re.findall(NUMBER_REGEX, str(token)):
                     evaluated.append(int(token))
                 elif token == "+":
                     if index < 2:
