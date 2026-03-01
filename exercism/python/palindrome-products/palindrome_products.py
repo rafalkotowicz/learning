@@ -10,7 +10,7 @@ def is_palindrome(number: int) -> bool:
     return str_number == str_number[::-1]
 
 
-def largest(max_factor: int, min_factor: int = 0):
+def largest(max_factor: int, min_factor: int = 0) -> tuple[int | None, list[tuple[int, int]]]:
     """Given a range of numbers, find the largest palindromes which
        are products of two numbers within that range.
 
@@ -22,25 +22,51 @@ def largest(max_factor: int, min_factor: int = 0):
 
     validate_inputs(max_factor, min_factor)
 
-    factors: list[tuple[int, int]] = []
-    products = []
+    results = dict()
+    palindromes = []
     for num_a in range(min_factor, max_factor + 1):
         for num_b in range(min_factor, max_factor + 1):
-            products.append(num_a * num_b)
+            product = num_a * num_b
+            if is_palindrome(product):
+                if results.get(product):
+                    results[product].append((num_a, num_b))
+                else:
+                    results[product] = [(num_a, num_b)]
+                palindromes.append(product)
 
-    products.sort(reverse=True)
+    largest_palindrome = max(palindromes) if palindromes else None
+    if largest_palindrome:
+        return largest_palindrome, results[largest_palindrome]
+    else:
+        return None, []
 
-    for product in products:
-        if is_palindrome(product):
-            for num_c in range(min_factor, max_factor + 1):
-                for num_d in range(min_factor, max_factor + 1):
-                    if num_c * num_d == product:
-                        factors.append((num_c, num_d))
-            return product, factors
-    return None, factors
+    
+    # results = dict()
+    # palindromes = []
+    # pairs = set()
+    # for num_a in range(min_factor, max_factor + 1):
+    #     for num_b in range(min_factor, max_factor + 1):
+    #         if num_a < num_b:
+    #             pairs.add((num_a, num_b))
+    #         else:
+    #             pairs.add((num_b, num_a))
 
+    # for pair in pairs:
+    #     product = pair[0] * pair[1]
+    #     if is_palindrome(product):
+    #         if results.get(product):
+    #             results[product].append(pair)
+    #         else:
+    #             results[product] = [pair]
+    #         palindromes.append(product)
 
-def smallest(max_factor: int, min_factor: int = 0):
+    # largest_palindrome = max(palindromes) if palindromes else None
+    # if largest_palindrome:
+    #     return largest_palindrome, results[largest_palindrome]
+    # else:
+    #     return None, []
+
+def smallest(max_factor: int, min_factor: int = 0) -> tuple[int | None, list[tuple[int, int]]]:
     """Given a range of numbers, find the smallest palindromes which
     are products of two numbers within that range.
 
