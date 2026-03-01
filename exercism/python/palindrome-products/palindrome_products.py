@@ -22,7 +22,7 @@ def largest(max_factor: int, min_factor: int = 0):
 
     validate_inputs(max_factor, min_factor)
 
-    factors: list((int, int)) = []
+    factors: list[tuple[int, int]] = []
     products = []
     for num_a in range(min_factor, max_factor + 1):
         for num_b in range(min_factor, max_factor + 1):
@@ -52,7 +52,7 @@ def smallest(max_factor: int, min_factor: int = 0):
 
     validate_inputs(max_factor, min_factor)
 
-    factors: list((int, int)) = []
+    factors: list[tuple[int, int]] = []
     for num_a in range(min_factor, max_factor + 1):
         for num_b in range(min_factor, max_factor + 1):
             product = num_a * num_b
