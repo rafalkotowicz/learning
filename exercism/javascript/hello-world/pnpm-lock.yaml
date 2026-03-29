@@ -30,8 +30,8 @@ importers:
         specifier: ~3.40.0
         version: 3.40.0
       diff:
-        specifier: ^7.0.0
-        version: 7.0.0
+        specifier: ^8.0.3
+        version: 8.0.3
       eslint:
         specifier: ^9.19.0
         version: 9.24.0
@@ -1184,8 +1184,8 @@ packages:
     resolution: {integrity: sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
 
-  diff@7.0.0:
-    resolution: {integrity: sha512-PJWHUb1RFevKCwaFA9RlG5tCd+FO5iRh9A8HEtkmBH2Li03iJriB6m6JIN4rGz3K3JLawI7/veA1xzRKP6ISBw==}
+  diff@8.0.3:
+    resolution: {integrity: sha512-qejHi7bcSD4hQAZE0tNAawRK1ZtafHDmMTMkrrIGgSLl7hTnQHmKCeB45xAcbfTqK2zowkM3j3bHt/4b/ARbYQ==}
     engines: {node: '>=0.3.1'}
 
   dunder-proto@1.0.1:
@@ -3925,7 +3925,7 @@ snapshots:
 
   diff-sequences@29.6.3: {}
 
-  diff@7.0.0: {}
+  diff@8.0.3: {}
 
   dunder-proto@1.0.1:
     dependencies:
