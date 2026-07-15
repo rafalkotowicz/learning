@@ -7,14 +7,13 @@ class AppointmentScheduler {
     public LocalDateTime schedule(String appointmentDateDescription) {
         String[] timeParts = appointmentDateDescription.split("[/ :]");
 
-        LocalDateTime datetime = LocalDateTime.of(
+        return LocalDateTime.of(
                 Integer.parseInt(timeParts[2]),
                 Integer.parseInt(timeParts[0]),
                 Integer.parseInt(timeParts[1]),
                 Integer.parseInt(timeParts[3]),
                 Integer.parseInt(timeParts[4]),
                 Integer.parseInt(timeParts[5]));
-        return datetime;
     }
 
     public boolean hasPassed(LocalDateTime appointmentDate) {
