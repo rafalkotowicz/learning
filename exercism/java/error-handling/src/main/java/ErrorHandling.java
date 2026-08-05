@@ -19,11 +19,11 @@ class ErrorHandling {
     }
 
     void handleErrorByThrowingAnyUncheckedException() {
-        throw new NullPointerException();
+        throw new UnsupportedOperationException();
     }
 
     void handleErrorByThrowingAnyUncheckedExceptionWithDetailMessage(String message) {
-        throw new NullPointerException(message);
+        throw new UnsupportedOperationException(message);
     }
 
     void handleErrorByThrowingCustomCheckedException() throws CustomCheckedException {
