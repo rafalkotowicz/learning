@@ -72,9 +72,7 @@ class RestAPI:
 
     @staticmethod
     def _register_iou(lender, borrower, amount):
-        reverse_debt = lender["owes"].get(borrower["name"], 0.0)
-
-        if reverse_debt > 0:
+        if (reverse_debt := lender["owes"].get(borrower["name"], 0.0)) > 0:
             if reverse_debt > amount:
                 remaining_reverse = reverse_debt - amount
                 lender["owes"][borrower["name"]] = remaining_reverse
