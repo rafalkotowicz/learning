@@ -11,6 +11,8 @@ Implement the excerse solution in Python using TDD approach. Tests are already p
 all tests and meet linter requirements.
 Code is not present locally. Must be downloaded from exercism.org. Do not search for code locally.
 
+**Core principle**: USE ENGLISH ONLY in code, comments, commit messages, and documentation. Do not use any other language.
+
 ## Execution order
 * Download exercise from exercism.org (visit provided URL), search for `exercism download --track=python --exercise=<exercise_name>`, e.g. `exercism download --track=python --exercise=bowling`
 * Working dir is the directory where exercise was downloaded `C:\Users\rafal\PycharmProjects\learning\exercism\python\<exercise_name>`, e.g. `C:\Users\rafal\PycharmProjects\learning\exercism\python\bowling`
@@ -22,7 +24,7 @@ Code is not present locally. Must be downloaded from exercism.org. Do not search
 * Run linter 2 and fix issues
 * Run unit tests and fix issues
 * If linters are in conflict, prefer pylint over ruff
-* Prepare commit message to align with pattern [Exercism][Python][<exercise_name_camelcase>] Done: <exercise_url> e.g. * [Exercism][Python][Bowling] Done: https://exercism.org/tracks/python/exercises/bowling
+* Prepare commit message to align with pattern `[Exercism][Python][<exercise_name_camelcase>] Done: <exercise_url> | tests: <passing>/<all_tests> PASS | pylint <score>/10 PASS | ruff: PASS` e.g. `[Exercism][Python][Bowling] Done: https://exercism.org/tracks/python/exercises/bowling | tests: 16/16 PASS | pylint: 10.00/10 PASS | ruff: PASS`
 * Add test and linters results to the proposed commit message 
 
 ## Tools and standard
