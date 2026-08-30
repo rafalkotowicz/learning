@@ -26,6 +26,7 @@ Code is not present locally. Must be downloaded from exercism.org. Do not search
 * Add test and linters results to the proposed commit message 
 
 ## Tools and standard
+* Add return types to every function and method
 * Exercise Download: exercism download --track=python --exercise=<exercise_name>
 * Tests: unittest
 * Linter pylint: `python -m pylint --enable=all --score=y --reports=y --load-plugins=pylint.extensions.bad_builtin,pylint.extensions.broad_try_clause,pylint.extensions.check_elif,pylint.extensions.code_style,pylint.extensions.comparison_placement,pylint.extensions.confusing_elif,pylint.extensions.consider_refactoring_into_while_condition,pylint.extensions.consider_ternary_expression,pylint.extensions.dict_init_mutate,pylint.extensions.docparams,pylint.extensions.docstyle,pylint.extensions.dunder,pylint.extensions.empty_comment,pylint.extensions.eq_without_hash,pylint.extensions.for_any_all,pylint.extensions.magic_value,pylint.extensions.mccabe,pylint.extensions.no_self_use,pylint.extensions.overlapping_exceptions,pylint.extensions.private_import,pylint.extensions.redefined_loop_name,pylint.extensions.redefined_variable_type,pylint.extensions.set_membership,pylint.extensions.typing,pylint_celery,pylint_pydantic <exercise_name>.py`
