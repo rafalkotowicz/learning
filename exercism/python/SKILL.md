@@ -21,6 +21,7 @@ all tests and meet linter requirements.
 * Run linter 2 and fix issues
 * Run unit tests and fix issues
 * If linters are in conflict, prefer pylint over ruff
+* Submit code to exercism.org using `exercism submit <exercise_name>.py`, e.g. `exercism submit bowling.py`
 * Prepare commit message to align with pattern [Exercism][Python][<exercise_name_camelcase>] Done: <exercise_url> e.g. * [Exercism][Python][Bowling] Done: https://exercism.org/tracks/python/exercises/bowling
 * Add test and linters results to the proposed commit message 
 
