@@ -37,6 +37,7 @@ Code is not present locally. Must be downloaded from exercism.org. Do not search
 ## Expected outcome
 * First summary of implementation with test statistic and linter score/results
 * Explaining code and design decisions
+* Explain algorithms used to solve the problem
 * Ask human partner for further explanation 
 
 
