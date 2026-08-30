@@ -6,6 +6,8 @@ WHITE = "W"
 BLACK = "B"
 NONE = ""
 EMPTY = " "
+COORDINATE_KEY_COLUMN = "x"
+COORDINATE_KEY_ROW = "y"
 
 
 class Board:
@@ -20,8 +22,13 @@ class Board:
         self._height = len(board)
         self._width = len(board[0]) if board else 0
 
-    def _validate_coordinate(self, x, y):
-        if x < 0 or y < 0 or x >= self._width or y >= self._height:
+    def _validate_coordinate(self, column_index, row_index):
+        if (
+            column_index < 0
+            or row_index < 0
+            or column_index >= self._width
+            or row_index >= self._height
+        ):
             raise ValueError("Invalid coordinate")
 
     def _neighbors(self, coordinate):
@@ -57,13 +64,14 @@ class Board:
 
         return NONE, region_points
 
-    def territory(self, x, y):
+    def territory(self, column_index=None, row_index=None, **named_coordinates):
         """Find the owner and the territories given a coordinate on
            the board
 
         Args:
-            x (int): Column on the board
-            y (int): Row on the board
+            column_index (int): Column on the board
+            row_index (int): Row on the board
+            named_coordinates (dict): Optional keyword coordinates, e.g. x and y.
 
         Returns:
             (str, set): A tuple, the first element being the owner
@@ -71,9 +79,15 @@ class Board:
                         second being a set of coordinates, representing
                         the owner's territories.
         """
-        self._validate_coordinate(x, y)
+        # Keep compatibility with territory(x=..., y=...) keyword calls.
+        if column_index is None and COORDINATE_KEY_COLUMN in named_coordinates:
+            column_index = named_coordinates[COORDINATE_KEY_COLUMN]
+        if row_index is None and COORDINATE_KEY_ROW in named_coordinates:
+            row_index = named_coordinates[COORDINATE_KEY_ROW]
 
-        coordinate = (x, y)
+        self._validate_coordinate(column_index, row_index)
+
+        coordinate = (column_index, row_index)
         if self._char_at(coordinate) != EMPTY:
             return NONE, set()
 
