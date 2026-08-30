@@ -21,7 +21,7 @@ class Cipher:
     @staticmethod
     def _build_key(key):
         if key is None:
-            return "".join(choice(ascii_lowercase) for _ in range(100))
+            return "".join(choice(ascii_lowercase) for key_index in range(100))
 
         if not key.isalpha() or not key.islower():
             raise ValueError("Key must contain lowercase letters only")
